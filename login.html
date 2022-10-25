@@ -8,20 +8,26 @@
 </head>
 <body>
     <form action="">
-        <h1>I am a...</h1>
-        <button>Patient</button>
-        <button>Doctor</button>
+        <h1>Login</h1>
+        <h2>I am a...</h2>
+        <input type="button" value="Patient" required>
+        <input type="button" value="Doctor" required>
         <br>
-        <label for="username">USERNAME</label>
+        <!-- <label for="email">Email</label> -->
         <br>
-        <input type="text" id="username" name="username">
+        <input type="email" id="email" name="email" placeholder="Email" required>
         <br>
-        <label for="password">PASSWORD</label>
+        <!-- <label for="password">Password</label> -->
         <br>
-        <input type="text" id="password" name="passowrd">
+        <input type="password" id="password" name="password" placeholder="Password" required>
         <br>
-        <input type="submit">
+        <input type="checkbox" id="checkbox" name="checkbox">
+        <label for="checkbox">Remember me</label>
+        <br>
+        <input type="submit" value="Login">
         <a href="">Forgot password?</a>
+        <br>
+        <a href="register.html">Create an account</a>
     </form>
 </body>
 </html>
