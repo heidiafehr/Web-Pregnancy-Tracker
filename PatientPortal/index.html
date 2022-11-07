@@ -47,17 +47,29 @@
             <div class = "card">
                 <div class= "card-body">
                     <h5>Personal Information </h5>
-                    <table>
-                        Patient Name:
-                        <br> 
-                        Patient Date of Birth:  
-                        <br>
-                        Email: 
-                        <br> 
-                        Phone Number: 
-                        <br> 
-                        Priority Pharmacy: 
-                        <br> 
+                    <table class='table'>
+                        <tr>
+                            <td>Patient Name: </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Patient Date of Birth:  </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Email: </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number: </td>
+                            <td>Insert from db </td>
+                        </tr>
+                        <tr>
+                            <td>Priority Pharmacy: </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        
+                    </tr>
                     </table>
 
                         <button type="button" class="btn btn-primary"> Edit </button>
@@ -69,6 +81,18 @@
                 <div class = "card">
                     <div class = "card-body">
                         <h5>Pregnancies</h5>
+                        <!--Single Pregnacy Entry -->
+                        <table class="table">
+                            <tr>
+                                <td>Due Date:</td>
+                                <td> Insert from db </td>
+                            </tr>
+                            <tr>
+                                <td> Pregnancy Information:</td>
+                                <td> Insert from db</td>
+                            </tr>
+                        </table>
+                        <!-- Further pregnacies create more entries function or something -->
                         <br> 
                         Current Pregnancies: 
                         <br> 
@@ -82,16 +106,43 @@
                 <div class="card" style="margin-bottom: 10px">
                     <div class="card-body">
                         <h5>Appointments</h5>
-                        <br>  
-                            Appointment #1 11/30/2022
-                        <br> 
-                            <button type="button" class="btn btn-primary"> Request New Appointment </button>
+                        <!-- Single Appointment Entry -->
+                        <table class='table'>
+                            <tr>
+                                <td>Appointment Date:</td>
+                                <td> Insert from db</td>
+                            </tr>
+                            <tr>
+                                <td>Appointment Time:</td>
+                                <td> Insert from db</td>
+                            </tr>
+                        </table>
+                        <!-- make function to create further entries like this or something-->
+
+                        <!--Button to request new appointment, should open pop up page or new page -->
+                        <button type="button" class="btn btn-primary"> Request New Appointment </button>
                     </div>
             </div>
         <!-- Medications Card-->
             <div class="card" style="margin-bottom: 10px">
                 <div class = "card-body">
                     <h5> Medications </h5>
+                    <!--Single Medication Entry -->
+                    <table class="table">
+                        <tr>
+                            <td>Date Prescribed: </td>
+                            <td> Insert from db </td>
+                        </tr>
+                        <tr>
+                            <td> Name of Prescription </td>
+                            <td> Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Dosage: </td>
+                            <td> Insert from db</td>
+                        </tr>
+                    </table>
+                    <!-- Further medications create more entries function or something -->
                 </div>
             </div>
         </div>
