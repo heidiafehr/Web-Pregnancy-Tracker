@@ -12,14 +12,12 @@
 </head>
 <body>
     <!-- Nav Bar Start-->
-    <div class="container" id="custom-navbar">
+    <div class="d-flex flex-row" id="custom-navbar">
         <div class="row">
             <div class="col">
                 <table>
                     <tr>
-                        <td>
-                            Example Nav Bar
-                        </td>
+                        <h1>Nav Bar</h1>
                     </tr>
                 </table>
             </div>
@@ -27,100 +25,103 @@
     </div>
 
     <!-- container for cards-->
-    <div class="d-flex flex-row">
-        <!--Personal Information card -->
-        <div class = "card">
-            <div class= "card-body">
-                <h5>Personal Information </h5>
-                <table class='table'>
-                    <tr>
-                        <td>Patient Name: </td>
-                        <td>Insert from db</td>
+    <div class="container">
+        <!-- First Row -->
+        <div class="row">
+            <!--Personal Information card -->
+            <div class = "card col-lg">
+                <div class= "card-body">
+                    <h5>Personal Information </h5>
+                    <table class='table'>
+                        <tr>
+                            <td>Patient Name: </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Patient Date of Birth:  </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Email: </td>
+                            <td>Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number: </td>
+                            <td>Insert from db </td>
+                        </tr>
+                        <tr>
+                            <td>Priority Pharmacy: </td>
+                            <td>Insert from db</td>
+                        </tr>
                     </tr>
-                    <tr>
-                        <td>Patient Date of Birth:  </td>
-                        <td>Insert from db</td>
-                    </tr>
-                    <tr>
-                        <td>Email: </td>
-                        <td>Insert from db</td>
-                    </tr>
-                    <tr>
-                        <td>Phone Number: </td>
-                        <td>Insert from db </td>
-                    </tr>
-                    <tr>
-                        <td>Priority Pharmacy: </td>
-                        <td>Insert from db</td>
-                    </tr>
-                </tr>
-                </table>
-                <!-- button to edit perosnal information    -->
-                <button type="button" class="btn btn-primary"> Edit </button>
-            </div>      
-        </div>
-        <!-- Pregnancy Card        -->
-        <div class = "card">
-            <div class = "card-body">
-                <h5>Pregnancies</h5>
-                <!--Single Pregnacy Entry -->
-                <table class="table">
-                    <tr>
-                        <td>Due Date:</td>
-                        <td> Insert from db </td>
-                    </tr>
-                    <tr>
-                        <td> Pregnancy Information:</td>
-                        <td> Insert from db</td>
-                    </tr>
-                </table>
-                <!-- Further pregnacies create more entries function or something -->
+                    </table>
+                    <!-- button to edit perosnal information    -->
+                    <button type="button" class="btn btn-primary"> Edit </button>
+                </div>      
+            </div>
+            <!-- Pregnancy Card        -->
+            <div class = "card col-lg">
+                <div class = "card-body">
+                    <h5>Pregnancies</h5>
+                    <!--Single Pregnacy Entry -->
+                    <table class="table">
+                        <tr>
+                            <td>Due Date:</td>
+                            <td> Insert from db </td>
+                        </tr>
+                        <tr>
+                            <td> Pregnancy Information:</td>
+                            <td> Insert from db</td>
+                        </tr>
+                    </table>
+                    <!-- Further pregnacies create more entries function or something -->
+                </div>
             </div>
         </div>
-    </div>
-    <!-- container for cards-->
-    <div class="d-flex flex-row">
-        <!-- Appointments Card-->
-        <div class="card">
-            <div class="card-body">
-                <h5>Appointments</h5>
-                <!-- Single Appointment Entry -->
-                <table class='table'>
-                    <tr>
-                        <td>Appointment Date:</td>
-                        <td> Insert from db</td>
-                    </tr>
-                    <tr>
-                        <td>Appointment Time:</td>
-                        <td> Insert from db</td>
-                    </tr>
-                </table>
-                <!-- make function to create further entries like this or something-->
+        <!-- Next Row -->
+        <div class="row">
+            <!-- Appointments Card-->
+            <div class="card col-lg">
+                <div class="card-body">
+                    <h5>Appointments</h5>
+                    <!-- Single Appointment Entry -->
+                    <table class='table'>
+                        <tr>
+                            <td>Appointment Date:</td>
+                            <td> Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Appointment Time:</td>
+                            <td> Insert from db</td>
+                        </tr>
+                    </table>
+                    <!-- make function to create further entries like this or something-->
 
-                <!--Button to request new appointment, should open pop up page or new page -->
-                <button type="button" class="btn btn-primary"> Request New Appointment </button>
+                    <!--Button to request new appointment, should open pop up page or new page -->
+                    <button type="button" class="btn btn-primary"> Request New Appointment </button>
+                </div>
             </div>
-        </div>
-        <!-- Medications Card-->
-        <div class="card">
-            <div class = "card-body">
-                <h5> Medications </h5>
-                <!--Single Medication Entry -->
-                <table class="table">
-                    <tr>
-                        <td>Date Prescribed: </td>
-                        <td> Insert from db </td>
-                    </tr>
-                    <tr>
-                        <td> Name of Prescription </td>
-                        <td> Insert from db</td>
-                    </tr>
-                    <tr>
-                        <td>Dosage: </td>
-                        <td> Insert from db</td>
-                    </tr>
-                </table>
-                <!-- Further medications create more entries function or something -->
+            <!-- Medications Card-->
+            <div class="card col-lg">
+                <div class = "card-body">
+                    <h5> Medications </h5>
+                    <!--Single Medication Entry -->
+                    <table class="table">
+                        <tr>
+                            <td>Date Prescribed: </td>
+                            <td> Insert from db </td>
+                        </tr>
+                        <tr>
+                            <td> Name of Prescription </td>
+                            <td> Insert from db</td>
+                        </tr>
+                        <tr>
+                            <td>Dosage: </td>
+                            <td> Insert from db</td>
+                        </tr>
+                    </table>
+                    <!-- Further medications create more entries function or something -->
+                </div>
             </div>
         </div>
     </div>

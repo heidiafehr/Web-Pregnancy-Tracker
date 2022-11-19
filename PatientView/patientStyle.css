@@ -16,13 +16,8 @@
     padding: 0;
 }
 
-.d-flex{
-    justify-content: center;
-    margin: 2px;
-    flex-wrap: wrap;
-}
 .card{
-    margin: 6px;
+    margin: 5px;
     width: 50%;
 
 }
