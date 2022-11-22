@@ -39,18 +39,35 @@
   </div>
 
 
-    <!-- Nav Bar Start-->
-    <div class="container" id="custom-navbar">
-        <div class="row">
-            <div class="col">
-                <table>
-                    <tr>
-                        <h1>Nav Bar</h1>
-                    </tr>
-                </table>
-            </div>
+      <!-- Nav Bar Row-->
+      <div class= "row" style="margin-bottom: 100px; padding-left: 10px; border: solid;"> 
+        <!-- NavBar Start -->
+            <nav class="navbar navbar-expand-lg" id="custom-navbar">
+                <div class="container-fluid">
+                <a class="navbar-brand" href="#">Patient Portal</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Personal Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Pregnancy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Medications</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
         </div>
-    </div>
+          <!-- NavBar End -->
 
     <!-- container for cards-->
     <div class="container">
@@ -127,7 +144,7 @@
                         </table>
                         <!-- make function to create further entries like this or something-->
 
-                        <!-- Button trigger modal -->
+                        <!-- Appointment Modal Button -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Request New Appointment
                         </button>
