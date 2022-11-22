@@ -16,3 +16,8 @@ style.css
 
 miscellaneous
 - fixed some spaces/tabs and mispellings
+
+
+## TODO
+
+- [ ] FIX THE HORIZONTAL SCROLL WHY IS THAT THERE???
