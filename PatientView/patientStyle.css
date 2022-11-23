@@ -6,12 +6,15 @@
     --deep-purple: #371b2f;
     --off-white-cream: #968a46;
 }
+.card{
+    margin: 10px;
+}
 
-#custom-navbar{
-    position: sticky;
-    top: 0;
-    background-color: var(--light-green);
-    color: var(--dark-blue);
-    margin: 0;
-    padding: 0;
+#personal-info-container, #appt-container{
+    display: flex;
+    align-items: center;
+}
+
+#edit-btn, #appt-btn{
+    margin-left: auto;
 }

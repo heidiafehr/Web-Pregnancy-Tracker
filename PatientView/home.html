@@ -4,43 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pregnancy Tracker</title>
+    <title>Personal Information</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="patientStyle.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    
-
-
-      <!-- Nav Bar Row-->
-      <div class= "row" style="margin-bottom: 100px; padding-left: 10px; border: solid;"> 
+    <!-- Nav Bar Row-->
+    <div class= "row" id="navbar-row"> 
         <!-- NavBar Start -->
-            <nav class="navbar navbar-expand-lg" id="custom-navbar">
-                <div class="container-fluid">
-                <a class="navbar-brand" href="#">Patient Portal</a>
+        <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home.html">Welcome, {firstName}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="patientPortalHome.html" href="#">Personal Information</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pregnancies.html">Pregnancy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Appointments.html">Appointments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="medications.html">Medications</a>
-                    </li>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item px-3">
+                            <a class="nav-link active" href="home.html">Personal Information</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="pregnancies.html">Pregnancy</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="appointments.html">Appointments</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="medications.html">Medications</a>
+                        </li>
                     </ul>
                 </div>
-                </div>
-            </nav>
-        </div>
-          <!-- NavBar End -->
+                <button type="button" class="btn btn-dark navbar-btn px-2">
+                    Sign Out
+                </button>
+            </div>
+        </nav>
+        <!-- NavBar End -->
+    </div>
 
     <!-- container for cards-->
     <div class="container">
@@ -48,9 +49,13 @@
         <div class="row">
             <!--Personal Information card -->
             <div class = " col">
-                <div class="card id="personalInformationCard">
+                <div class="card" id="personalInformationCard">
                     <div class= "card-body">
-                        <h5>Personal Information </h5>
+                        <div id="personal-info-container">
+                            <h5 id="personal-info-hdr">Personal Information </h5>
+                            <!-- button to edit personal information    -->
+                            <button type="button" class="btn btn-primary" id="edit-btn"> Edit </button>
+                        </div>
                         <table class='table'>
                             <tr>
                                 <td>Patient Name: </td>
@@ -74,8 +79,6 @@
                             </tr>
                         </tr>
                         </table>
-                        <!-- button to edit perosnal information    -->
-                        <button type="button" class="btn btn-primary"> Edit </button>
                     </div>  
                 </div>    
             </div>
