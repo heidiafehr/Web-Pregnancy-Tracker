@@ -6,39 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medications</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="patientStyle.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <!-- Nav Bar Row-->
-    <div class= "row" style="margin-bottom: 100px; padding-left: 10px; border: solid;"> 
-    <!-- NavBar Start -->
-        <nav class="navbar navbar-expand-lg" id="custom-navbar">
+    <div class= "row" id="navbar-row"> 
+        <!-- NavBar Start -->
+        <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
             <div class="container-fluid">
-            <a class="navbar-brand" href="#">Patient Portal</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="patientPortalHome.html" href="patientPortalHome.html">Personal Information</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pregnancies.html">Pregnancy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Appointments.html">Appointments</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="medications.html">Medications</a>
-                </li>
-                </ul>
-            </div>
+                <a class="navbar-brand  px-2" href="home.html">Welcome, {firstName}</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto px-2">
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="home.html">Personal Information</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="pregnancies.html">Pregnancy</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" href="appointments.html">Appointments</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link active" href="medications.html">Medications</a>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-dark navbar-btn px-2">
+                    Sign Out
+                </button>
             </div>
         </nav>
+        </div>
+        <!-- NavBar End -->
     </div>
-    <!-- NavBar End -->
-    <!--Medications Card Coinatiner -->
+
+
     <div class="container">
         <div class="col">
             <div class="card" id="medicationsCard">
