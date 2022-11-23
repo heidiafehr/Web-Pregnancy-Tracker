@@ -1,23 +1,5 @@
 # Web-Pregnancy-Tracker
 
-### 11/22/2022
+This web application uses HTML, CSS, and JS for the front-end as well as SQL and PHP for the backend. 
 
-HTML files
-- Added spacing (padding) around the `navbar`
-- Moved card button to top right corner (appointment and personal info for patient view)
-- Added a sign out button on `navbar`
-- Set `active` class for each site currently visited
-
-style.css
-- Changed color for `navbar`
-- Set `navbar` height to `48px`
-- Set default `font-family` to `Verdana`
-- Set default `font-weight` to `600`
-
-miscellaneous
-- fixed some spaces/tabs and mispellings
-
-
-## TODO
-
-- [ ] FIX THE HORIZONTAL SCROLL WHY IS THAT THERE???
+With three different portals, the user can either log in through the patient or doctor portal. The patient user can enter in pregnancies to track, see their perscriptions, and request/see appointments. The doctor user can perscribe medication, search patient records, and see their upcoming appointments. With the third portal, system admin, the user can create doctor accounts and edit/delete any record in the system.
