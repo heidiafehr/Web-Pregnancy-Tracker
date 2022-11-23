@@ -18,3 +18,12 @@
 .card{
     margin: 10px;
 }
+
+#personal-info-container, #appt-container{
+    display: flex;
+    align-items: center;
+}
+
+#edit-btn, #appt-btn{
+    margin-left: auto;
+}
