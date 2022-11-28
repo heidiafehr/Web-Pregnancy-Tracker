@@ -84,8 +84,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
+                        <!-- Date Picker Start -->
                         <span class="input-group-text" id="basic-addon1">Enter Preferred Date</span>
-                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" aria-label="Date" aria-describedby="basic-addon1">
+                        <input type="date" id="start" name="trip-start"
+                            value="2022-11-27"
+                            min="2022-11-27" max="2023-11-27">
+                        <!-- Date Picker End -->
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Enter Preferred Time</span>
