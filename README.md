@@ -13,11 +13,13 @@ Once downloaded and installed XAMPP, navigate to the phpAdmin page and create a 
 Place this project's folder inside the htdocs folder found in the xampp program file.
 
 Create a new file called "Global.php" in the root file of this project.
-Inside this file create a php tag and replace the fields with the information from your user account you created (as seen down below).
+Inside this file create a php tag and replace the fields with the information from your user account
+you created (as seen down below).
     <?php
         $servername = "servername";
         $userAccountName = "name";
         $userAccountPassword = "password";
     ?>
-Once created and it is your first time accessing this page, run the "db_init.php" file. This will create the database and nagivate you to the log in page.
+Once created and it is your first time accessing this page, run the "db_init.php" file.
+This will create the database and nagivate you to the log in page.
 ```
