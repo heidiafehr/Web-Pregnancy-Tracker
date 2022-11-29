@@ -91,11 +91,14 @@
                             min="2022-11-27" max="2023-11-27">
                     </div>
                     <!-- Date Picker End -->
-                    <!-- Pick time  -->
+
+                    <!-- Time Picker Start  -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Enter Preferred Time</span>
-                        <input type="text" class="form-control" placeholder="12:00pm" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="time" id="appt" name="appt"
+                                min="09:00" max="18:00" required>
                     </div>
+                    <!-- Time Picker End -->
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
