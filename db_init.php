@@ -2,15 +2,7 @@
 <?php
 /* Creates the database on the server if it does not exist already */
 
-    include("Global.php");
-    $dbname = "ptDB";
-
-// Create connection
-$conn = new mysqli($servername, $userAccountName, $userAccountPassword, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connect_server.php");
 
 $sql = "DROP DATABASE if EXISTS ptDB;";
 $sql .= "CREATE DATABASE if NOT EXISTS ptDB;";
@@ -82,37 +74,18 @@ $sql .= "CREATE TABLE medication(
 	med_description VARCHAR(8000)
 );";
 
+// Creating and admin login
+$sql .= "INSERT INTO users VALUES('sysAdmin', 'Welcome1!');";
+$sql .= "INSERT INTO admins VALUES('sysAdmin');";
+
 if($conn->multi_query($sql) === TRUE){
     echo "<br>", "Created database", "<br>";
+
+	include("start_web.php");
+
 }else{
     echo "<br>", "Failed to create database :(", "<br>";
 }
 
 $conn->close();
-
-
-// <?php
-//     $dbname = "ptDB";
-
-//     // Create connection
-//     $conn = new mysqli($servername, $username, $password, $dbname);
-//     // Check connection
-//     if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-//     }
-
-//     $sql = "SELECT * FROM patients";
-//     $result = $conn->query($sql);
-    
-//     if ($result->num_rows > 0) {
-//       // output data of each row
-//       while($row = $result->fetch_assoc()) {
-//         echo "id: " . $row["username"] . "<br>";
-//       }
-//     } else {
-//       echo "0 results";
-//     }
-
-//     $conn->close();
-// 
 ?>

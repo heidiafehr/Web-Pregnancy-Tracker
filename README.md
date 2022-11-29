@@ -10,7 +10,7 @@ For this project we used the cross-platform, Apache, MySQL, PHP and Perl server 
 PHP software can be downloaded at https://www.php.net/downloads.php.
 The server can be downloaded at https://www.apachefriends.org/download.html.
 Once downloaded and installed XAMPP, navigate to the phpAdmin page and create a new user account.
-Place this project's folder inside the htdocs folder found in the xampp program file.
+Place this project's folder inside the htdocs folder found in the xampp folder.
 
 Create a new file called "Global.php" in the root file of this project.
 Inside this file create a php tag and replace the fields with the information from your user account
@@ -21,5 +21,7 @@ you created (as seen down below).
         $userAccountPassword = "password";
     ?>
 Once created and it is your first time accessing this page, run the "db_init.php" file.
+If you already initialized the database locally, you can start the web application
+by running "start_web.php"
 This will create the database and nagivate you to the log in page.
 ```
