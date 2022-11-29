@@ -15,6 +15,7 @@
                     <div class="card text-black" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
                             <div class="mb-md-5 mt-md-4 pb-5">
+                                <?php include 'loginPHP.php'; ?>
                                 <h2 class="fw-bold mb-5">Login</h2>
                                 <!-- Email -->
                                 <div class="form-outline form-white form-floating mb-4">
@@ -26,23 +27,11 @@
                                     <input type="password" id="password" class="form-control form-control-lg" required/>
                                     <label class="form-label" for="password">Password</label>
                                 </div>
-                                <div class="row d-flex mb-5 pb-lg-2">
-                                    <div class="col-12 col-md-12 col-lg-6 col-xl-6">
-                                        <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input" id="rememberme">
-                                            <label class="form-check-label" for="rememberme">Remember Me</label>
-                                        </div>
-                                    </div>
-                                        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
-                                        <!-- Forgot Password -->
-                                        <p><a class="text-dark-50" href="#!">Forgot password?</a></p> <!-- TODO: link forgot password to a separate link -->
-                                        </div>
-                                    </div>
                                 <!-- Login Button -->
                                 <button class="btn btn-outline-light btn-lg px-5 text-dark-50" type="submit" style="background-color: rgb(89, 118, 211)">Login</button> <!-- TODO: link login to a separate link -->
                             </div>
                             <!-- Sign up -->
-                            <p class="mb-0">Don't have an account? <a href="register.html" class="text-dark-50 fw-bold">Sign Up</a></p>
+                            <p class="mb-0">Don't have an account? <a href="/RegisterView/register.html" class="text-dark-50 fw-bold">Sign Up</a></p>
                         </div>
                     </div>
                 </div>
