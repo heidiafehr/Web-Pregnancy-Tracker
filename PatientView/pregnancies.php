@@ -50,16 +50,9 @@
                     <h5>Pregnancies</h5>
                     <!--Single Pregnacy Entry -->
                     <table class="table">
-                        <tr>
-                            <td>Due Date:</td>
-                            <td><?php   
-                                printPregnancies($pregnanciesResult); 
-                            ?></td>
-                        </tr>
-                        <tr>
-                            <td> Pregnancy Information:</td>
-                            <td>Insert from db</td>
-                        </tr>
+                        <?php   
+                            printPregnancies($pregnanciesResult); 
+                        ?>
                     </table>
                     <!-- Further pregnacies create more entries function or something -->
                 </div>
