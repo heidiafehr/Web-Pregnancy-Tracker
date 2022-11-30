@@ -25,7 +25,7 @@
                     session_start();
                     $_SESSION = $users[0]['username'];
                     $_SESSION = $patient[0]['patient_ID'];
-                    header("Location: ../PatientView/patientHome.html");
+                    header("Location: ../PatientView/home.php");
                     echo "Found a user!";
                 }else{
                     header("Location: login.html?err= There is no record of this patient. If you are a doctor, please go to Doctor Login below");
@@ -34,7 +34,7 @@
                 
             }else{
                 echo "smth went wrong";
-                header("Location: login.html?err= Oops looks like wrong username/password. Please check for typos and try again.");
+                header("Location: patientLogin.html?err= Oops looks like wrong username/password. Please check for typos and try again.");
             }
         }
         
