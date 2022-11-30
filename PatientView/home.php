@@ -11,6 +11,7 @@
 </head>
 <body>
     <?php include 'patientInfo.php' ?>
+    
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
