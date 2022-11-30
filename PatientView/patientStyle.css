@@ -1,3 +1,11 @@
+:root {
+    --lavander: #CDC7E5;
+    --light-green: #73ab84;
+    --mid-blue: #3e61a3;
+    --dark-blue: #0e0f19;
+    --deep-purple: #371b2f;
+    --off-white-cream: #968a46;
+}
 .card{
     margin: 10px;
 }
