@@ -56,14 +56,9 @@
                         
                     <!-- Single Appointment Entry -->
                     <table class='table'>
-                        <tr>
-                            <td>Appointment Date:</td>
-                            <td> Insert from db</td>
-                        </tr>
-                        <tr>
-                            <td>Appointment Time:</td>
-                            <td> Insert from db</td>
-                        </tr>
+                        <?php 
+                            printAppointments($appointmentResult); 
+                        ?>
                     </table>
                     <!-- make function to create further entries like this or something-->
 
