@@ -7,25 +7,23 @@
     <title>Personal Information</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="patientStyle.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <?php include 'patientInfo.php' ?>
     <!-- Nav Bar Row-->
     <div class= "row" id="navbar-row"> 
         <!-- NavBar Start -->
         <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="patientHome.html">Welcome, {firstName}</a>
+                <a class="navbar-brand" href="home.html">Welcome, {firstName}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item px-3">
-                            <a class="nav-link" href="patientHome.html">Home</a>
-                        </li>
-                        <li class="nav-item px-3">
-                            <a class="nav-link active" href="personalInformation.html">Personal Information</a>
+                            <a class="nav-link active" href="home.php">Personal Information</a>
                         </li>
                         <li class="nav-item px-3">
                             <a class="nav-link" href="pregnancies.html">Pregnancy</a>
@@ -56,25 +54,37 @@
                     <div class= "card-body">
                         <div id="personal-info-container">
                             <h5 id="personal-info-hdr">Personal Information </h5>
-                            <!-- button to edit personal information    -->
-                            <button type="button" class="btn btn-primary" id="edit-btn"> Edit </button>
+                                <!-- button to edit personal information    -->
+                                    <button type="submit" class="btn btn-primary" id="edit-btn"> Edit </button>
                         </div>
                         <table class='table'>
                             <tr>
                                 <td>Patient Name: </td>
-                                <td>Insert from db</td>
+                                <td><?php 
+                                        print($name); 
+
+                                    ?>
+                                </td>                                  
                             </tr>
                             <tr>
                                 <td>Patient Date of Birth:  </td>
-                                <td>Insert from db</td>
+                                <td><?php
+                                    print($patientDOB); 
+                                ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Email: </td>
-                                <td>Insert from db</td>
+                                <td><?php
+                                    print($patientEmail); 
+                                ?>
+                                    </td>
                             </tr>
                             <tr>
                                 <td>Phone Number: </td>
-                                <td>Insert from db </td>
+                                <td><?php
+                                    print($patientPhone); 
+                                ?></td>
                             </tr>
                             <tr>
                                 <td>Priority Pharmacy: </td>
