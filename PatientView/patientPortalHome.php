@@ -10,29 +10,28 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <?php include 'patientInfo.php' ?>
+
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="patientHome.html">Welcome, {firstName}</a>
+            <a class="navbar-brand" href="patientPortalHome.php">Welcome, {firstName}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="patientHome.html">Home</a>
+                        <a class="nav-link" href="patientPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link active" href="personalInformation.html">Personal Information</a>
+                        <a class="nav-link" href="pregnancies.php">Pregnancy</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="pregnancies.html">Pregnancy</a>
+                        <a class="nav-link" href="appointments.php">Appointments</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="appointments.html">Appointments</a>
-                    </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="medications.html">Medications</a>
+                        <a class="nav-link" href="medications.php">Medications</a>
                     </li>
                 </ul>
             </div>
@@ -53,25 +52,37 @@
                     <div class= "card-body">
                         <div id="personal-info-container">
                             <h5 id="personal-info-hdr">Personal Information </h5>
-                            <!-- button to edit personal information    -->
-                            <button type="button" class="btn btn-primary" id="edit-btn"> Edit </button>
+                                <!-- button to edit personal information    -->
+                                    <button type="submit" class="btn btn-primary" id="edit-btn"> Edit </button>
                         </div>
                         <table class='table'>
                             <tr>
                                 <td>Patient Name: </td>
-                                <td>Insert from db</td>
+                                <td><?php 
+                                        print($name); 
+
+                                    ?>
+                                </td>                                  
                             </tr>
                             <tr>
                                 <td>Patient Date of Birth:  </td>
-                                <td>Insert from db</td>
+                                <td><?php
+                                    print($patientDOB); 
+                                ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Email: </td>
-                                <td>Insert from db</td>
+                                <td><?php
+                                    print($patientEmail); 
+                                ?>
+                                    </td>
                             </tr>
                             <tr>
                                 <td>Phone Number: </td>
-                                <td>Insert from db </td>
+                                <td><?php
+                                    print($patientPhone); 
+                                ?></td>
                             </tr>
                             <tr>
                                 <td>Priority Pharmacy: </td>
