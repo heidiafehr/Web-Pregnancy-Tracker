@@ -52,11 +52,11 @@ $sql .= "CREATE TABLE admins(
 
 $sql .= "CREATE TABLE appointments(
 	user_ID INT NOT NULL,
-	/*YYYY-MM-DD HH:MI:SS*/
-	start_date_time VARCHAR(19) NOT NULL,
-	end_date_time VARCHAR(19),
-	/*HH:MI:SS*/
-	appt_length VARCHAR(9),
+	/*YYYY-MM-DDTHH:MI*/
+	start_date_time VARCHAR(16) NOT NULL,
+	end_date_time VARCHAR(16),
+	/*HH:MI*/
+	appt_length VARCHAR(5),
 	FOREIGN KEY(user_ID) REFERENCES personal_info(ID)
 );";
 
@@ -81,13 +81,13 @@ $sql .= "INSERT INTO admins VALUES('sysAdmin');";
 // Creating test doctor
 $sql .= "INSERT INTO users VALUES('doctorUser', 'Welcome1!');";
 $sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number) VALUES
-('John', 'Doe', '01-01-1999', 'johndoe@email.com', '7024009998');";
-$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time)VALUES
-(LAST_INSERT_ID(), '12:01:2022 10:30:00', '12:01:2022 11:00:00'),
-(LAST_INSERT_ID(), '12:01:2022 12:00:00', '12:01:2022 12:45:00'),
-(LAST_INSERT_ID(), '12:01:2022 13:00:00', '12:01:2022 14:50:00'),
-(LAST_INSERT_ID(), '01:03:2023 08:30:00', '01:03:2023 08:00:00'),
-(LAST_INSERT_ID(), '01:06:2023 10:30:00', '01:06:2023 11:00:00');";
+('John', 'Doe', '1999-01-14', 'johndoe@email.com', '7024009998');";
+$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
+(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
+(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
+(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50'),
+(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30'),
+(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30');";
 $sql .= "INSERT INTO doctors VALUES(LAST_INSERT_ID(), 'doctorUser');";
 
 // Creating test patient
@@ -95,26 +95,26 @@ $sql .= "INSERT INTO doctors VALUES(LAST_INSERT_ID(), 'doctorUser');";
 $sql .= "INSERT INTO users VALUES('patientUser', 'Welcome1!');";
 $sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number) VALUES
 ('Jane', 'Smith', '11-30-1999', 'janesmith@email.com', '7025000893');";
-$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time)VALUES
-(LAST_INSERT_ID(), '12:01:2022 10:30:00', '12:01:2022 11:00:00'),
-(LAST_INSERT_ID(), '12:01:2022 12:00:00', '12:01:2022 12:45:00'),
-(LAST_INSERT_ID(), '12:01:2022 13:00:00', '12:01:2022 14:50:00'),
-(LAST_INSERT_ID(), '01:03:2023 08:30:00', '01:03:2023 08:00:00'),
-(LAST_INSERT_ID(), '01:06:2023 10:30:00', '01:06:2023 11:00:00');";
-$sql .= "INSERT INTO doctors VALUES(LAST_INSERT_ID(), 'doctorUser');";
+$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
+(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
+(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
+(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50'),
+(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30'),
+(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30');";
+$sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
 $sql .= "INSERT INTO medication VALUES
-('medicationName', '2020:05:30', '2020:06:14', 'This is the description of what the medication does and how it should be taken');";
+('medicationName', '2020-05-30', '2020-06-14', 'This is the description of what the medication does and how it should be taken');";
 $sql .= "INSERT INTO pregnancies VALUES
-(LAST_INSERT_ID(), '2022:10:31'),
-(LAST_INSERT_ID(), '2020:11:14'),
-(LAST_INSERT_ID(), '2019:01:06'),
-(LAST_INSERT_ID(), '2017:09:17'),
-(LAST_INSERT_ID(), '2016:04:30');";
+(LAST_INSERT_ID(), '2022-10-31'),
+(LAST_INSERT_ID(), '2020-11-14'),
+(LAST_INSERT_ID(), '2019-01-06'),
+(LAST_INSERT_ID(), '2017-09-17'),
+(LAST_INSERT_ID(), '2016-04-30');";
 
 if($conn->multi_query($sql) === TRUE){
     echo "<br>", "Created database", "<br>";
 
-	include("start_web.php");
+	// include("start_web.php");
 
 }else{
     echo "<br>", "Failed to create database :(", "<br>";
