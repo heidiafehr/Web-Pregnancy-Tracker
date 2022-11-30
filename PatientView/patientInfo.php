@@ -4,6 +4,8 @@
     // create query
     $sql =  "SELECT * FROM personal_info where id=1;";
     $result = $conn->query($sql); 
+
+    //get row of patient information
     $row = $result->fetch_assoc();
     //getting patient name  
     $name = $row["first_name"] . " ". $row["last_name"]; 
