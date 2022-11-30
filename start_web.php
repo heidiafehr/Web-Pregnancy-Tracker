@@ -1,4 +1,4 @@
 <?php
     // Redirect to login page
-	header("Location: LoginView/login.html");
+	header("Location: LoginView/patientLogin.html");
 ?>
