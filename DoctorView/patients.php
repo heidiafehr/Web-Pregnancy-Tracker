@@ -12,7 +12,7 @@
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand px-2" href="doctorPortalHome.html">Welcome, Dr. {firstName}</a>
+            <a class="navbar-brand px-2" href="doctorPortalHome.php">Welcome, Dr. {firstName}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,7 +20,7 @@
                 <ul class="navbar-nav ms-auto px-2">
                     <!-- If you're adding new page in the nav bar, set the current page as active -->
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="doctorPortalHome.html">Home</a>
+                        <a class="nav-link" href="doctorPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="appointments.php">Appointments</a> <!-- TODO: Update href-->

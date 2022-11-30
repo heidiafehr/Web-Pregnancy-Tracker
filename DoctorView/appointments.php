@@ -12,14 +12,14 @@
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand px-2" href="doctorPortalHome.html">Welcome, Dr. {firstName}</a>
+            <a class="navbar-brand px-2" href="doctorPortalHome.php">Welcome, Dr. {firstName}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto px-2">
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="doctorPortalHome.html">Home</a>
+                        <a class="nav-link" href="doctorPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link active" href="appointments.php">Appointments</a> <!-- TODO: Update href-->
@@ -86,7 +86,9 @@
                         INNER JOIN appointments AS appt
                         ON p_info.ID = appt.user_ID
                         ORDER BY appt.start_date_time;";
+                        
                         $result = $conn->query($sql);
+                        
                         if($result->num_rows > 0){
                     ?>
                     <!-- Appointment Table -->
@@ -108,7 +110,7 @@
                                     while($i < 10){
                                         $row = $result->fetch_assoc();
                                         echo "<tr>";
-                                        echo "<td>" .  $row["first_name"]. "</td>";
+                                        echo "<td>" . $row["first_name"] . "</td>";
                                         echo "<td>" . $row["last_name"] . "</td>";
                                         echo "<td>" . $row["start_date_time"] . "</td>";
                                         echo "<td>" . "{time}" . "</td>";
