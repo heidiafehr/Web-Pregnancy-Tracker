@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
@@ -14,7 +14,7 @@
     <div class="login-card">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <form action="loginPHP.php" method="post">
+                <form action="adminLoginPHP.php" method="post">
                     <div class="loginTitle">
                         Login
                     </div>
@@ -34,16 +34,6 @@
                         <!-- submit button -->
                         <button type="submit">Login</button>
                     </div>
-
-                    <!-- Navigation -->
-                    <div class="container">
-                        Don't have an account? <a href="../RegisterView/register.html">Sign Up</a>
-                        <br>
-                        Are you a Doctor? <a href="doctorLogin.html">Doctor Login</a>
-                    </div>
-                    <label>
-                        I am a Doctor <input type="checkbox" name="doctor">
-                    </label>
                     <?php
                         if(isset($_GET['err'])){
                         echo '<p style="color: red;">',$_GET['err'],'</p>';
