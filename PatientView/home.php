@@ -11,17 +11,20 @@
 </head>
 <body>
     <?php include 'patientInfo.php' ?>
-    <!-- Nav Bar Row-->
+    <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="home.html">Welcome, {firstName}</a>
+            <a class="navbar-brand" href="patientHome.html">Welcome, {firstName}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-3">
-                        <a class="nav-link active" href="home.php">Personal Information</a>
+                        <a class="nav-link" href="patientHome.html">Home</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link active" href="personalInformation.html">Personal Information</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="pregnancies.html">Pregnancy</a>
