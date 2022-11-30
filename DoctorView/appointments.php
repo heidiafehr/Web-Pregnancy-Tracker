@@ -25,7 +25,7 @@
                         <a class="nav-link active" href="appointments.php">Appointments</a> <!-- TODO: Update href-->
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="patients.html">Patients</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="patients.php">Patients</a> <!-- TODO: Update href-->
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="medications.html">Medications</a> <!-- TODO: Update href-->
@@ -140,28 +140,76 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Patient Name -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" style="width:120px;">Patient Name</span>
+                        <input type="text" list="patientSearch" id="nameSearch" name="nameSearch"required>
+                    </div>
+
+                    <datalist id="patientSearch">
+                        <?php
+                        include '../connect_server.php'; 
+
+                        //getting appointment date
+                        $sql =  "SELECT DISTINCT p_info.first_name, p_info.last_name FROM personal_info AS p_info
+                        INNER JOIN appointments AS appt
+                        ON p_info.ID = appt.user_ID
+                        ORDER BY p_info.first_name;";
+                        $result = $conn->query($sql);
+                    
+                        $arr = array();
+                        if($result->num_rows > 0){ 
+                            while($row = $result->fetch_assoc()){ 
+                                echo "<option value=\"" . $row['first_name'] . " " . $row['last_name'] . "\">";
+                            } 
+                        }
+                        ?>
+                    </datalist>
+
                     <!-- Date Picker Start -->
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Date</span>
-                        <input type="date" id="start" name="trip-start"
+                        <span class="input-group-text" style="width:120px;">Date</span>
+                        <input type="date" id="dateSearch" name="dateSearch"
                             value="2022-11-27"
                             min="2022-11-27" max="2023-11-27" required>
                     </div>
                     <!-- Date Picker End -->
-                        
+                            
                     <!-- Time Picker Start  -->
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Time</span>
+                        <span class="input-group-text" style="width:120px;">Time</span>
                         <!-- TODO: Increment time by 15 minutes -->
-                        <input type="time" id="appt" name="appt"
+                        <input type="time" id="timeSearch" name="timeSearch"
                             min="09:00" max="18:00" required>
                     </div>
                     <!-- Time Picker End -->
                 </div>
                 <div class="modal-footer">
                     <!-- Send appointment to db -->
-                    <button type="button" class="btn btn-primary">Submit Request</button>
+                    <button type="button" class="btn btn-primary" form="modal-details" id="submitBtn">Submit</button>
                 </div>
+                <!-- TODO: Make submit button functional -->
+                <!-- <script>
+                    let apptModal = document.getElementById('apptModal');
+                    let name = document.getElementById('nameSearch');
+                    let date = document.getElementById('dateSearch');
+                    let time = document.getElementById('timeSearch');
+                    let submitBtn = document.getElementById('submitBtn');
+                    let nameVal, dateVal, timeVal;
+
+                    submitBtn.addEventListener('click', function(){
+                        if(name.value && date.value && time.value){
+                            nameVal = name.value;
+                            dateVal = date.value;
+                            timeVal = time.value;
+                        } else {
+                            console.log('All inputs required');
+                        }
+                    });
+                </script> -->
+                <?php
+                
+                ?>
             </div>
         </div>
     </div>
