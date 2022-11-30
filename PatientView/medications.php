@@ -10,26 +10,27 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand  px-2" href="home.html">Welcome, {firstName}</a>
+            <a class="navbar-brand" href="patientPortalHome.php">Welcome, {firstName}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto px-2">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="home.php">Personal Information</a>
+                        <a class="nav-link" href="patientPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="pregnancies.html">Pregnancy</a>
+                        <a class="nav-link" href="pregnancies.php">Pregnancy</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="appointments.html">Appointments</a>
+                        <a class="nav-link" href="appointments.php">Appointments</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link active" href="medications.html">Medications</a>
+                        <a class="nav-link" href="medications.php">Medications</a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +39,6 @@
             </button>
         </div>
     </nav>
-    </div>
     <!-- NavBar End -->
 
 
