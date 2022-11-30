@@ -30,7 +30,7 @@
                     header("Location: ../PatientView/home.php");
                     echo "Found a user!";
                 } else {
-                    header("Location: login.html?err= There is no record of this patient. If you are a doctor, please go to Doctor Login below");
+                    header("Location: login.html?err= There is no record of this patient. If you are a doctor, please check you are a Doctor down below");
                 }
             }else{
                 $sql = "SELECT * FROM doctors WHERE username='$uname';";
@@ -41,19 +41,19 @@
                 if (sizeof($doctor) == 1) {
                     session_start();
                     $_SESSION = $users[0]['username'];
-                    $_SESSION = $patient[0]['patient_ID'];
+                    $_SESSION = $doctor[0]['patient_ID'];
                     header("Location: ../DoctorView/doctorPortalHome.html");
                     echo "Found a user!";
                 } else {
-                    header("Location: login.html?err= There is no record of this doctor. Please contact your administrator to be added to the system");
+                    header("Location: login.html?err= There is no record of this doctor. Please contact your administrator for help.");
                 }
             }
         } else {
             echo "smth went wrong";
             if(!$isDoctor){
-                header("Location: patientLogin.html?err= Oops looks like something went wrong username/password. Please check for typos and try again.");
+                header("Location: login.html?err= Oops looks like something went wrong username/password. Please check for typos and try again.");
             }else{
-                header("Location: patientLogin.html?err= If you are a doctor, please check for typos and try again or contact your administrator for help.");
+                header("Location: login.html?err= If you are a doctor, please check for typos and try again or contact your administrator for help.");
             }
         }
     }
