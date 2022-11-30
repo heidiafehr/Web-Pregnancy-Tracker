@@ -114,7 +114,7 @@ $sql .= "INSERT INTO pregnancies VALUES
 if($conn->multi_query($sql) === TRUE){
     echo "<br>", "Created database", "<br>";
 
-	// include("start_web.php");
+	include("start_web.php");
 
 }else{
     echo "<br>", "Failed to create database :(", "<br>";
