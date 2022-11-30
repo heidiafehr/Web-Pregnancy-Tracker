@@ -41,6 +41,9 @@
                         <br>
                         Are you a Doctor? <a href="doctorLogin.html">Doctor Login</a>
                     </div>
+                    <label>
+                        I am a Doctor <input type="checkbox" checked="checked" name="doctor">
+                    </label>
                     <?php
                         if(isset($_GET['err'])){
                         echo '<p style="color: red;">',$_GET['err'],'</p>';
