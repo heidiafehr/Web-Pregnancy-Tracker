@@ -23,11 +23,19 @@
     //function to print pregnancies 
     function printPregnancies($pregnanciesResult){
         $bool = true; 
+        $counter =0; 
         while($bool){
             $pregnancyRow = $pregnanciesResult->fetch_assoc(); 
+            $counter += 1; 
             if($pregnancyRow){
-                print_r($pregnancyRow); 
-                print("\n"); 
+                echo(
+                    "   <td> Pregnancy: </td><td>" . 
+                        $counter . 
+                        "</td><tr><td> Due Date: </td><td>".
+                        $pregnancyRow["due_date"] .
+                        "</td></tr>"
+                ); 
+                
             }
             else{
                 $bool = false; 
