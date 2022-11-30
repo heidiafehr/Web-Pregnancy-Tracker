@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
+    <?php include 'patientInfo.php' ?> 
 
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
@@ -59,7 +59,7 @@
                             <tr>
                                 <td>Patient Name: </td>
                                 <td><?php 
-                                        //print($name); 
+                                        print($name); 
 
                                     ?>
                                 </td>                                  
@@ -67,21 +67,21 @@
                             <tr>
                                 <td>Patient Date of Birth:  </td>
                                 <td><?php
-                                    //print($patientDOB); 
+                                    print($patientDOB); 
                                 ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Email: </td>
                                 <td><?php
-                                    //print($patientEmail); 
+                                    print($patientEmail); 
                                 ?>
                                     </td>
                             </tr>
                             <tr>
                                 <td>Phone Number: </td>
                                 <td><?php
-                                    //print($patientPhone); 
+                                    print($patientPhone); 
                                 ?></td>
                             </tr>
                         </tr>

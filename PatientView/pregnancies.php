@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
+    <?php include 'patientInfo.php' ?>
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
@@ -52,11 +52,13 @@
                     <table class="table">
                         <tr>
                             <td>Due Date:</td>
-                            <td> Insert from db </td>
+                            <td><?php   
+                                printPregnancies($pregnanciesResult); 
+                            ?></td>
                         </tr>
                         <tr>
                             <td> Pregnancy Information:</td>
-                            <td> Insert from db</td>
+                            <td>Insert from db</td>
                         </tr>
                     </table>
                     <!-- Further pregnacies create more entries function or something -->
