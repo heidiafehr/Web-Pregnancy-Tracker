@@ -9,13 +9,18 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <!-- NavBar Start -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
+        <!-- Navbar Container -->
         <div class="container-fluid">
+            <!-- Welcome Header -->
             <a class="navbar-brand px-2" href="doctorPortalHome.php">Welcome, Dr. {firstName}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- End Welcome Header -->
+
+            <!-- Navbar Nav -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto px-2">
                     <li class="nav-item px-3">
@@ -32,21 +37,30 @@
                     </li>
                 </ul>
             </div>
+            <!-- End Navbar Nav -->
+
+            <!-- Sign Out Button -->
             <button type="button" class="btn btn-dark navbar-btn px-2">
                 Sign Out
             </button>
+            <!-- End Sign Out Button --> -->
         </div>
+        <!-- End Navbar Container -->
     </nav>
-    <!-- NavBar End -->
+    <!-- End NavBar -->
 
     <!-- Appointment Card -->
     <div class="container mt-5">
         <div class="card">
-            <!-- Header -->
+            <!-- Card Header -->
             <div class="card-header d-flex justify-content-between py-3">
+                <!-- Header Title -->
                 <div class="">
                     <h3>Appointments</h3>
                 </div>
+                <!-- End Header Title -->
+                
+                <!-- Header Buttons -->
                 <div class="">
                     <div class="btn-toolbar" role="toolbar">
                         <!-- TODO: Add functionality on the buttons to switch calendar and list view -->
@@ -74,8 +88,13 @@
                         </div>
                     </div>
                 </div>
+                <!-- End Header Buttons -->
             </div>
+            <!-- End Card Header -->
+
+            <!-- Card Body -->
             <div class="card-body">
+                <!-- Card Body Container -->
                 <div class="container">
                     <!-- List all 10 upcoming appointments -->
                     <?php
@@ -130,17 +149,23 @@
                         }
                     ?>
                 </div>
+                <!-- End Card Body Container -->
             </div>
+            <!-- End Card Body -->
         </div>
     </div>
     <!-- Calendar Modal -->
     <div class="modal fade" id="apptModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+                <!-- Calendar Modal Header -->
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Create New Appointment</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <!-- End Calendar Modal Header -->
+
+                <!-- Calendar Modal Body -->
                 <div class="modal-body">
                     <!-- Patient Name -->
                     <div class="input-group mb-3">
@@ -148,6 +173,22 @@
                         <input type="text" list="patientSearch" id="nameSearch" name="nameSearch"required>
                     </div>
 
+                    <!-- Autocomplete for patients -->
+                    <datalist id="patientSearch">
+                        <?php
+                            include '../connect_server.php'; 
+
+                            //getting appointment date
+                            $sql =  "SELECT DISTINCT first_name, last_name FROM personal_info;";
+                            
+                            $result = $conn->query($sql);
+                            
+                            if($result->num_rows > 0){
+                                while($row = $result->fetch_assoc()){
+                                    echo "<option value='" . $row["first_name"] . " " . $row["last_name"] . "'>";
+                                }
+                            }
+                        ?>
                     <datalist id="patientSearch">
                         <?php
                         include '../connect_server.php'; 
@@ -186,32 +227,14 @@
                     </div>
                     <!-- Time Picker End -->
                 </div>
+                <!-- End Calendar Modal Body -->
+                
+                <!-- Calendar Footer -->
                 <div class="modal-footer">
-                    <!-- Send appointment to db -->
                     <button type="button" class="btn btn-primary" form="modal-details" id="submitBtn">Submit</button>
                 </div>
+                <!-- End Calendar Footer -->
                 <!-- TODO: Make submit button functional -->
-                <!-- <script>
-                    let apptModal = document.getElementById('apptModal');
-                    let name = document.getElementById('nameSearch');
-                    let date = document.getElementById('dateSearch');
-                    let time = document.getElementById('timeSearch');
-                    let submitBtn = document.getElementById('submitBtn');
-                    let nameVal, dateVal, timeVal;
-
-                    submitBtn.addEventListener('click', function(){
-                        if(name.value && date.value && time.value){
-                            nameVal = name.value;
-                            dateVal = date.value;
-                            timeVal = time.value;
-                        } else {
-                            console.log('All inputs required');
-                        }
-                    });
-                </script> -->
-                <?php
-                
-                ?>
             </div>
         </div>
     </div>
