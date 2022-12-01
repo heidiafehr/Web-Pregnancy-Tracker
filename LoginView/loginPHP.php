@@ -36,7 +36,7 @@
                         session_start();
                         $_SESSION = $users[0]['username'];
                         $_SESSION = $patient[0]['patient_ID'];
-                        header("Location: ../PatientView/home.php");
+                        header("Location: ../PatientView/patientPortalHome.php");
                         echo "Found a user!";
                     } else {
                         header("Location: login.html?err= There is no record of this patient. If you are a doctor, please check you are a Doctor down below");
