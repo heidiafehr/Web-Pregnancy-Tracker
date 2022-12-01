@@ -49,9 +49,9 @@
 
                     if (sizeof($doctor) == 1) {
                         session_start();
-                        $_SESSION = $users[0]['username'];
-                        $_SESSION = $doctor[0]['patient_ID'];
-                        header("Location: ../DoctorView/doctorPortalHome.html");
+                        $_SESSION['username'] = $users[0]['username'];
+                        $_SESSION['doctor_ID'] = $doctor[0]['doctor_ID'];
+                        header("Location: ../DoctorView/doctorPortalHome.php");
                         echo "Found a user!";
                     } else {
                         header("Location: login.html?err= There is no record of this doctor. Please contact your administrator for help.");

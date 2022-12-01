@@ -12,7 +12,15 @@
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand px-2" href="doctorPortalHome.php">Welcome, Dr. {firstName}</a>
+            <?php
+                session_start();
+                $doctorID = $_SESSION['doctor_ID'];
+                include "../connect_server.php";
+                $sql = "SELECT first_name from personal_info where ID = $doctorID";
+                $result = mysqli_query($conn, $sql);
+                $doctorName = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                echo "<a class='navbar-brand px-2' href='doctorPortalHome.php'>Welcome, Dr. " . $doctorName[0]["first_name"] . "</a>";
+            ?>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +36,7 @@
                         <a class="nav-link" href="patients.php">Patients</a> <!-- TODO: Update href-->
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="medications.html">Medications</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="medications.php">Medications</a> <!-- TODO: Update href-->
                     </li>
                 </ul>
             </div>
