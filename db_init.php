@@ -28,7 +28,9 @@ $sql .= "CREATE TABLE personal_info(
 	last_name VARCHAR(225) NOT NULL,
 	dob VARCHAR(10) NOT NULL,
 	email VARCHAR(225) NOT NULL,
-	phone_number VARCHAR(10) NOT NULL
+	phone_number VARCHAR(10) NOT NULL,
+	sex VARCHAR(1) NOT NULL,
+	gender VARCHAR(225) NOT NULL
 );";
 
 $sql .= "CREATE TABLE patients(
@@ -63,7 +65,8 @@ $sql .= "CREATE TABLE appointments(
 $sql .= "CREATE TABLE pregnancies(
 	patient_ID INT NOT NULL,
 	/*YYYY-MM-DD*/
-	due_date VARCHAR(10) NOT NULL
+	due_date VARCHAR(10) NOT NULL,
+	baby_sex VARCHAR(1) NOT NULL
 );";
 
 $sql .= "CREATE TABLE medication(
@@ -80,8 +83,8 @@ $sql .= "INSERT INTO admins VALUES('sysAdmin');";
 
 // Creating test doctor
 $sql .= "INSERT INTO users VALUES('doctorUser', 'Welcome1!');";
-$sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number) VALUES
-('John', 'Doe', '1999-01-14', 'johndoe@email.com', '7024009998');";
+$sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number, sex, gender) VALUES
+('John', 'Doe', '1999-01-14', 'johndoe@email.com', '7024009998', 'F', 'Man');";
 $sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
 (LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
 (LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
@@ -93,8 +96,8 @@ $sql .= "INSERT INTO doctors VALUES(LAST_INSERT_ID(), 'doctorUser');";
 // Creating test patient
 
 $sql .= "INSERT INTO users VALUES('patientUser', 'Welcome1!');";
-$sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number) VALUES
-('Jane', 'Smith', '11-30-1999', 'janesmith@email.com', '7025000893');";
+$sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number, sex, gender) VALUES
+('Jane', 'Smith', '11-30-1999', 'janesmith@email.com', '7025000893', 'F', 'Non-binary');";
 $sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
 (LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
 (LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
@@ -105,11 +108,11 @@ $sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
 $sql .= "INSERT INTO medication VALUES
 ('medicationName', '2020-05-30', '2020-06-14', 'This is the description of what the medication does and how it should be taken');";
 $sql .= "INSERT INTO pregnancies VALUES
-(LAST_INSERT_ID(), '2022-10-31'),
-(LAST_INSERT_ID(), '2020-11-14'),
-(LAST_INSERT_ID(), '2019-01-06'),
-(LAST_INSERT_ID(), '2017-09-17'),
-(LAST_INSERT_ID(), '2016-04-30');";
+(LAST_INSERT_ID(), '2022-10-31', 'F'),
+(LAST_INSERT_ID(), '2020-11-14', 'M'),
+(LAST_INSERT_ID(), '2019-01-06', 'M'),
+(LAST_INSERT_ID(), '2017-09-17', 'F'),
+(LAST_INSERT_ID(), '2016-04-30', 'M');";
 
 if($conn->multi_query($sql) === TRUE){
     echo "<br>", "Created database", "<br>";
