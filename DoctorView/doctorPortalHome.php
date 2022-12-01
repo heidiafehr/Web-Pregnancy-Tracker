@@ -61,7 +61,7 @@
                     $result = $conn->query($sql);
 
                     if($result->num_rows > 0){
-                        echo "You have $result->num_rows upcoming appointments today.";
+                        echo "<h5>You have $result->num_rows upcoming appointments today.</h5>";
                 ?>
                 <div class="table">
                     <div class="table-responsive m-4">
@@ -76,16 +76,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $i = 0;
-                                    while($i < $result->num_rows){
-                                        $row = $result->fetch_assoc();
+                                    while($row = $result->fetch_assoc()){
                                         echo "<tr>";
                                         echo "<td>" . $row["first_name"] . "</td>";
                                         echo "<td>" . $row["last_name"] . "</td>";
-                                        echo "<td>" . $row["start_date_time"] . "</td>";
-                                        echo "<td>" . "{time}" . "</td>";
+                                        $startDateTime = explode('T', $row['start_date_time']);
+                                        echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
+                                        echo "<td>" . date('h:i a', strtotime($startDateTime[1])) . "</td>";
                                         echo "</tr>";
-                                        $i++;
                                     }
                                 ?>
                             </tbody>

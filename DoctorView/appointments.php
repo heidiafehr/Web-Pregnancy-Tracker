@@ -104,7 +104,7 @@
                         $sql =  "SELECT p_info.first_name, p_info.last_name, appt.start_date_time FROM personal_info AS p_info
                         INNER JOIN appointments AS appt
                         ON p_info.ID = appt.user_ID
-                        ORDER BY appt.start_date_time;";
+                        ORDER BY appt.start_date_time";
                         
                         $result = $conn->query($sql);
                         
@@ -126,13 +126,16 @@
                             <tbody>
                                 <?php
                                     $i = 0;
-                                    while($i < 10){
-                                        $row = $result->fetch_assoc();
+                                    while($row = $result->fetch_assoc()){
+                                        if($i >= 10){
+                                            break;
+                                        }
                                         echo "<tr>";
                                         echo "<td>" . $row["first_name"] . "</td>";
                                         echo "<td>" . $row["last_name"] . "</td>";
-                                        echo "<td>" . $row["start_date_time"] . "</td>";
-                                        echo "<td>" . "{time}" . "</td>";
+                                        $startDateTime = explode('T', $row['start_date_time']);
+                                        echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
+                                        echo "<td>" . date('h:i a', strtotime($startDateTime[1])) . "</td>";
                                         echo "</tr>";
                                         $i++;
                                     }
@@ -168,7 +171,7 @@
                 <!-- Calendar Modal Body -->
                 <div class="modal-body">
                     <!-- Patient Name -->
-                    <form action="appointments2.php" method="post" id="apptForm">
+                    <form action="insert_appt.php" method="post" id="apptForm">
                         <!-- Patient Name -->
                         <div class="input-group mb-3">
                                 <span class="input-group-text" style="width:120px;">Patient Name</span>
@@ -238,9 +241,7 @@
                             </div>
                             <script>
                                 let startDate = document.getElementById('startDate');
-                                let startTime = document.getElementById('startTime');
                                 let endDate = document.getElementById('endDate');
-                                let endTime = document.getElementById('endTime');
 
                                 startDate.onchange = function(){
                                     console.log("startDate changed")
