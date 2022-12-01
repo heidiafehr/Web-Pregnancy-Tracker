@@ -91,7 +91,12 @@ $sql .= "INSERT INTO users VALUES('patientUser', 'Welcome1!');";
 $sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number, sex, gender) VALUES
 ('Jane', 'Smith', '1999-11-30', 'janesmith@email.com', '7025000893', 'F', 'Non-binary');";
 $sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
-(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30');";
+(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
+(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
+(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50'),
+(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30'),
+(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30');";
+$sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
 $sql .= "INSERT INTO medication VALUES
 ('medicationName', '2020-05-30', '2020-06-14', 'This is the description of what the medication does and how it should be taken');";
 $sql .= "INSERT INTO pregnancies VALUES
