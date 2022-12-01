@@ -1,8 +1,12 @@
 <?php 
-    include '../connect_server.php'; 
+    include '../connect_server.php';
+
+    if(session_start()){
+        $patientID = $_SESSION['patient_ID'];
+    }
 
     // create query for personal info
-    $personalInfoSQL =  "SELECT * FROM personal_info where id=2;";
+    $personalInfoSQL =  "SELECT * FROM personal_info where id=$patientID;";
     $personalInfoResult = $conn->query($personalInfoSQL); 
     //get row of patient information
     $row = $personalInfoResult->fetch_assoc();

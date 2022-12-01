@@ -14,7 +14,9 @@
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="patientPortalHome.php">Welcome, {firstName}</a>
+            <?php
+                include "get_first_name.php";
+            ?>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,7 +26,7 @@
                         <a class="nav-link" href="patientPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="pregnancies.php">Pregnancy</a>
+                        <a class="nav-link active" href="pregnancies.php">Pregnancy</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="appointments.php">Appointments</a>

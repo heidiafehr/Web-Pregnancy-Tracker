@@ -12,14 +12,8 @@
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
         <div class="container-fluid">
-            <?php
-                session_start();
-                $doctorID = $_SESSION['doctor_ID'];
-                include "../connect_server.php";
-                $sql = "SELECT first_name from personal_info where ID = $doctorID";
-                $result = mysqli_query($conn, $sql);
-                $doctorName = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                echo "<a class='navbar-brand px-2' href='doctorPortalHome.php'>Welcome, Dr. " . $doctorName[0]["first_name"] . "</a>";
+        <?php
+                include "get_first_name.php";
             ?>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

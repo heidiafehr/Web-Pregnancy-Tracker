@@ -34,8 +34,8 @@
 
                     if (sizeof($patient) == 1) {
                         session_start();
-                        $_SESSION = $users[0]['username'];
-                        $_SESSION = $patient[0]['patient_ID'];
+                        $_SESSION['username'] = $users[0]['username'];
+                        $_SESSION['patient_ID'] = $patient[0]['patient_ID'];
                         header("Location: ../PatientView/patientPortalHome.php");
                         echo "Found a user!";
                     } else {
