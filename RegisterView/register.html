@@ -19,6 +19,7 @@
                         <div class="card-body p-4 p-md-5">
                             <h3>Patient Registration Form</h3>
                             <p>If you are a Doctor, please contact your administrator to be added to the system.</p>
+
                             <form action="registerPHP.php" method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
@@ -53,27 +54,50 @@
                                     </div>
                                     <div class="col-md-6 mb-4">
 
-                                        <h6 class="mb-2 pb-1">Gender: </h6>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <h6 class="mb-2 pb-1">Sex</h6>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="femaleGender" value="option1" checked />
+                                            <input class="form-check-input" type="radio" name="sex" id="femaleGender"
+                                                value="F" name="female" checked>
                                             <label class="form-check-label" for="femaleGender">Female</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="maleGender" value="option2" />
+                                            <input class="form-check-input" type="radio" name="sex" id="maleGender"
+                                                value="M" name="male">
                                             <label class="form-check-label" for="maleGender">Male</label>
                                         </div>
 
+                                    </div>
+
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <h6 class="mb-2 pb-1">Gender</h6>
+
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="otherGender" value="option3" />
+                                            <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                                                value="Woman" checked>
+                                            <label class="form-check-label" for="femaleGender">Woman</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                                                value="Man">
+                                            <label class="form-check-label" for="maleGender">Man</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="otherGender"
+                                                value="Other">
                                             <label class="form-check-label" for="otherGender">Other</label>
                                         </div>
 
                                     </div>
+
                                 </div>
 
                                 <div class="row">
@@ -96,6 +120,27 @@
 
                                     </div>
                                 </div>
+                                
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="username">Username</label>
+                                            <input type="text" id="username" class="form-control form-control-lg"
+                                                name="username" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" id="password" class="form-control form-control-lg"
+                                                name="password" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                                 <div class="mt-4 pt-2">
                                     <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
