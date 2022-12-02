@@ -9,12 +9,17 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <?php
+        include "../checkSignedIn.php";
+    ?>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
         <!-- Navbar Container -->
         <div class="container-fluid">
             <!-- Welcome Header -->
-            <a class="navbar-brand px-2" href="doctorPortalHome.php">Welcome, Dr. {firstName}</a>
+            <a class="navbar-brand" href="doctorPortalHome.php">
+                <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,23 +32,29 @@
                         <a class="nav-link" href="doctorPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link active" href="appointments.php">Appointments</a> <!-- TODO: Update href-->
+                        <a class="nav-link active" href="appointments.php">Appointments</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="patients.php">Patients</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="patients.php">Patients</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="medications.html">Medications</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="medications.php">Medications</a>
+                    </li>
+                    <li class="nav-item dropdown px-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dr. 
+                            <?php
+                                include "get_first_name.php";
+                            ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="../signout.php">Sign Out</a>
+                        </div>
                     </li>
                 </ul>
             </div>
             <!-- End Navbar Nav -->
-
-            <!-- Sign Out Button -->
-            <button type="button" class="btn btn-dark navbar-btn px-2">
-                Sign Out
-            </button>
-            <!-- End Sign Out Button -->
         </div>
         <!-- End Navbar Container -->
     </nav>
@@ -112,7 +123,6 @@
                     ?>
                     <!-- Appointment Table -->
                     <!-- TODO: Add Appointment Table UI -->
-                    <!-- TODO: Display first 10 appointments -->
                     <div class="table-responsive m-4">
                         <table class="table table-bordered table-hover">
                             <thead class="thead-dark">
@@ -146,9 +156,7 @@
                     <?php
                         }
                         else{
-                            ?>
-                            <h5> You have no upcoming appointments</h5>
-                            <?php
+                        echo "<h5> You have no upcoming appointments</h5>";
                         }
                     ?>
                 </div>
@@ -307,6 +315,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 </body>
 </html>
