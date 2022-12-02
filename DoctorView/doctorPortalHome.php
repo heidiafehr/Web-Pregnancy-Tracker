@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <?php
+        include "../checkSignedIn.php";
+    ?>
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
         <div class="container-fluid">
-        <?php
-                include "get_first_name.php";
-            ?>
+            <a class="navbar-brand" href="doctorPortalHome.php">
+                <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,11 +35,20 @@
                     <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a> <!-- TODO: Update href-->
                     </li>
+                    <li class="nav-item dropdown px-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dr. 
+                            <?php
+                                include "get_first_name.php";
+                            ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="../signout.php">Sign Out</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-dark navbar-btn px-2">
-                Sign Out
-            </button>
         </div>
     </nav>
     <!-- NavBar End -->
@@ -101,6 +113,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 </body>
 </html>

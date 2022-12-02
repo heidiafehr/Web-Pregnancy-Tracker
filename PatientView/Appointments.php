@@ -12,7 +12,7 @@
 <body>
     <?php include 'patientInfo.php' ?>
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" id="custom-navbar">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
         <div class="container-fluid">
             <?php
                 include "get_first_name.php";

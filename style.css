@@ -15,24 +15,3 @@
     font-style: Verdana,Geneva,sans-serif;
     font-display: black;
 }
-
-#custom-navbar{
-    background-color: var(--navbar-color);
-    padding: 0;
-    font-display:var(--dark-blue);
-    font-weight: 600;
-    height: 48px;
-}
-
-#navbar-row{
-    margin-bottom: 100px;
-    padding-left: 10px;
-}
-
-/* Navbar animation on hover */
-
-/* .nav-link:hover{
-    background-color: var(--highlight);
-    border-radius: 6px;
-    transition: .4s;
-} */
