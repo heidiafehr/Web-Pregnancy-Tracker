@@ -52,7 +52,6 @@
         </div>
     </nav>
     <!-- NavBar End -->
-
     <!-- Pregnancy Card        -->
     <div class="container">
         <div class=" col">
@@ -65,6 +64,7 @@
                             printPregnancies($pregnanciesResult);
                         ?>                        
                     </table>
+                    <!-- Button to show past pregnancies -->
                     <tr><button type="button" class="btn btn-primary">Show Past Pregnancies</button></tr>
                     <!-- Further pregnacies create more entries function or something -->
                 </div>
