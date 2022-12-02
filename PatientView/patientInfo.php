@@ -4,6 +4,7 @@
 
     //get patient id 
     $patientID = $_SESSION['patient_ID']; 
+
     //get personal info from db 
     $personalInfoSQL =  "SELECT * FROM personal_info where id=$patientID;";
     $personalInfoResult = $conn->query($personalInfoSQL); 
@@ -19,34 +20,28 @@
     $patientPhone = $row["phone_number"];
 
     // create query for pregnancies 
-    $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = 2;";
+    $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = $patientID;";
+    //get pregnacy rows if found 
     $pregnanciesResult= $conn->query($pregnanciesSQL); 
     //function to print pregnancies 
     function printPregnancies($pregnanciesResult){
         $bool = true; 
         $counter =0; 
-        while($bool){
-            $pregnancyRow = $pregnanciesResult->fetch_assoc(); 
-            $counter += 1; 
-            if($pregnancyRow){
-                print($pregnancyRow); 
-                echo(
-                    "   <td> Pregnancy: </td><td>" . 
-                        $counter . 
-                        "</td><tr><td> Due Date: </td><td>".
-                        $pregnancyRow["due_date"] .
-                        "</td></tr>"
-                );  
-                
-            }
-            else{
-                print('error\n');
-                $bool = false; 
-            }
-        }  
-    }
-
-
+        while($row = $pregnanciesResult->fetch_assoc()){
+            //print_r($row); 
+            //print('<br>'); 
+                echo("
+                    <div class = cardbody>
+                    <td> Pregnancy: </td><td>" . 
+                    $counter . 
+                    "</td><tr><td> Due Date: </td><td>".
+                    $row["due_date"] .
+                    "</td><tr><td> Sex: </td><td>".
+                    $row["baby_sex"] .
+                    "</td></tr></div>"
+            );   
+        }     
+    }   
 
     //Create Query for appoinments 
     $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 

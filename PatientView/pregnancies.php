@@ -62,7 +62,8 @@
                     <!--Single Pregnacy Entry -->
                     <table class="table">
                         <?php   
-                            printPregnancies($pregnanciesResult); 
+                            printPregnancies($pregnanciesResult);
+                            
                         ?>
                     </table>
                     <!-- Further pregnacies create more entries function or something -->
