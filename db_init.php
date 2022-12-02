@@ -89,7 +89,7 @@ $sql .= "INSERT INTO admins VALUES('sysAdmin');";
 
 $sql .= "INSERT INTO users VALUES('patientUser', 'Welcome1!');";
 $sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number, sex, gender) VALUES
-('Jane', 'Smith', '1999-11-30', 'janesmith@email.com', '7025000893', 'F', 'Non-binary');";
+('Jane', 'Smith', '1999-11-30', 'janesmith@email.com', '7025000893', 'F', 'Other');";
 $sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
 (LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
 (LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
