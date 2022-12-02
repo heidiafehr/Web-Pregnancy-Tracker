@@ -20,22 +20,25 @@
     $pregnanciesResult= $conn->query($pregnanciesSQL); 
     //function to print pregnancies 
     function printPregnancies($pregnanciesResult){
+       
         $bool = true; 
         $counter =0; 
         while($bool){
             $pregnancyRow = $pregnanciesResult->fetch_assoc(); 
             $counter += 1; 
+            
             if($pregnancyRow){
-                echo(
+                print($pregnancyRow)
+                /*echo(
                     "   <td> Pregnancy: </td><td>" . 
                         $counter . 
                         "</td><tr><td> Due Date: </td><td>".
                         $pregnancyRow["due_date"] .
                         "</td></tr>"
-                );  
+                );  */
             }
             else{
-                $bool = false; 
+                #$bool = false; 
             }
         }  
     }
