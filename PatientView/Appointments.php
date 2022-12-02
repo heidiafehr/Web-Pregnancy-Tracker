@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<?php
-
-//  include "../checkSignedIn.php";
+    <?php
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->

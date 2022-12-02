@@ -11,7 +11,6 @@
 </head>
 <body>
     <?php
-        //include "../checkSignedIn.php";
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->

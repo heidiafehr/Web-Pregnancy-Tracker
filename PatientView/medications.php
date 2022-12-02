@@ -11,7 +11,6 @@
 </head>
 <body>
     <?php
-    //    include "../checkSignedIn.php";
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->
@@ -53,8 +52,6 @@
         </div>
     </nav>
     <!-- NavBar End -->
-
-
     <div class="container">
         <div class="col">
             <div class="card" id="medicationsCard">
