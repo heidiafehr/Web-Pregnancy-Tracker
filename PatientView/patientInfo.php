@@ -1,9 +1,9 @@
 <?php 
     include '../connect_server.php';
 
-    if(session_start()){
+    //if(session_start()){
         $patientID = $_SESSION['patient_ID'];
-    }
+    //}
 
     // create query for personal info
     $personalInfoSQL =  "SELECT * FROM personal_info where id=$patientID;";

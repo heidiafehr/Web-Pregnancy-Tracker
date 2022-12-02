@@ -5,5 +5,5 @@
     $sql = "SELECT * from personal_info where ID = $patientID";
     $result = mysqli_query($conn, $sql);
     $patientName = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    echo "<a class='navbar-brand px-2' href='doctorPortalHome.php'>Welcome, " . $patientName[0]["first_name"] . "</a>";
+    echo $patientName[0]["first_name"];
 ?>
