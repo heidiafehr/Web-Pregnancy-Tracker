@@ -60,12 +60,11 @@
             <!--Personal Information card -->
             <div class = " col">
                 <div class="card" id="personalInformationCard">
-                    <div class= "card-body">
-                        <div id="personal-info-container">
+                    <div class='card-header'>
                             <h5 id="personal-info-hdr">Personal Information </h5>
-                                <!-- button to edit personal information    -->
-                                    <button type="submit" class="btn btn-primary" id="edit-btn"> Edit </button>
-                        </div>
+                    </div>
+                    <div class= "card-body">
+                        <!-- table to print patient info --> 
                         <table class='table'>
                             <tr>
                                 <td>Patient Name: </td>
@@ -97,6 +96,8 @@
                             </tr>
                         </tr>
                         </table>
+                        <!-- button to edit personal information    -->
+                        <button type="submit" class="btn btn-primary" id="edit-btn"> Edit </button>
                     </div>  
                 </div>    
             </div>

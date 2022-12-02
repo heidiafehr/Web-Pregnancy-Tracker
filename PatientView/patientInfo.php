@@ -26,13 +26,10 @@
     //function to print pregnancies 
     function printPregnancies($pregnanciesResult){
         if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
-            echo("
-                <div class = cardbody>
-                <td> Pregnancy </td><td>" . 
-                "</td><tr><td> Due Date: </td><td>".
-                $pregnancyRow["due_date"] .
-                "</td><tr><td> Sex: </td><td>".
-                $pregnancyRow["baby_sex"] .
+            echo(
+                "<td> No idea what to put here</td>" . 
+                "<td>" .$pregnancyRow["due_date"] .
+                "<td>". $pregnancyRow["baby_sex"] .
                 "</td></tr></div>"
         ); 
         }

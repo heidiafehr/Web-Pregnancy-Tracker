@@ -52,17 +52,30 @@
         </div>
     </nav>
     <!-- NavBar End -->
+
     <!-- Pregnancy Card        -->
     <div class="container">
         <div class=" col">
             <div class = "card" id="pregnancyCard">
-                <div class = "card-body">
+                <div class = "card-header"> 
                     <h5>Pregnancies</h5>
+                </div> 
+                <div class = "card-body">
+                    
                     <!--Single Pregnacy Entry -->
                     <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">PlaceHolder</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Baby's Sex</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php   
                             printPregnancies($pregnanciesResult);
-                        ?>                        
+                        ?>   
+                    </tbody>                     
                     </table>
                     <!-- Button to show past pregnancies -->
                     <tr><button type="button" class="btn btn-primary">Show Past Pregnancies</button></tr>
