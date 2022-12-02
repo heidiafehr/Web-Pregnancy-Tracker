@@ -29,8 +29,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="doctorsTableEditDelete.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Doctors</span>
-                                </a>
+                                <a href="doctorsTableEditDelete.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Doctors</span></a>
                             </li>
                             <li>
                                 <a href="adminsTableEditDelete.php" class="nav-link px-0"> <span class="d-none d-sm-inline">Admins</span>
@@ -66,13 +65,14 @@
                         <span class="d-none d-sm-inline mx-1">System Admin</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="../signout.php">Sign out</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/jquery-1.8.0.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
