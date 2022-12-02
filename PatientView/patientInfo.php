@@ -25,23 +25,38 @@
     $pregnanciesResult= $conn->query($pregnanciesSQL); 
     //function to print pregnancies 
     function printPregnancies($pregnanciesResult){
-        $bool = true; 
-        $counter =0; 
-        while($row = $pregnanciesResult->fetch_assoc()){
+        if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
+            echo("
+                <div class = cardbody>
+                <td> Pregnancy </td><td>" . 
+                "</td><tr><td> Due Date: </td><td>".
+                $pregnancyRow["due_date"] .
+                "</td><tr><td> Sex: </td><td>".
+                $pregnancyRow["baby_sex"] .
+                "</td></tr></div>"
+        ); 
+        }
+        
+    }   
+    //function to show previous prengnacies 
+    //function showMorePregnancies($pregnanciesResult){
+        /*
+        while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
             //print_r($row); 
             //print('<br>'); 
                 echo("
                     <div class = cardbody>
-                    <td> Pregnancy: </td><td>" . 
-                    $counter . 
+                    <td> Pregnancy </td><td>" . 
                     "</td><tr><td> Due Date: </td><td>".
-                    $row["due_date"] .
+                    $pregnancyRow["due_date"] .
                     "</td><tr><td> Sex: </td><td>".
-                    $row["baby_sex"] .
+                    $pregnancyRow["baby_sex"] .
                     "</td></tr></div>"
             );   
-        }     
-    }   
+        } 
+    }*/
+
+    
 
     //Create Query for appoinments 
     $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 

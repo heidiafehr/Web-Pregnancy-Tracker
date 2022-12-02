@@ -63,9 +63,9 @@
                     <table class="table">
                         <?php   
                             printPregnancies($pregnanciesResult);
-                            
-                        ?>
+                        ?>                        
                     </table>
+                    <tr><button type="button" class="btn btn-primary">Show Past Pregnancies</button></tr>
                     <!-- Further pregnacies create more entries function or something -->
                 </div>
             </div>
