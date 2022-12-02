@@ -42,13 +42,14 @@
                     </li>
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
                                 include "get_first_name.php";
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -94,7 +95,7 @@
                         <div class="btn-group mx-2" role="group">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#apptModal">
-                                Create Appointment
+                                <img src="../images/plus-sign-pngrepo-com.png" alt="Create New Appointment" style="height:20px; color:white; padding-bottom:3px;">
                             </button>
                         </div>
                     </div>
@@ -181,28 +182,18 @@
                     <!-- Patient Name -->
                     <form action="insert_appt.php" method="post" id="apptForm">
                         <!-- Patient Name -->
-                        <div class="input-group mb-3">
-                                <span class="input-group-text" style="width:120px;">Patient Name</span>
-                                <input type="text" list="patientSearch" id="patientName" name="patientName"required>
+                        <div class="form-floating mb-3">
+                                <input type="text" list="patientSearch" class="form-control" id="patientName" name="patientName"
+                                placeholder=" " required>
+                                <label for="patientSearch">Patient Name</label>
                             </div>
                         <!-- End Patient Name -->
                             
                         <!-- Autocomplete Patient Name -->
                         <datalist id="patientSearch">
                             <?php
-                                include '../connect_server.php'; 
-                                
-                                //getting appointment date
-                                $sql =  "SELECT DISTINCT first_name, last_name FROM personal_info;";
-                                
-                                $result = $conn->query($sql);
-                                
-                                if($result->num_rows > 0){
-                                    while($row = $result->fetch_assoc()){
-                                        echo "<option value='" . $row["first_name"] . " " . $row["last_name"] . "'>";
-                                    }
-                                }
-                                ?>
+                                include '../autocomplete.php'; 
+                            ?>
                         </datalist>
                         <!-- End Autocomplete Patient Name -->
                         <div class="row">
@@ -212,18 +203,18 @@
                                     <h5>From</h5>
                                 </div>
                                 <!-- Appointment Date -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Date</span>
-                                    <input type="date" id="startDate" name="startDate" required>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="startDate" name="startDate" required>
+                                    <label for="startDate">Date</label>
                                 </div>
                                 <!-- End Appointment Date -->
                                 
                                 <!-- Appointment Time  -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Time</span>
+                                <div class="form-floating mb-3">
                                     <!-- TODO: Increment time by 15 minutes -->
-                                    <input type="time" id="startTime" name="startTime"
+                                    <input type="time" class="form-control" id="startTime" name="startTime"
                                     min="09:00" max="18:00" step="900" required>
+                                    <label for="startTime">Time</label>
                                 </div>
                             </div>
 
@@ -233,18 +224,18 @@
                                     <h5>To</h5>
                                 </div>
                                 <!-- Appointment Date -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Date</span>
-                                    <input type="date" id="endDate" name="endDate" required>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="endDate" name="endDate" required>
+                                    <label for="endDate">Date</label>
                                 </div>
                                 <!-- End Appointment Date -->
                                 
                                 <!-- Appointment Time  -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Time</span>
-                                    <!-- TODO: Increment time by 15 minutes -->
-                                    <input type="time" id="endTime" name="endTime"
+                                <div class="form-floating mb-3">
+                                    <input type="time" class="form-control" id="endTime" name="endTime"
                                     min="09:00" max="18:00" step="900" required>
+                                    <label for="endTime">Time</label>
+                                    <!-- TODO: Increment time by 15 minutes -->
                                 </div>
                             </div>
                             <script>
@@ -284,28 +275,28 @@
                 </div>
                 <div class="modal-body">
                     <!-- First Name -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">First Name</span>
+                    <div class="form-floating mb-3">
                         <input type="text" id="firstName" name="firstName">
+                        <span class="form-floating-text" id="basic-addon1">First Name</span>
                     </div>
                         
                     <!-- Last Name  -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Last Name</span>
+                    <div class="form-floating mb-3">
                         <input type="text" id="lastName" name="lastName">
+                        <span class="form-floating-text" id="basic-addon1">Last Name</span>
                     </div>
 
                     <!-- Appointment Date -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Date</span>
+                    <div class="form-floating mb-3">
                         <input type="date" id="apt-date" name="apt-date">
+                        <span class="form-floating-text" id="basic-addon1">Date</span>
                     </div>
 
                     <!-- Appointment Time  -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Time</span>
+                    <div class="form-floating mb-3">
                         <!-- TODO: Increment time by 15 minutes -->
                         <input type="time" id="apt-time" name="apt-time">
+                        <span class="form-floating-text" id="basic-addon1">Time</span>
                     </div>
                 </div>
                 <div class="modal-footer">
