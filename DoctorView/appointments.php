@@ -13,7 +13,7 @@
         include "../checkSignedIn.php";
     ?>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight: 600;">
         <!-- Navbar Container -->
         <div class="container-fluid">
             <!-- Welcome Header -->
@@ -113,10 +113,11 @@
                         include '../connect_server.php'; 
 
                         //getting appointment date
-                        $sql =  "SELECT p_info.first_name, p_info.last_name, appt.start_date_time FROM personal_info AS p_info
-                        INNER JOIN appointments AS appt
-                        ON p_info.ID = appt.user_ID
-                        ORDER BY appt.start_date_time";
+                        $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
+                                    INNER JOIN appointments ON appointments.user_ID = personal_info.ID
+                                    INNER JOIN patients ON appointments.user_ID = patients.patient_ID
+                                    INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
+                                    ORDER BY appointments.start_date_time, personal_info.first_name ASC";
                         
                         $result = $conn->query($sql);
                         
@@ -132,23 +133,33 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Appointment Date</th>
                                     <th scope="col">Appointment Time</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    $i = 0;
+                                    $limit = 10;
+                                    $num = 0;
                                     while($row = $result->fetch_assoc()){
-                                        if($i >= 10){
+                                        if($num > $limit){
                                             break;
                                         }
+                                        $startDateTime = explode('T', $row['start_date_time']);
+                                        $endDateTime = explode('T', $row['end_date_time']);
+
+                                        //Remove any appointments that have already passed based on time
+                                        if (time() > strtotime($row['start_date_time'])) {
+                                            continue;
+                                        }
+
                                         echo "<tr>";
                                         echo "<td>" . $row["first_name"] . "</td>";
                                         echo "<td>" . $row["last_name"] . "</td>";
-                                        $startDateTime = explode('T', $row['start_date_time']);
                                         echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
-                                        echo "<td>" . date('h:i a', strtotime($startDateTime[1])) . "</td>";
+                                        echo "<td>" . date('g:i a', strtotime($startDateTime[1])) . " - " . date('g:i a', strtotime($endDateTime[1])). "</td>";
+                                        echo "<td><a class='link-primary' href='#'>Edit</a></td>";
                                         echo "</tr>";
-                                        $i++;
+                                        $num++;
                                     }
                                 ?>
                             </tbody>
@@ -185,14 +196,14 @@
                         <div class="form-floating mb-3">
                                 <input type="text" list="patientSearch" class="form-control" id="patientName" name="patientName"
                                 placeholder=" " required>
-                                <label for="patientSearch">Patient Name</label>
+                                <label for="patientSearch" class="form-label">Patient Name</label>
                             </div>
                         <!-- End Patient Name -->
                             
                         <!-- Autocomplete Patient Name -->
                         <datalist id="patientSearch">
                             <?php
-                                include '../autocomplete.php'; 
+                                include 'autocomplete.php'; 
                             ?>
                         </datalist>
                         <!-- End Autocomplete Patient Name -->
@@ -238,6 +249,8 @@
                                     <!-- TODO: Increment time by 15 minutes -->
                                 </div>
                             </div>
+
+                            <!-- This script automatically inputs the end date (assuming the appointment is the same day, which it should) -->
                             <script>
                                 let startDate = document.getElementById('startDate');
                                 let endDate = document.getElementById('endDate');

@@ -15,3 +15,8 @@
     font-style: Verdana,Geneva,sans-serif;
     font-display: black;
 }
+
+#custom-navbar{
+    background-color: #6096ba;
+    font-weight:600;
+}

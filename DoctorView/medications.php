@@ -13,7 +13,7 @@
         include "../checkSignedIn.php";
     ?>
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight:600">
         <div class="container-fluid">
             <a class="navbar-brand" href="doctorPortalHome.php">
                 <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
