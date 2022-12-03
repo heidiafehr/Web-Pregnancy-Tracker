@@ -113,7 +113,7 @@
                         include '../connect_server.php'; 
 
                         //getting appointment date
-                        $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
+                        $sql =  "SELECT appointments.appointment_ID, personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
                                     INNER JOIN appointments ON appointments.user_ID = personal_info.ID
                                     INNER JOIN patients ON appointments.user_ID = patients.patient_ID
                                     INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
@@ -133,7 +133,7 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Appointment Date</th>
                                     <th scope="col">Appointment Time</th>
-                                    <th scope="col">Action</th>
+                                    <!-- <th scope="col">Action</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -148,8 +148,10 @@
                                         $endDateTime = explode('T', $row['end_date_time']);
 
                                         //Remove any appointments that have already passed based on time
-                                        if (time() > strtotime($row['start_date_time'])) {
-                                            continue;
+                                        if($startDateTime[0] < date('Y-m-d')){
+                                            if($startDateTime[1] < date('H:i:s')){
+                                                continue;
+                                            }
                                         }
 
                                         echo "<tr>";
@@ -157,7 +159,7 @@
                                         echo "<td>" . $row["last_name"] . "</td>";
                                         echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
                                         echo "<td>" . date('g:i a', strtotime($startDateTime[1])) . " - " . date('g:i a', strtotime($endDateTime[1])). "</td>";
-                                        echo "<td><a class='link-primary' href='#'>Edit</a></td>";
+                                        //echo "<td><a class='link-primary' data-bs-toggle='modal' data-bs-target='#editModal'>Edit</a></td>";
                                         echo "</tr>";
                                         $num++;
                                     }
@@ -319,6 +321,86 @@
         </div>
     </div>
 
+    <!-- Edit Appointment Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Change Appointment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Calendar Modal Body -->
+                <div class="modal-body">
+                    <!-- Patient Name -->
+                    <form method="post" action="change_appt.php" id="changeApptForm">
+                        <input type="hidden" name="appt_id" id="appt_id">
+                        <div class="row">
+                            <!-- Start Date -->
+                            <div class="col">
+                                <div class="header">
+                                    <h5>From</h5>
+                                </div>
+                                <!-- Appointment Date -->
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="changeStartDate" name="changeStartDate" value="" required>
+                                    <label for="changeStartDate">Date</label>
+                                </div>
+                                <!-- End Appointment Date -->
+                                
+                                <!-- Appointment Time  -->
+                                <div class="form-floating mb-3">
+                                    <!-- TODO: Increment time by 15 minutes -->
+                                    <input type="time" class="form-control" id="changeStartTime" name="changeStartTime"
+                                    value="2:30" min="09:00" max="18:00" step="900" required>
+                                    <label for="changeStartTime">Time</label>
+                                </div>
+                            </div>
+
+                            <!-- End Date -->
+                            <div class="col">
+                                <div class="header">
+                                    <h5>To</h5>
+                                </div>
+                                <!-- Appointment Date -->
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="changeEndDate" name="changeEndDate" required>
+                                    <label for="changeEndDate">Date</label>
+                                </div>
+                                <!-- End Appointment Date -->
+                                
+                                <!-- Appointment Time  -->
+                                <div class="form-floating mb-3">
+                                    <input type="time" class="form-control" id="changeEndTime" name="changeEndTime"
+                                    min="09:00" max="18:00" step="900" required>
+                                    <label for="changeEndTime">Time</label>
+                                    <!-- TODO: Increment time by 15 minutes -->
+                                </div>
+                            </div>
+
+                            <!-- This script automatically inputs the end date (assumming the appointment is the same day, which it should) -->
+                            <script>
+                                let changeStartDate = document.getElementById('changeStartDate');
+                                let endchangeEndDateDate = document.getElementById('changeEndDate');
+
+                                changeStartDate.onchange = function(){
+                                    if(changeStartDate.value){
+                                        changeEndDate.value = changeStartDate.value;
+                                    }
+                                }
+                            </script>
+                        </div>
+                        <!-- End Appointment Time -->
+                    </form>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" form="changeApptForm" id="submitBtn">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                            
+    
+
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 </body>

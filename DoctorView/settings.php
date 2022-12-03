@@ -71,7 +71,7 @@
                     </form>
                     <hr> -->
                     <h5 class="mb-4">Change Password</h5>
-                    <form action="change_password.php" method="POST">
+                    <form action="change_password.php" method="POST" id="changePw">
                         <div class="form-floating mb-3 col-6">
                             <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder=" " required>
                             <label for="currentPassword">Current Password</label>
@@ -84,7 +84,7 @@
                             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder=" " required>
                             <label for="confirmPassword">Confirm Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Change Password</button>
+                        <button type="submit" class="btn btn-primary" form="changePw">Change Password</button>
                     </form>
                     <!-- TODO: implement JS for password checking -->
                 </div>
