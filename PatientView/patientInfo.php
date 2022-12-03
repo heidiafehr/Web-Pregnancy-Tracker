@@ -11,7 +11,9 @@
     //get row of patient information
     $row = $personalInfoResult->fetch_assoc();
     //getting patient name  
-    $name = $row["first_name"] . " ". $row["last_name"]; 
+    $firstName = $row["first_name"]; 
+    //getting patient last name 
+    $lastName = $row["last_name"]; 
     //getting dob 
     $patientDOB = $row["dob"]; 
     //getting email 
@@ -33,22 +35,24 @@
             $tempDateTime = date('d-m-Y h:i:s a', time()); 
             //saving date time as datetimeImmutabel
             $currentDateTime  = new dateTimeImmutable($tempDateTime); 
-            //formatting the current Date Time
+
+//********FOR PREGNANCIES************************formatting the current Date Time 
             //$currentDateTimeString = $currentDateTime->format('F d,Y'); 
+
             //if apointments table is not empty
             if($appointmentRow){
                 //saving appointment Start Time
                 $apptStart = new dateTimeImmutable($appointmentRow['start_date_time']);
                 //converting to string and format
-                $apptStartString = $apptStart->format('H:II'); 
+                $apptStartString = $apptStart->format('H:i'); 
 
                 //saving appointment Date
                 $apptDate = $apptStart->format('F d,Y'); 
 
-                //saving appoint End Time 
+                //saving appointment End Time 
                 $apptEnd = new dateTimeImmutable($appointmentRow['end_date_time']);
                 //converting to string and format
-                $apptEndString = $apptEnd->format('H:II'); 
+                $apptEndString = $apptEnd->format('H:i'); 
 
                 //print printAppointments
                 echo "<tr><td>$apptDate</td>

@@ -66,19 +66,21 @@
                     <div class= "card-body">
                         <!-- table to print patient info --> 
                         <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">First</th>
-                        <th scope="col">Date of Birth</th>
-                        <th scope="col">Sex </th>
-                        <th scope="col">Gender </th>
-                        <th scope="col">Email </th>
-                        <th scope="col">Phone Number </th>
-                        </tr>
-                    </thead>
+                            <thead>
+                                <tr>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Date of Birth</th>
+                                <th scope="col">Sex </th>
+                                <th scope="col">Gender </th>
+                                <th scope="col">Email </th>
+                                <th scope="col">Phone Number </th>
+                                </tr>
+                            </thead>
                     <tbody>
                         <tr>
-                        <td><?php print($name); ?></td>
+                        <td><?php print($firstName); ?></td>
+                        <td><?php print($lastName); ?></td>
                         <td><?php print($patientDOB) ?></td>
                         <td><?php print($patientSex) ?></td>
                         <td><?php print($patientGender) ?></td>
