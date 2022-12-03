@@ -11,7 +11,6 @@
 </head>
 <body>
     <?php
-        include "../checkSignedIn.php";
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->
@@ -53,13 +52,14 @@
         </div>
     </nav>
     <!-- NavBar End -->
-
-
     <div class="container">
         <div class="col">
             <div class="card" id="medicationsCard">
+                <div class="card-header"> 
+                <h5> Medications </h5>
+</div> 
                 <div class = "card-body">
-                    <h5> Medications </h5>
+                    
                     <!--Single Medication Entry -->
                     <table class="table">
                         <tr>
