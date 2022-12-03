@@ -154,7 +154,7 @@
                 </div>
             </div>
             <?php
-            } 
+            }
             else {
                 echo '<div class="card p-4"><h4>No results found.</h4></div>';
             }
