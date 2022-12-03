@@ -81,8 +81,11 @@
                         <td><?php print($name); ?></td>
                         <td><?php print($patientDOB) ?></td>
                         <td><?php print($patientSex) ?></td>
+                        <td><?php print($patientGender) ?></td>
+                        <td><?php print($patientEmail) ?></td>
+                        <td><?php print($patientPhone) ?></td>
                         </tr>
-                        </tr>
+
                     </tbody>
                     </table>
                          <!-- Personal Information Edit Modal-->
