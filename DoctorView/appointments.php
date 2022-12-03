@@ -13,7 +13,7 @@
         include "../checkSignedIn.php";
     ?>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight: 600;">
         <!-- Navbar Container -->
         <div class="container-fluid">
             <!-- Welcome Header -->
@@ -42,13 +42,14 @@
                     </li>
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
                                 include "get_first_name.php";
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -94,7 +95,7 @@
                         <div class="btn-group mx-2" role="group">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#apptModal">
-                                Create Appointment
+                                <img src="../images/plus-sign-pngrepo-com.png" alt="Create New Appointment" style="height:20px; color:white; padding-bottom:3px;">
                             </button>
                         </div>
                     </div>
@@ -112,10 +113,11 @@
                         include '../connect_server.php'; 
 
                         //getting appointment date
-                        $sql =  "SELECT p_info.first_name, p_info.last_name, appt.start_date_time FROM personal_info AS p_info
-                        INNER JOIN appointments AS appt
-                        ON p_info.ID = appt.user_ID
-                        ORDER BY appt.start_date_time";
+                        $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
+                                    INNER JOIN appointments ON appointments.user_ID = personal_info.ID
+                                    INNER JOIN patients ON appointments.user_ID = patients.patient_ID
+                                    INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
+                                    ORDER BY appointments.start_date_time, personal_info.first_name ASC";
                         
                         $result = $conn->query($sql);
                         
@@ -135,19 +137,29 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $i = 0;
+                                    $limit = 10;
+                                    $num = 0;
                                     while($row = $result->fetch_assoc()){
-                                        if($i >= 10){
+                                        if($num > $limit){
                                             break;
                                         }
+                                        $startDateTime = explode('T', $row['start_date_time']);
+                                        $endDateTime = explode('T', $row['end_date_time']);
+
+                                        //Remove any appointments that have already passed based on time
+                                        if($startDateTime[0] < date('Y-m-d')){
+                                            if($startDateTime[1] < date('H:i:s')){
+                                                continue;
+                                            }
+                                        }
+
                                         echo "<tr>";
                                         echo "<td>" . $row["first_name"] . "</td>";
                                         echo "<td>" . $row["last_name"] . "</td>";
-                                        $startDateTime = explode('T', $row['start_date_time']);
                                         echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
-                                        echo "<td>" . date('h:i a', strtotime($startDateTime[1])) . "</td>";
+                                        echo "<td>" . date('g:i a', strtotime($startDateTime[1])) . " - " . date('g:i a', strtotime($endDateTime[1])). "</td>";
                                         echo "</tr>";
-                                        $i++;
+                                        $num++;
                                     }
                                 ?>
                             </tbody>
@@ -181,28 +193,18 @@
                     <!-- Patient Name -->
                     <form action="insert_appt.php" method="post" id="apptForm">
                         <!-- Patient Name -->
-                        <div class="input-group mb-3">
-                                <span class="input-group-text" style="width:120px;">Patient Name</span>
-                                <input type="text" list="patientSearch" id="patientName" name="patientName"required>
+                        <div class="form-floating mb-3">
+                                <input type="text" list="patientSearch" class="form-control" id="patientName" name="patientName"
+                                placeholder=" " required>
+                                <label for="patientSearch" class="form-label">Patient Name</label>
                             </div>
                         <!-- End Patient Name -->
                             
                         <!-- Autocomplete Patient Name -->
                         <datalist id="patientSearch">
                             <?php
-                                include '../connect_server.php'; 
-                                
-                                //getting appointment date
-                                $sql =  "SELECT DISTINCT first_name, last_name FROM personal_info;";
-                                
-                                $result = $conn->query($sql);
-                                
-                                if($result->num_rows > 0){
-                                    while($row = $result->fetch_assoc()){
-                                        echo "<option value='" . $row["first_name"] . " " . $row["last_name"] . "'>";
-                                    }
-                                }
-                                ?>
+                                include 'autocomplete.php'; 
+                            ?>
                         </datalist>
                         <!-- End Autocomplete Patient Name -->
                         <div class="row">
@@ -212,18 +214,18 @@
                                     <h5>From</h5>
                                 </div>
                                 <!-- Appointment Date -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Date</span>
-                                    <input type="date" id="startDate" name="startDate" required>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="startDate" name="startDate" required>
+                                    <label for="startDate">Date</label>
                                 </div>
                                 <!-- End Appointment Date -->
                                 
                                 <!-- Appointment Time  -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Time</span>
+                                <div class="form-floating mb-3">
                                     <!-- TODO: Increment time by 15 minutes -->
-                                    <input type="time" id="startTime" name="startTime"
+                                    <input type="time" class="form-control" id="startTime" name="startTime"
                                     min="09:00" max="18:00" step="900" required>
+                                    <label for="startTime">Time</label>
                                 </div>
                             </div>
 
@@ -233,20 +235,22 @@
                                     <h5>To</h5>
                                 </div>
                                 <!-- Appointment Date -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Date</span>
-                                    <input type="date" id="endDate" name="endDate" required>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="endDate" name="endDate" required>
+                                    <label for="endDate">Date</label>
                                 </div>
                                 <!-- End Appointment Date -->
                                 
                                 <!-- Appointment Time  -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Time</span>
-                                    <!-- TODO: Increment time by 15 minutes -->
-                                    <input type="time" id="endTime" name="endTime"
+                                <div class="form-floating mb-3">
+                                    <input type="time" class="form-control" id="endTime" name="endTime"
                                     min="09:00" max="18:00" step="900" required>
+                                    <label for="endTime">Time</label>
+                                    <!-- TODO: Increment time by 15 minutes -->
                                 </div>
                             </div>
+
+                            <!-- This script automatically inputs the end date (assuming the appointment is the same day, which it should) -->
                             <script>
                                 let startDate = document.getElementById('startDate');
                                 let endDate = document.getElementById('endDate');
@@ -269,7 +273,6 @@
                     <button type="submit" class="btn btn-primary" form="apptForm" id="submitBtn">Submit</button>
                 </div>
                 <!-- End Calendar Footer -->
-                <!-- TODO: Make submit button functional -->
             </div>
         </div>
     </div>
@@ -284,28 +287,28 @@
                 </div>
                 <div class="modal-body">
                     <!-- First Name -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">First Name</span>
+                    <div class="form-floating mb-3">
                         <input type="text" id="firstName" name="firstName">
+                        <span class="form-floating-text" id="basic-addon1">First Name</span>
                     </div>
                         
                     <!-- Last Name  -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Last Name</span>
+                    <div class="form-floating mb-3">
                         <input type="text" id="lastName" name="lastName">
+                        <span class="form-floating-text" id="basic-addon1">Last Name</span>
                     </div>
 
                     <!-- Appointment Date -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Date</span>
+                    <div class="form-floating mb-3">
                         <input type="date" id="apt-date" name="apt-date">
+                        <span class="form-floating-text" id="basic-addon1">Date</span>
                     </div>
 
                     <!-- Appointment Time  -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Time</span>
+                    <div class="form-floating mb-3">
                         <!-- TODO: Increment time by 15 minutes -->
                         <input type="time" id="apt-time" name="apt-time">
+                        <span class="form-floating-text" id="basic-addon1">Time</span>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -313,8 +316,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>                         
+    
 
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 </body>

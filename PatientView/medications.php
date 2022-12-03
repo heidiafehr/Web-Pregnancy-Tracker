@@ -14,9 +14,9 @@
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight: 600;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="doctorPortalHome.php">
+            <a class="navbar-brand" href="patientPortalHome.php">
                 <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,9 @@
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                             <a class="dropdown-item" href="patientSettings.php">Settings</a>
+
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>

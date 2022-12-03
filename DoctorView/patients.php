@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointments</title>
+    <title>Patients</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -13,7 +13,7 @@
         include "../checkSignedIn.php";
     ?>
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight:600">
         <div class="container-fluid">
             <a class="navbar-brand" href="doctorPortalHome.php">
                 <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
@@ -37,13 +37,14 @@
                     </li>
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
                                 include "get_first_name.php";
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -62,31 +63,32 @@
                         <h3>Search Patient</h3>
                     </div>
                     <div class="card-body">
-                        <form action="" method="post" id="searchForm">
+                        <form action="" method="post" id="searchForm" class="m-3">
                             <!-- First Name -->
                             <div class="d-flex flex-row mb-3">
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="basic-addon1" style="width:120px">First Name</span>
-                                    <input type="text" id="firstName" name="firstName" style="width:240px">
+                                <div class="col-5 form-floating mr-2">
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder=" ">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                                <div class="col-2">
+
                                 </div>
                                     
                                 <!-- Last Name  -->
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="basic-addon1" style="width:120px">Last Name</span>
-                                    <input type="text" id="lastName" name="lastName" style="width:240px">
+                                <div class="col-5 form-floating">
+                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder=" ">
+                                    <label for="lastName">Last Name</label>
                                 </div>
                             </div>
                             <!-- Date of Birth -->
-                            <div class="input-group flex-nowrap mb-3">
-                                <span class="input-group-text" id="basic-addon1" style="width:120px">Date of Birth</span>
-                                <input type="date" id="dobDate" name="dobDate">
+                            <div class="form-floating col-5 mb-3">
+                                <input type="date" class="form-control" id="dobDate" name="dobDate">
+                                <label for="dobDate">Date of Birth</label>
                             </div>
-                        </form>
-                        <div class="d-flex flex-row-revers">
                             <button type="submit" form="searchForm" class="btn btn-primary" id="submitBtn">
                                 Search
                             </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -144,6 +146,7 @@
                                             echo "</tr>";
                                         }
                                         ?>
+                                    <!-- TODO: Make an info modal -->
                                 </tbody>
                             </table>
                         </div>
@@ -151,7 +154,7 @@
                 </div>
             </div>
             <?php
-            } 
+            }
             else {
                 echo '<div class="card p-4"><h4>No results found.</h4></div>';
             }
