@@ -16,14 +16,23 @@
         #editInformation();
     }
     #checking if Dob was sent 
-    if(array_key_exists('newDOB', $_POST)){
+    if(array_key_exists('newDOB', $_POST) and $_POST['newDOB'] != null){
         #//get new dob 
         $newDOB = $_POST['newDOB'];
-        #print("'".$newDOB."'");
         #query to update personal info with new dob 
         $updateDOBQuery = "UPDATE personal_info set dob = '$newDOB' WHERE ID = $patientID;"; 
-        print($updateDOBQuery);
         if($conn->query($updateDOBQuery) == TRUE){
+            header("Location: patientPortalHome.php");
+        }
+    }
+
+    #checking if email was sent 
+    if(array_key_exists('newEmail', $_POST) and $_POST['newEmail'] != null){
+        #//get new dob 
+        $newEmail = $_POST['newEmail'];
+        #query to update personal info with new dob 
+        $updateEmailQuery = "UPDATE personal_info set email = '$newEmail' WHERE ID = $patientID;"; 
+        if($conn->query($updateeme) == TRUE){
             header("Location: patientPortalHome.php");
         }
 
