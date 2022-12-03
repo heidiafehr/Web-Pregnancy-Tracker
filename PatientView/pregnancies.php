@@ -61,7 +61,6 @@
                     <h5>Pregnancies</h5>
                 </div> 
                 <div class = "card-body">
-                    
                     <!--Single Pregnancy Entry -->
                     <table class="table">
                         <thead>
@@ -135,7 +134,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

@@ -88,27 +88,41 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Date Picker Start -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Enter Preferred Date</span>
-                        <input type="datetime" id="start" name="trip-start"
-                            value="2022-11-27"
-                            min="2022-11-27" max="2023-11-27"> 
+                    <form method="POST" action ="insertAppointments.php">
+                        <div class="row">
+                            <!-- Pick start time -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="firstName">Enter Preferred Start Time</label>
+                                    <input type="time" class="form-control form-control-lg"
+                                        name="startTime">
+                                </div>
+                            </div>
+                            <!-- Pick end time -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="lastName">Enter Preferred Start Time</label>
+                                    <input type="time" class="form-control form-control-lg"
+                                        name="endTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <!-- Pick date -->
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="lastName">Enter Preferred Date</label>
+                                    <input type="date" class="form-control form-control-lg"
+                                        name="date">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Date Picker End -->
-
-                    <!-- Time Picker Start  -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Enter Preferred Time</span>
-                            <input type="time" id="appt" name="appt"
-                                min="09:00" max="18:00" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input class="btn btn-primary" type="submit" value="submit">
                     </div>
-                    <!-- Time Picker End -->
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit Request</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>

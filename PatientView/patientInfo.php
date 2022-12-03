@@ -23,13 +23,6 @@
     //geting gender 
     $patientGender = $row['gender']; 
 
-
-      
-    //function to show previous prengnacies 
-    function showMorePregnancies(){
-       
-    }
-
     //Create Query for appoinments 
     $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 
     $appointmentResult = $conn ->query($appointmentSQL);
@@ -38,15 +31,8 @@
         echo("<Table class = 'table'>"); 
         while($appointmentRow = $appointmentResult->fetch_assoc()){
             if($appointmentRow){
-                $appointmentDate = substr($appointmentRow["start_date_time"],0,10); 
-                $appointmentTime = substr($appointmentRow["start_date_time"],11); 
-                echo(
-                        "<tr><td> Appointment Date: </td>".
-                        "<td>" . $appointmentDate . "</td>" .
-                        "</tr><tr><td> Appointment Time: </td><td>".
-                        $appointmentTime .
-                        "</td></tr>"
-                );  
+                $appointmentStart = new dateTimeImmutable($appointmentRow['start_date_time']);
+                echo $appointmentStart->format('F d, Y') . '<br>'; 
             }
             else{
                 $bool = false;
