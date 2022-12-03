@@ -9,36 +9,34 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <?php
-        include "../checkSignedIn.php";
-    ?>
+<?php
+        include 'patientInfo.php';
+    ?> 
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight: 600;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="doctorPortalHome.php">
+            <a class="navbar-brand" href="patientPortalHome.php">
                 <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto px-2">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="doctorPortalHome.php">Home</a>
+                        <a class="nav-link" href="patientPortalHome.php">Home</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="pregnancies.php">Pregnancy</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="appointments.php">Appointments</a>
-                    </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="patients.php">Patients</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a>
                     </li>
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../images/person-pngrepo-com.png" style="height:24px">
-                            Dr. 
                             <?php
                                 include "get_first_name.php";
                             ?>
