@@ -18,6 +18,10 @@
     $patientEmail = $row["email"]; 
     //getting phone number 
     $patientPhone = $row["phone_number"];
+    //geting sex 
+    $patientSex = $row['sex']; 
+    //geting gender 
+    $patientGender = $row['gender']; 
 
     // create query for pregnancies 
     $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = $patientID;";
