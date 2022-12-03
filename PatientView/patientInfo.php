@@ -40,8 +40,9 @@
         
     }   
     //function to show previous prengnacies 
-    //function showMorePregnancies($pregnanciesResult){
-        /*
+    function showMorePregnancies(){
+        echo("testing"); 
+        /* 
         while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
             //print_r($row); 
             //print('<br>'); 
@@ -54,8 +55,8 @@
                     $pregnancyRow["baby_sex"] .
                     "</td></tr></div>"
             );   
-        } 
-    }*/
+        } */
+    }
 
     //Create Query for appoinments 
     $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 
