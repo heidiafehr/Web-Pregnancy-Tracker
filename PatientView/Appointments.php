@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<?php
-        include "../checkSignedIn.php";
+    <?php
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->
@@ -58,24 +57,20 @@
     <div class="container">
         <div class="col">
             <div class="card" id="appointmentsCard">
-                <div class="card-body">
+                <div class="card-header">
                     <div id="appt-container">
                         <h5>Appointments</h5>
-                        <!-- Appointment Modal Button -->
-                        <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Request New Appointment
-                        </button>
                     </div>
-                        
-                    <!-- Single Appointment Entry -->
-                    <table class='table'>
-                        <?php 
-                            printAppointments($appointmentResult); 
-                        ?>
-                    </table>
-                    <!-- make function to create further entries like this or something-->
-
                 </div>
+                <div class = "card-body">
+                    <!-- Printing A -->
+                    <?php 
+                        printAppointments($appointmentResult); 
+                    ?>
+                    <!-- Appointment Modal Button -->
+                    <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Request New Appointment
+                    </button>
             </div>
         </div>
     </div>

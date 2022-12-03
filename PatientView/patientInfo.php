@@ -1,11 +1,11 @@
 <?php 
     include '../connect_server.php';
+    include '../checkSignedIn.php'; 
 
-    //if(session_start()){
-        $patientID = $_SESSION['patient_ID'];
-    //}
+    //get patient id 
+    $patientID = $_SESSION['patient_ID']; 
 
-    // create query for personal info
+    //get personal info from db 
     $personalInfoSQL =  "SELECT * FROM personal_info where id=$patientID;";
     $personalInfoResult = $conn->query($personalInfoSQL); 
     //get row of patient information
@@ -18,47 +18,59 @@
     $patientEmail = $row["email"]; 
     //getting phone number 
     $patientPhone = $row["phone_number"];
+    //geting sex 
+    $patientSex = $row['sex']; 
+    //geting gender 
+    $patientGender = $row['gender']; 
 
     // create query for pregnancies 
-    $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = 2;";
+    $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = $patientID;";
+    //get pregnacy rows if found 
     $pregnanciesResult= $conn->query($pregnanciesSQL); 
     //function to print pregnancies 
     function printPregnancies($pregnanciesResult){
-        $bool = true; 
-        $counter =0; 
-        while($bool){
-            $pregnancyRow = $pregnanciesResult->fetch_assoc(); 
-            $counter += 1; 
-            if($pregnancyRow){
-                echo(
-                    "   <td> Pregnancy: </td><td>" . 
-                        $counter . 
-                        "</td><tr><td> Due Date: </td><td>".
-                        $pregnancyRow["due_date"] .
-                        "</td></tr>"
-                );  
-            }
-            else{
-                $bool = false; 
-            }
-        }  
-    }
+        if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
+            echo(
+                "<td> No idea what to put here</td>" . 
+                "<td>" .$pregnancyRow["due_date"] .
+                "<td>". $pregnancyRow["baby_sex"] .
+                "</td></tr></div>"
+        ); 
+        }
+        
+    }   
+    //function to show previous prengnacies 
+    //function showMorePregnancies($pregnanciesResult){
+        /*
+        while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
+            //print_r($row); 
+            //print('<br>'); 
+                echo("
+                    <div class = cardbody>
+                    <td> Pregnancy </td><td>" . 
+                    "</td><tr><td> Due Date: </td><td>".
+                    $pregnancyRow["due_date"] .
+                    "</td><tr><td> Sex: </td><td>".
+                    $pregnancyRow["baby_sex"] .
+                    "</td></tr></div>"
+            );   
+        } 
+    }*/
 
     //Create Query for appoinments 
     $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 
     $appointmentResult = $conn ->query($appointmentSQL);
     //Function to print appointments
     function printAppointments($appointmentResult){
-        $bool = true; 
-        while($bool){
-            $appointmentRow = $appointmentResult->fetch_assoc();
+        echo("<Table class = 'table'>"); 
+        while($appointmentRow = $appointmentResult->fetch_assoc()){
             if($appointmentRow){
                 $appointmentDate = substr($appointmentRow["start_date_time"],0,10); 
                 $appointmentTime = substr($appointmentRow["start_date_time"],11); 
                 echo(
-                        "</td><tr><td> Appointment Date: </td><td>".
-                        $appointmentDate .
-                        "</td></tr><tr><td> Appointment Time: </td><td>".
+                        "<tr><td> Appointment Date: </td>".
+                        "<td>" . $appointmentDate . "</td>" .
+                        "</tr><tr><td> Appointment Time: </td><td>".
                         $appointmentTime .
                         "</td></tr>"
                 );  
@@ -67,6 +79,8 @@
                 $bool = false;
             }
         }
+        echo("</table>"); 
         
     }
+    
 ?>

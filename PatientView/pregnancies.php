@@ -11,7 +11,6 @@
 </head>
 <body>
     <?php
-        include "../checkSignedIn.php";
         include 'patientInfo.php';
     ?> 
     <!-- NavBar Start -->
@@ -54,25 +53,37 @@
     </nav>
     <!-- NavBar End -->
 
-
     <!-- Pregnancy Card        -->
     <div class="container">
         <div class=" col">
             <div class = "card" id="pregnancyCard">
-                <div class = "card-body">
+                <div class = "card-header"> 
                     <h5>Pregnancies</h5>
+                </div> 
+                <div class = "card-body">
+                    
                     <!--Single Pregnacy Entry -->
                     <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">PlaceHolder</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Baby's Sex</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php   
-                            printPregnancies($pregnanciesResult); 
-                        ?>
+                            printPregnancies($pregnanciesResult);
+                        ?>   
+                    </tbody>                     
                     </table>
+                    <!-- Button to show past pregnancies -->
+                    <tr><button type="button" class="btn btn-primary">Show Past Pregnancies</button></tr>
                     <!-- Further pregnacies create more entries function or something -->
                 </div>
             </div>
         </div>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
 </body>
 </html>
