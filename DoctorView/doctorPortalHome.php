@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointments</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -13,7 +13,7 @@
         include "../checkSignedIn.php";
     ?>
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight:600">
         <div class="container-fluid">
             <a class="navbar-brand" href="doctorPortalHome.php">
                 <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
@@ -37,13 +37,14 @@
                     </li>
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
                                 include "get_first_name.php";
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -64,18 +65,21 @@
                 <?php
                     include '../connect_server.php'; 
 
-                    //getting appointment date
-                    // $date = '2022-12-16';
-                    // TODO: test if this works
-                    $sql =  "SELECT p_info.first_name, p_info.last_name, appt.start_date_time FROM personal_info AS p_info
-                    INNER JOIN appointments AS appt
-                    ON DATE_FORMAT(NOW(), '%Y-%m-%d') = SUBSTRING(appt.start_date_time,1,10)
-                    ORDER BY appt.start_date_time;";
+                    //Get today's appointments
+                    $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
+                    INNER JOIN appointments ON (appointments.user_ID = personal_info.ID AND DATE_FORMAT(NOW(), '%Y-%m-%d') = SUBSTRING(appointments.start_date_time,1,10))
+                    INNER JOIN patients ON appointments.user_ID = patients.patient_ID
+                    INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
+                    ORDER BY appointments.start_date_time ASC";
 
                     $result = $conn->query($sql);
 
                     if($result->num_rows > 0){
-                        echo "<h5>You have $result->num_rows upcoming appointments today.</h5>";
+                        if ($result->num_rows == 1) {
+                            echo "<h5 class='card-title'>You have 1 upcoming appointment today.</h5>";
+                        } else {
+                            echo "<h5 class='card-title'>You have $result->num_rows upcoming appointments today.</h5>";
+                        }
                 ?>
                 <div class="table">
                     <div class="table-responsive m-4">
@@ -107,7 +111,7 @@
                 <?php
                     }   
                     else{
-                        echo "You have no upcoming appointments today.";
+                        echo "<h5 class='card-title'>You have no upcoming appointments today.</h5>";
                     }
                 ?>
             </div>
