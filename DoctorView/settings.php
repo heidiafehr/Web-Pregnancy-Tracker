@@ -86,6 +86,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>
+                    <!-- TODO: implement JS for password checking -->
                 </div>
             </div>
         </div>
