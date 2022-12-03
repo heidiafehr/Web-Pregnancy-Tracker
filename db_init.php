@@ -53,7 +53,6 @@ $sql .= "CREATE TABLE admins(
 );";
 
 $sql .= "CREATE TABLE appointments(
-	appointment_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	user_ID INT NOT NULL,
 	/*YYYY-MM-DDTHH:MI*/
 	start_date_time VARCHAR(16) NOT NULL,
