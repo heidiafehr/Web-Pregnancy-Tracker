@@ -61,39 +61,56 @@
                     <h5>Pregnancies</h5>
                 </div> 
                 <div class = "card-body">
-                    
                     <!--Single Pregnancy Entry -->
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">Status</th>
+                            <th scope="col">Days Until Due Date</th>
                             <th scope="col">Due Date</th>
                             <th scope="col">Baby's Sex</th>
                             </tr>
                         </thead>
                     <tbody>
-                        <?php   
+                        <?php
+                            //getting current date and time 
+                            $tempDateTime = date('d-m-Y h:i:s a', time());    
+                            //saving date time as datetimeImmutabel
+                            $currentDateTime  = new dateTimeImmutable($tempDateTime); 
+                            //datetime string 
+                            $currDate = $currentDateTime->format('F d,Y'); 
+                            
                             // create query for pregnancies 
                             $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = $patientID;";
                             //get pregnacy rows if found 
-                            $pregnanciesResult= $conn->query($pregnanciesSQL); 
+                            $pregnanciesResult= $conn->query($pregnanciesSQL);
                             //function to print pregnancies 
                             if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
+                                $dueDate = $pregnancyRow["due_date"]; 
+                                
+                                //converting due date to immutable 
+                                $dueDateImmutable = new dateTimeImmutable($dueDate);
+                                $testString = $dueDateImmutable->format('F d,Y'); 
+                                
+                                //getting difference for due date 
+                                //$dueDateCountDown = $->diff($); 
+                                //getting difference for due date 
+                                $dueDateCountDown = $currentDateTime->diff($dueDateImmutable); 
+                                //getting days
+                                $countdownDays = $dueDateCountDown->format('%R%a'); 
                                 echo(
-                                    "<td>Not Birthed</td>" . 
+                                    "<td>$countdownDays</td>" . 
                                     "<td>" .$pregnancyRow["due_date"] .
                                     "<td>". $pregnancyRow["baby_sex"] .
                                     "</td></tr></div>"
                                 ); 
                             }
-        
                         ?>   
                     </tbody>                     
                     </table>
                     <!-- Button to show past pregnancies -->
                     <tr>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Show More Results
+                        Show Past Pregnancies
                     </button></tr>
                     <!-- Further pregnacies create more entries function or something -->
                 </div>
@@ -113,13 +130,13 @@
                     <table class='table'>
                         <thead>
                             <tr>
-                            <th scope="col">Status</th>
+                            <th scope="col">Days Until Due Date</th>
                             <th scope="col">Due Date</th>
                             <th scope="col">Baby's Sex</th>
                             </tr>
                         </thead>
                     <?php 
-                        // create query for pregnancies 
+                        
                         while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
                             //print_r($row); 
                             //print('<br>'); 
@@ -135,7 +152,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
