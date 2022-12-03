@@ -28,14 +28,37 @@
     $appointmentResult = $conn ->query($appointmentSQL);
     //Function to print appointments
     function printAppointments($appointmentResult){
-        echo("<Table class = 'table'>"); 
         while($appointmentRow = $appointmentResult->fetch_assoc()){
+            //getting current date and time 
+            $tempDateTime = date('d-m-Y h:i:s a', time()); 
+            //saving date time as datetimeImmutabel
+            $currentDateTime  = new dateTimeImmutable($tempDateTime); 
+            //formatting the current Date Time
+            //$currentDateTimeString = $currentDateTime->format('F d,Y'); 
+            //if apointments table is not empty
             if($appointmentRow){
-                $appointmentStart = new dateTimeImmutable($appointmentRow['start_date_time']);
-                echo $appointmentStart->format('F d, Y') . '<br>'; 
+                //saving appointment Start Time
+                $apptStart = new dateTimeImmutable($appointmentRow['start_date_time']);
+                //converting to string and format
+                $apptStartString = $apptStart->format('H:II'); 
+
+                //saving appointment Date
+                $apptDate = $apptStart->format('F d,Y'); 
+
+                //saving appoint End Time 
+                $apptEnd = new dateTimeImmutable($appointmentRow['end_date_time']);
+                //converting to string and format
+                $apptEndString = $apptEnd->format('H:II'); 
+
+                //print printAppointments
+                echo "<tr><td>$apptDate</td>
+                    <td>$apptStartString</td>
+                    <td>$apptEndString</td>
+                    </tr>"; 
+                
             }
             else{
-                $bool = false;
+                print("no appointments"); 
             }
         }
         echo("</table>"); 

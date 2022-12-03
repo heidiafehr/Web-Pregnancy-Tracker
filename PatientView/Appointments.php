@@ -63,10 +63,18 @@
                     </div>
                 </div>
                 <div class = "card-body">
-                    <!-- Printing A -->
-                    <?php 
-                        printAppointments($appointmentResult); 
-                    ?>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                            <th scope="col">Appointment Date</th>
+                            <th scope="col">Appointment Start Time</th>
+                            <th scope="col">Appointment End Time</th>
+                            </tr>
+                        </thead>
+                    <!-- Printing Appointments -->
+                    <?php printAppointments($appointmentResult); ?>
+                    </table>
+                    
                     <!-- Appointment Modal Button -->
                     <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Request New Appointment
