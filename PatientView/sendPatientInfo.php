@@ -1,19 +1,27 @@
 <?php
     include 'patientInfo.php'; 
-    #checking if name was sent
-    if(array_key_exists('newPatientName', $_POST) and $_POST['newPatientName'] != null) {
+    #checking if first name was sent
+    if(array_key_exists('newFirstName', $_POST) and $_POST['newFirstName'] != null) {
         //Getting new name
-        $newPatientName = explode(" ", $_POST['newPatientName']); // Splits the full name to first and last name
-        $newFirstname = $newPatientName[0]; 
-        $newLastName = $newPatientName[1]; 
-        $newFirstname = "'".$newFirstname."'";
-        $newLastName = "'".$newLastName."'";
+        $newFirstName = $_POST['newFirstName']; 
+        $newFirstName = "'".$newFirstName."'";
         #Query to update personal info with new name 
-        $updateUserQuery = "UPDATE personal_info set first_name = $newFirstname, last_name = $newLastName WHERE ID = $patientID;"; 
-        if($conn->query($updateUserQuery) == TRUE){
+        $updateFirstNameQuery = "UPDATE personal_info set first_name = $newFirstName WHERE ID = $patientID;"; 
+        if($conn->query($updateFirstNameQuery) == TRUE){
             header("Location: patientPortalHome.php");
         }
         #editInformation();
+    }
+     #checking if last name was sent
+     if(array_key_exists('newLastName', $_POST) and $_POST['newLastName'] != null) {
+        //Getting new last name
+        $newLastName = $_POST['newLastName']; 
+        $newLastName = "'".$newLastName."'";
+        #Query to update personal info with new name 
+        $updateLastNameQuery = "UPDATE personal_info set last_name = $newLastName WHERE ID = $patientID;"; 
+        if($conn->query($updateLastNameQuery) == TRUE){
+            header("Location: patientPortalHome.php");
+        }
     }
     #checking if Dob was sent 
     if(array_key_exists('newDOB', $_POST) and $_POST['newDOB'] != null){
@@ -25,17 +33,15 @@
             header("Location: patientPortalHome.php");
         }
     }
-
     #checking if email was sent 
     if(array_key_exists('newEmail', $_POST) and $_POST['newEmail'] != null){
         #//get new dob 
         $newEmail = $_POST['newEmail'];
         #query to update personal info with new dob 
         $updateEmailQuery = "UPDATE personal_info set email = '$newEmail' WHERE ID = $patientID;"; 
-        if($conn->query($updateeme) == TRUE){
+        if($conn->query($updateEmailQuery) == TRUE){
             header("Location: patientPortalHome.php");
         }
-
     }
     //header("Location: patientPortalHome.php");
 ?>
