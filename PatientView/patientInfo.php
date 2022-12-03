@@ -24,7 +24,7 @@
     $patientGender = $row['gender']; 
 
     //Create Query for appoinments 
-    $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 
+    $appointmentSQL = "SELECT * FROM appointments where user_ID = $patientID;"; 
     $appointmentResult = $conn ->query($appointmentSQL);
     //Function to print appointments
     function printAppointments($appointmentResult){

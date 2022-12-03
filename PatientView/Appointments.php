@@ -95,7 +95,7 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="firstName">Enter Preferred Start Time</label>
                                     <input type="time" class="form-control form-control-lg"
-                                        name="startTime">
+                                        name="startTime" required>
                                 </div>
                             </div>
                             <!-- Pick end time -->
@@ -103,7 +103,7 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="lastName">Enter Preferred Start Time</label>
                                     <input type="time" class="form-control form-control-lg"
-                                        name="endTime">
+                                        name="endTime" required>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="lastName">Enter Preferred Date</label>
                                     <input type="date" class="form-control form-control-lg"
-                                        name="date">
+                                        name="date" required>
                                 </div>
                             </div>
                         </div>
