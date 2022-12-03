@@ -43,7 +43,9 @@
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="settings.php">Settings</a>
+
+                            <a class="dropdown-item" href="patientSettings.php">Settings</a>
+
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -57,7 +59,7 @@
             <div class="card" id="medicationsCard">
                 <div class="card-header"> 
                 <h5> Medications </h5>
-</div> 
+                </div> 
                 <div class = "card-body">
                     
                     <!--Single Medication Entry -->

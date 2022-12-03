@@ -43,7 +43,9 @@
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="settings.php">Settings</a>
+
+                            <a class="dropdown-item" href="patientSettings.php">Settings</a>
+
                             <a class="dropdown-item" href="../signout.php">Sign Out</a>
                         </div>
                     </li>

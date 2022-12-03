@@ -4,6 +4,8 @@
 
     //get patient id 
     $patientID = $_SESSION['patient_ID']; 
+    //get username 
+    $username = $_SESSION['username']; 
 
     //get personal info from db 
     $personalInfoSQL =  "SELECT * FROM personal_info where id=$patientID;";
