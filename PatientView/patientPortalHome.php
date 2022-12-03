@@ -105,47 +105,95 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
-                    <form method ="POST" action ="sendPatientInfo.php">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label">Patient Name:</label>
+                <form method="POST" action="sendPatientInfo.php">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="firstName">First Name</label>
+                                <input type="text" id="newFirstName" class="form-control form-control-lg"
+                                    name="newFirstName">
                             </div>
-                            <div class="col-auto">
-                                <input type="text" name="newPatientName" class="form-control">
                         </div>
-
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label">Date of Birth: </label>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="lastName">Last Name</label>
+                                <input type="text" id="newLastName" class="form-control form-control-lg"
+                                    name="newLastName">
                             </div>
-                            <div class="col-auto">
-                                <input type="date" name="newDOB" class="form-control">
                         </div>
+                    </div>
 
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label">Email: </label>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 d-flex align-items-center">
+                            <div class="form-outline datepicker w-100">
+                                <label for="birthdayDate" class="form-label">Birthday</label>
+                                <input type="date" class="form-control form-control-lg" id="newDOB"
+                                    name="newDOB">
                             </div>
-                            <div class="col-auto">
-                                <input type="text" name="newEmail" class="form-control">
                         </div>
+                        <div class="col-md-6 mb-4">
+                        </div>
+                    </div>
 
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label class="col-form-label">Phone Number: </label>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 pb-2">
+                            <h6 class="mb-2 pb-1">Sex</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="newSex" id="femaleGender"
+                                    value="F" name="female" checked>
+                                <label class="form-check-label" for="femaleGender">Female</label>
                             </div>
-                            <div class="col-auto">
-                                <input type="text" name="newPhone" class="form-control">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="newSex" id="maleGender"
+                                    value="M" name="male">
+                                <label class="form-check-label" for="maleGender">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="newSex" id="interSex"
+                                    value="I" >
+                                <label class="form-check-label" for="maleGender">Intersex</label>
+                            </div>
                         </div>
+                        <div class="col-md-6 mb-4 pb-2">
+                            <h6 class="mb-2 pb-1">Gender</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="newGender" id="femaleGender"
+                                    value="Woman" checked>
+                                <label class="form-check-label" for="femaleGender">Woman</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="newGender" id="maleGender"
+                                    value="Man">
+                                <label class="form-check-label" for="maleGender">Man</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="newGender" id="otherGender"
+                                    value="Other">
+                                <label class="form-check-label" for="otherGender">Other</label>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="col-auto"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input class="btn btn-primary" type="submit" value="submit">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div class="form-outline">
+                                <label class="form-label" for="emailAddress">Email</label>
+                                <input type="email" class="form-control form-control-lg"
+                                    name="newEmail">
+                            </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div class="form-outline">
+                                <label class="form-label" for="phoneNumber">Phone Number</label>
+                                <input type="tel" class="form-control form-control-lg"
+                                    name="newphoneNumber">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input class="btn btn-primary" type="submit" value="submit">
+                    </div>
                 
             </div>
         </div>

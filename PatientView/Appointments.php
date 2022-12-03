@@ -91,9 +91,9 @@
                     <!-- Date Picker Start -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Enter Preferred Date</span>
-                        <input type="date" id="start" name="trip-start"
+                        <input type="datetime" id="start" name="trip-start"
                             value="2022-11-27"
-                            min="2022-11-27" max="2023-11-27">
+                            min="2022-11-27" max="2023-11-27"> 
                     </div>
                     <!-- Date Picker End -->
 
