@@ -23,39 +23,12 @@
     //geting gender 
     $patientGender = $row['gender']; 
 
-    // create query for pregnancies 
-    $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = $patientID;";
-    //get pregnacy rows if found 
-    $pregnanciesResult= $conn->query($pregnanciesSQL); 
-    //function to print pregnancies 
-    function printPregnancies($pregnanciesResult){
-        if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
-            echo(
-                "<td> No idea what to put here</td>" . 
-                "<td>" .$pregnancyRow["due_date"] .
-                "<td>". $pregnancyRow["baby_sex"] .
-                "</td></tr></div>"
-        ); 
-        }
-        
-    }   
+
+      
     //function to show previous prengnacies 
-    //function showMorePregnancies($pregnanciesResult){
-        /*
-        while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
-            //print_r($row); 
-            //print('<br>'); 
-                echo("
-                    <div class = cardbody>
-                    <td> Pregnancy </td><td>" . 
-                    "</td><tr><td> Due Date: </td><td>".
-                    $pregnancyRow["due_date"] .
-                    "</td><tr><td> Sex: </td><td>".
-                    $pregnancyRow["baby_sex"] .
-                    "</td></tr></div>"
-            );   
-        } 
-    }*/
+    function showMorePregnancies(){
+       
+    }
 
     //Create Query for appoinments 
     $appointmentSQL = "SELECT * FROM appointments where user_ID = 2;"; 
