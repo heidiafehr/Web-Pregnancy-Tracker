@@ -31,14 +31,6 @@
     //Function to print appointments
     function printAppointments($appointmentResult){
         while($appointmentRow = $appointmentResult->fetch_assoc()){
-            //getting current date and time 
-            $tempDateTime = date('d-m-Y h:i:s a', time()); 
-            //saving date time as datetimeImmutabel
-            $currentDateTime  = new dateTimeImmutable($tempDateTime); 
-
-//********FOR PREGNANCIES************************formatting the current Date Time 
-            //$currentDateTimeString = $currentDateTime->format('F d,Y'); 
-
             //if apointments table is not empty
             if($appointmentRow){
                 //saving appointment Start Time
