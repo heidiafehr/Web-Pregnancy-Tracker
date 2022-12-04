@@ -1,18 +1,17 @@
 <?php
     include 'patientInfo.php'; 
-    //getting appt start time 
-    $appointmentStart = new DateTimeImmutable($_POST['startTime']); 
-    //getting appt end time 
-    $appointmentEnd = new DateTimeImmutable($_POST['endTime']); 
-    $appointmentDate = new DateTimeImmutable(($_POST['date']));
-
+    //chagning to date time format 
     $apptStartDateTime = $_POST['date'] . "T" . $_POST['startTime'];
     $apptEndDateTime = $_POST['date'] . "T" . $_POST['endTime'];
+    
+    //getting apptoinmentlegnth 
+    $startTime = new DateTime($_POST['startTime']); 
+    $endTime = new DateTime($_POST['endTime']); 
+    $difference = $endTime->diff($startTime); 
+    $apptLength = $difference->format('%H:%I');
 
-
-    #echo( int(str$_POST['startTime'])-int($_POST['endTime']));
     #Query to appointments with new appointment
-    $insertAppointmentQuery = "INSERT INTO appointments(user_ID, start_date_time, end_date_time) VALUES ('$patientID', '$apptStartDateTime', '$apptEndDateTime'); ";
+    $insertAppointmentQuery = "INSERT INTO appointments(user_ID, start_date_time, end_date_time, appt_length) VALUES ('$patientID', '$apptStartDateTime', '$apptEndDateTime', '$apptLength'); ";
     #print($insertAppointmentQuery); 
     if($conn->query($insertAppointmentQuery) == TRUE){
         header("Location: Appointments.php");

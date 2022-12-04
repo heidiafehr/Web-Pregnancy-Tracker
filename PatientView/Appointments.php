@@ -71,6 +71,8 @@
                             <th scope="col">Appointment Date</th>
                             <th scope="col">Appointment Start Time</th>
                             <th scope="col">Appointment End Time</th>
+                            <th scope="col">Appointment Length</th>
+                            <th scope="col">Approval Status</th>
                             </tr>
                         </thead>
                     <!-- Printing Appointments -->
@@ -84,10 +86,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

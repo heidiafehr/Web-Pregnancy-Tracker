@@ -36,26 +36,34 @@
             
             //if apointments table is not empty
             if($appointmentRow){
-                //check if apointment is approved or not, if not move on exit iteration
-                if(!$appointmentRow['approved'])
-                    continue; 
+                
                 //saving appointment Start Time
                 $apptStart = new dateTimeImmutable($appointmentRow['start_date_time']);
                 //converting to string and format
                 $apptStartString = $apptStart->format('H:i'); 
-
                 //saving appointment Date
                 $apptDate = $apptStart->format('F d,Y'); 
-
                 //saving appointment End Time 
                 $apptEnd = new dateTimeImmutable($appointmentRow['end_date_time']);
                 //converting to string and format
                 $apptEndString = $apptEnd->format('H:i'); 
+                //getting appointment length
+                $apptLength = $appointmentRow['appt_length'];
+                //get appointment approval
+                $apptApproved = $appointmentRow['approved'];
+                if($apptApproved == 1){
+                    $apptApproved = "approved"; 
+                }
+                else{
+                    $apptApproved = "pending"; 
+                }
 
-                //print printAppointments
+                //print appointments
                 echo "<tr><td>$apptDate</td>
                     <td>$apptStartString</td>
                     <td>$apptEndString</td>
+                    <td>$apptLength </td>
+                    <td>$apptApproved</td>
                     </tr>"; 
                 
             }
