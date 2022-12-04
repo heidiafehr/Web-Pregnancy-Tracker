@@ -12,7 +12,7 @@
 
     #echo( int(str$_POST['startTime'])-int($_POST['endTime']));
     #Query to appointments with new appointment
-    $insertAppointmentQuery = "INSERT INTO appointments(user_ID, start_date_time, end_date_time) VALUES ('$patientID', '$apptStartDateTime', '$apptEndDateTime'); ";
+    $insertAppointmentQuery = "INSERT INTO appointments(user_ID, start_date_time, end_date_time, approved) VALUES ('$patientID', '$apptStartDateTime', '$apptEndDateTime', 0); ";
     #print($insertAppointmentQuery); 
     if($conn->query($insertAppointmentQuery) == TRUE){
         header("Location: Appointments.php");

@@ -133,6 +133,8 @@
                                         <th scope="col">First Name</th>
                                         <th scope="col">Last Name</th>
                                         <th scope="col">Date of Birth</th>
+                                        <th scope="col">Sex</th>
+                                        <th scope="col">Gender</th>
                                         <th scope="col">Manage</th>
                                     </tr>
                                 </thead>
@@ -143,7 +145,9 @@
                                             echo "<td>" . $row["first_name"] . "</td>";
                                             echo "<td>" . $row["last_name"] . "</td>";
                                             echo "<td>" . date('F j, Y', strtotime($row['dob'])) . "</td>";
-                                            echo "<td>" . '<span><a href="edit_patient.php?=id">Info</a></span>' . "</td>";
+                                            echo '<td>' . $row['sex'] . '</td>';
+                                            echo '<td>' . $row['gender']. '</td>';
+                                            echo "<td>" . '<span><a href="edit_patient.php?=id"' . $row["ID"] . '">Info</a></span>' . "</td>";
                                             echo "</tr>";
                                         }
                                         ?>
