@@ -64,7 +64,8 @@ $sql .= "CREATE TABLE appointments(
 	patient_ID INT,
 	FOREIGN KEY(doctor_ID) REFERENCES doctors(doctor_ID),
 	FOREIGN KEY(patient_ID) REFERENCES patients(patient_ID),
-	FOREIGN KEY(user_ID) REFERENCES personal_info(ID)
+	FOREIGN KEY(user_ID) REFERENCES personal_info(ID), 
+	approved BOOLEAN
 
 );";
 
@@ -93,12 +94,12 @@ $sql .= "INSERT INTO admins VALUES('sysAdmin');";
 $sql .= "INSERT INTO users VALUES('patientUser', 'Welcome1!');";
 $sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number, sex, gender) VALUES
 ('Jane', 'Smith', '1999-11-30', 'janesmith@email.com', '7025000893', 'F', 'Other');";
-$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length)VALUES
-(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30'),
-(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45'),
-(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50'),
-(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30'),
-(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30');";
+$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length, approved)VALUES
+(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30', 1),
+(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45', 1),
+(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50',1),
+(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30',1),
+(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30',1);";
 $sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
 $sql .= "INSERT INTO medication VALUES
 ('medicationName', '2020-05-30', '2020-06-14', 'This is the description of what the medication does and how it should be taken',1);";
@@ -110,17 +111,16 @@ $sql .= "INSERT INTO pregnancies VALUES
 (LAST_INSERT_ID(), '2016-04-30', 'M');";
 
 // Creating test doctor
-
 $sql .= "INSERT INTO users VALUES('doctorUser', 'Welcome1!');";
 $sql .= "INSERT INTO personal_info (first_name, last_name, dob, email, phone_number, sex, gender) VALUES
 ('John', 'Doe', '1999-01-14', 'johndoe@email.com', '7024009998', 'F', 'Man');";
 $sql .= "INSERT INTO doctors VALUES(LAST_INSERT_ID(), 'doctorUser');";
-$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length, doctor_ID, patient_ID)VALUES
-(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30', LAST_INSERT_ID(), 1),
-(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45', LAST_INSERT_ID(), 1),
-(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50', LAST_INSERT_ID(), 1),
-(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30', LAST_INSERT_ID(), 1),
-(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30', LAST_INSERT_ID(), 1);";
+$sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt_length, doctor_ID, patient_ID, approved)VALUES
+(LAST_INSERT_ID(), '2022-12-16T10:30', '2022-12-16T11:00', '00:30', LAST_INSERT_ID(), 1, 1),
+(LAST_INSERT_ID(), '2022-12-17T12:00', '2022-12-17T12:45:00', '00:45', LAST_INSERT_ID(), 1, 1),
+(LAST_INSERT_ID(), '2022-12-17T13:00:00', '2022-12-17T14:50', '01:50', LAST_INSERT_ID(), 1, 1),
+(LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30', LAST_INSERT_ID(), 1, 1),
+(LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30', LAST_INSERT_ID(), 1, 1);";
 
 
 
