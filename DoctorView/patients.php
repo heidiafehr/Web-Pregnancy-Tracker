@@ -147,7 +147,7 @@
                                             echo "<td>" . date('F j, Y', strtotime($row['dob'])) . "</td>";
                                             echo '<td>' . $row['sex'] . '</td>';
                                             echo '<td>' . $row['gender']. '</td>';
-                                            echo "<td>" . '<span><a href="edit_patient.php?=id"' . $row["ID"] . '">Info</a></span>' . "</td>";
+                                            echo "<td><a href='patient_info.php?id=$row[ID]'>Info</a></span></td>";
                                             echo "</tr>";
                                         }
                                         ?>

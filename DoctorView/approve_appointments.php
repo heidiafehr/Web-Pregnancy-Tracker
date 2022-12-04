@@ -48,6 +48,6 @@ if($result->num_rows > 0){
     echo "</div>";
 }
 else{
-    echo "<h5> You have no appointments to approve</h5>";
+    echo "<h5> You have no appointments to approve.</h5>";
 }
 ?>
