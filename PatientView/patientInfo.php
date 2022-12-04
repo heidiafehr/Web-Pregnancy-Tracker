@@ -33,8 +33,12 @@
     //Function to print appointments
     function printAppointments($appointmentResult){
         while($appointmentRow = $appointmentResult->fetch_assoc()){
+            
             //if apointments table is not empty
             if($appointmentRow){
+                //check if apointment is approved or not, if not move on exit iteration
+                if(!$appointmentRow['approved'])
+                    continue; 
                 //saving appointment Start Time
                 $apptStart = new dateTimeImmutable($appointmentRow['start_date_time']);
                 //converting to string and format
