@@ -2,7 +2,7 @@
     include "../connect_server.php";
     session_start();
 
-    $userID = $_SESSION['doctor_ID'];
+    $userID = $_SESSION['patient_ID'];
     $currentEmail = $_POST['currentEmail'];
     $newEmail = $_POST['newEmail'];
 

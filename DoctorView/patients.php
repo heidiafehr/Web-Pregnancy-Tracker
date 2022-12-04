@@ -143,7 +143,7 @@
                                             echo "<td>" . $row["first_name"] . "</td>";
                                             echo "<td>" . $row["last_name"] . "</td>";
                                             echo "<td>" . date('F j, Y', strtotime($row['dob'])) . "</td>";
-                                            echo "<td>" . '<span><a href="#">Info</a></span>' . "</td>";
+                                            echo "<td>" . '<span><a href="edit_patient.php?=id">Info</a></span>' . "</td>";
                                             echo "</tr>";
                                         }
                                         ?>
