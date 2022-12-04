@@ -81,6 +81,7 @@
                     <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Request New Appointment
                     </button>
+                </div>
             </div>
         </div>
     </div>
