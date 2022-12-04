@@ -1,7 +1,8 @@
 <?php
     include 'patientInfo.php'; 
-
+    //getting appt start time 
     $appointmentStart = new DateTimeImmutable($_POST['startTime']); 
+    //getting appt end time 
     $appointmentEnd = new DateTimeImmutable($_POST['endTime']); 
     $appointmentDate = new DateTimeImmutable(($_POST['date']));
 
