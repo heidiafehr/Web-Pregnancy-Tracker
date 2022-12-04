@@ -14,7 +14,7 @@
     $username = $username[0]["username"];
 
     //Update password based on username
-    $sql = "UPDATE users SET password = '$newPassword' WHERE username = '$username'";
+    $sql = "UPDATE users SET `password` = '$newPassword' WHERE `username` = '$username'";
     if (mysqli_query($conn, $sql)) {
         header("Location: settings.php");
     } else {
