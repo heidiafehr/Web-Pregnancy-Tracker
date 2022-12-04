@@ -61,22 +61,50 @@
                 <h5> Medications </h5>
                 </div> 
                 <div class = "card-body">
-                    
-                    <!--Single Medication Entry -->
-                    <table class="table">
-                        <tr>
-                            <td>Date Prescribed: </td>
-                            <td> Insert from db </td>
-                        </tr>
-                        <tr>
-                            <td> Name of Prescription </td>
-                            <td> Insert from db</td>
-                        </tr>
-                        <tr>
-                            <td>Dosage: </td>
-                            <td> Insert from db</td>
-                        </tr>
-                    </table>
+                <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Medication Name</th>
+        <th scope="col">Medication Start</th>
+        <th scope="col">Medication End Date</th>
+        <th scope="col">Medication Description</th>
+        </tr>
+    </thead>
+        <?php   
+            //create query to get medications from medications table
+            $medicationsQuery ="SELECT * FROM medication where med_patientID = $patientID;"; 
+            $medicationsResult = $conn->query($medicationsQuery); 
+            $medOut = $medicationsResult->fetch_assoc(); 
+            //if medications are found 
+            if($medOut){
+                echo $medOut['med_name']; 
+
+
+            }
+                
+        ?>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+        </table>
+
+
                     <!-- Further medications create more entries function or something -->
                 </div>
             </div>
