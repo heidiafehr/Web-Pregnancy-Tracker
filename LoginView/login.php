@@ -55,7 +55,7 @@
                                 
                             </form>
                             <div class="container">
-                                Don't have an account? <a href="../RegisterView/register.html">Sign Up</a>
+                                Don't have an account? <a href="../RegisterView/register.php">Sign Up</a>
             
                             </div>
 

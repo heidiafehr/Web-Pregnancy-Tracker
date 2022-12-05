@@ -14,9 +14,12 @@
 
         include("../connect_server.php");
 
-        // *************************************
-        // PASSWORD AND USERNAME VALIDATION
-        //************************************* */
+        // USERNAME VALIDATION
+        $sql = "SELECT * FROM users WHERE username='$username'";
+        $result = mysqli_query($conn, $sql);
+        if($result->num_rows > 0){
+            header("Location: register.php?unameerr=This username already exists");
+        }
 
         // insert into users
         $sql = "INSERT INTO users VALUES('$username', '$password');";
@@ -52,6 +55,6 @@
 
 
     }else{
-        header("Location: /register.html?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
+        header("Location: /register.php?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
     }
 ?>
