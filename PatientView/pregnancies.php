@@ -140,8 +140,6 @@
                     <?php 
                         
                         while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
-                            //print_r($row); 
-                            //print('<br>'); 
                             echo("
                                 <div class = cardbody> 
                                 <tr><td> Birthed </td><td>".$pregnancyRow["due_date"]."</td>" .
