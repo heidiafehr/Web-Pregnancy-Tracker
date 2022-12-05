@@ -109,7 +109,7 @@ $sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
 $sql .= "INSERT INTO medication (med_name, dosage, frequency, med_start_date, med_end_date, med_description, med_patientID, med_doctorID)
 VALUES ('Vitamin B6', '5 mg', '2 a day', '2020-05-30', '2020-06-14', 'General supplement', 1, 2);";
 $sql .= "INSERT INTO pregnancies VALUES
-(LAST_INSERT_ID(), '2022-10-31', 'F'),
+(LAST_INSERT_ID(), '2023-05-29', 'F'),
 (LAST_INSERT_ID(), '2020-11-14', 'M'),
 (LAST_INSERT_ID(), '2019-01-06', 'M'),
 (LAST_INSERT_ID(), '2017-09-17', 'F'),

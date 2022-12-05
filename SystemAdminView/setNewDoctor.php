@@ -42,7 +42,7 @@
         $sql = "INSERT INTO doctors VALUES(LAST_INSERT_ID(), '$username');";
         if($conn->query($sql) === TRUE){
             echo "<br>", "Inserted into doctors", "<br>";
-            header("Location: newDoctor.html?status=1");
+            header("Location: newDoctor.php?status=1");
         }else{
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -50,6 +50,6 @@
 
     }else{
         echo "check this";
-        header("Location: newDoctor.html?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
+        header("Location: newDoctor.php?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
     }
 ?>

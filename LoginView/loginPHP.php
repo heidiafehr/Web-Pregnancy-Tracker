@@ -26,7 +26,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
             session_start();
             $_SESSION['username'] = $admin[0]['username'];
             echo $_SESSION['username'];
-            header("Location: ../SystemAdminView/systemAdminPortalHome.html");
+            header("Location: ../SystemAdminView/systemAdminPortalHome.php");
         } else {
             // if !doctor
             if (!$isDoctor) {
