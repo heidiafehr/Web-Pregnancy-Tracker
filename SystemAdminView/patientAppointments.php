@@ -29,7 +29,7 @@
                         $startDateTime = $row['start_date_time'];
                         $endDateTime = $row['end_date_time'];
                         $apptLength = $row['appt_length'];
-                        $approve = $row['approved'];
+                        $approved = $row['approved'];
                         $doctor = $row['doctor_ID'];
                     } else {
                         echo "didn't get ID";
@@ -56,7 +56,7 @@
                             <div class='col-md-4 mb-2'>
                                 <div class='form-outline'>
                                     <label class='form-label' for='end_time'>Appt Length</label>
-                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='apptLength' placeholder='<?php echo $apptLength?>'>
+                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='apptLength' placeholder='<?php echo $apptLength ?>'>
                                 </div>
                             </div>
                         </div>
@@ -65,14 +65,25 @@
                             <div class='col-md-6 mb-4'>
                                 <div class='form-outline'>
                                     <label class='form-label' for='end_time'>Approval Status</label>
-                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='approved' placeholder='<?php echo $approve?>'>
+                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='approval' placeholder='<?php echo $approved ?>'>
                                 </div>
+
+                                <?php
+                                if (isset($_GET['approveerr'])) {
+                                    echo '<p style="color: red;">', $_GET['approveerr'], '</p>';
+                                }
+                                ?>
                             </div>
                             <div class='col-md-6 mb-4'>
                                 <div class='form-outline'>
                                     <label class='form-label' for='end_time'>Doctor</label>
-                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='approved' placeholder='<?php echo $doctor?>'>
+                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='doctor' placeholder='<?php echo $doctor ?>'>
                                 </div>
+                                <?php
+                                if (isset($_GET['err'])) {
+                                    echo '<p style="color: red;">', $_GET['err'], '</p>';
+                                }
+                                ?>
                             </div>
                         </div>
                         <div class='personal-info-footer'>

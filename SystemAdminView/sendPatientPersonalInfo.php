@@ -91,7 +91,7 @@ if (array_key_exists('oldUsername', $_POST) and array_key_exists('oldID', $_POST
         }
     }
 
-    // SEX
+    // GENDER
     if (array_key_exists('newgender', $_POST) and $_POST['newgender'] != null) {
         $newsex = $_POST['newgender'];
 

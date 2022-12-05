@@ -37,7 +37,7 @@
                     ?>
 
                     <h3>Appointment <?php echo $thisID ?></h3>
-                    <form action="sendPatientAppointments.php" method="post">
+                    <form action="sendDoctorAppointments.php" method="post">
                         <input type="hidden" id="oldAppointmentID" name="oldAppointmentID" value="<?php echo $thisID ?>">
 
                         <div class='row'>
@@ -65,13 +65,13 @@
                             <div class='col-md-6 mb-4'>
                                 <div class='form-outline'>
                                     <label class='form-label' for='end_time'>Approval Status</label>
-                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='approved' placeholder='<?php echo $approve?>'>
+                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='approval' placeholder='<?php echo $approve?>'>
                                 </div>
                             </div>
                             <div class='col-md-6 mb-4'>
                                 <div class='form-outline'>
                                     <label class='form-label' for='end_time'>Patient</label>
-                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='approved' placeholder='<?php echo $patient?>'>
+                                    <input type='text' id='apptLength' class='form-control form-control-lg' name='patient' placeholder='<?php echo $patient?>'>
                                 </div>
                             </div>
                         </div>
