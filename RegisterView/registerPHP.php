@@ -46,8 +46,11 @@
         if($conn->query($sql) === TRUE){
             echo "<br>", "Inserted into patients", "<br>";
             session_start();
-            $_SESSION['username'] = $users[0]['username'];
-            $_SESSION['patient_ID'] = $patient[0]['patient_ID'];
+            $_SESSION['username'] = $username;
+            $sql = "SELECT patient_ID FROM patients WHERE username='$username'";
+            $result = mysqli_query($conn, $sql);
+            $resultRow = mysqli_fetch_assoc($result);
+            $_SESSION['patient_ID'] = $resultRow['patient_ID'];
             header("Location: ../PatientView/patientPortalHome.php");
         }else{
             echo "Error: " . $sql . "<br>" . $conn->error;
