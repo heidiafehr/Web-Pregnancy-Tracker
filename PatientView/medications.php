@@ -61,7 +61,7 @@
                 <h5> Medications </h5>
                 </div> 
                 <div class = "card-body">
-                <table class="table">
+                <table class="table table-bordered table-hover">
     <thead>
         <tr>
         <th scope="col">Medication Name</th>
