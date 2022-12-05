@@ -105,7 +105,7 @@ $sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
 $sql .= "INSERT INTO medication VALUES
 ('medicationName', '2020-05-30', '2020-06-14', 'This is the description of what the medication does and how it should be taken',1);";
 $sql .= "INSERT INTO pregnancies VALUES
-(LAST_INSERT_ID(), '2022-10-31', 'F'),
+(LAST_INSERT_ID(), '2023-05-29', 'F'),
 (LAST_INSERT_ID(), '2020-11-14', 'M'),
 (LAST_INSERT_ID(), '2019-01-06', 'M'),
 (LAST_INSERT_ID(), '2017-09-17', 'F'),

@@ -35,10 +35,15 @@
                 // PREGNANCIES
 
                 $sql .= "DELETE FROM pregnancies WHERE patient_ID=$thisID;";
+
                 // PATIENTS/DOCTORS
 
                 $sql .= "DELETE FROM patients WHERE patient_ID=$thisID;";
                 $sql .= "DELETE FROM doctors WHERE doctor_ID=$thisID;";
+
+                // PERSONAL_INFO
+
+                $sql .= "DELETE FROM personal_info WHERE ID=$thisID;";
 
                 // USERS
 
