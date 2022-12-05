@@ -57,44 +57,43 @@
     <!-- NavBar End -->
 
     <!-- container for cards-->
-    <div class="container">
+    <div class="container mt-5">
         <!-- First Row -->
         <div class="row">
             <!--Personal Information card -->
-            <div class = " col">
+            <div class = "col">
                 <div class="card" id="personalInformationCard">
-                    <div class='card-header'>
-                            <h5 id="personal-info-hdr">Personal Information </h5>
+                    <div class='card-header d-flex justify-content-between py-3'>
+                            <h3 id="personal-info-hdr">Personal Information </h3>
+                            <!-- Personal Information Edit Modal-->
+                            <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
                     </div>
                     <div class= "card-body">
                         <!-- table to print patient info --> 
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Date of Birth</th>
-                                <th scope="col">Sex </th>
-                                <th scope="col">Gender </th>
-                                <th scope="col">Email </th>
-                                <th scope="col">Phone Number </th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Date of Birth</th>
+                                    <th scope="col">Sex </th>
+                                    <th scope="col">Gender </th>
+                                    <th scope="col">Email </th>
+                                    <th scope="col">Phone Number </th>
                                 </tr>
                             </thead>
-                    <tbody>
-                        <tr>
-                        <td><?php print($firstName); ?></td>
-                        <td><?php print($lastName); ?></td>
-                        <td><?php print($patientDOB) ?></td>
-                        <td><?php print($patientSex) ?></td>
-                        <td><?php print($patientGender) ?></td>
-                        <td><?php print($patientEmail) ?></td>
-                        <td><?php print($patientPhone) ?></td>
-                        </tr>
-
-                    </tbody>
-                    </table>
-                         <!-- Personal Information Edit Modal-->
-                        <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                            <tbody>
+                                <tr>
+                                    <td><?php print($firstName); ?></td>
+                                    <td><?php print($lastName); ?></td>
+                                    <td><?php print(date('F j, Y', strtotime($patientDOB))) ?></td>
+                                    <td><?php print(($patientSex == 'F') ? 'Female' : 'Male') ?></td>
+                                    <td><?php print($patientGender) ?></td>
+                                    <td><?php print($patientEmail) ?></td>
+                                    <td><?php print('('.substr($patientPhone,0,3).') '.substr($patientPhone,3,3).'-'.substr($patientPhone,6,4))?></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>  
                 </div>    
             </div>

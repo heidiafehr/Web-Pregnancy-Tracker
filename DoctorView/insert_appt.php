@@ -15,7 +15,7 @@
         $row=$result->fetch_assoc();
 
         $user_id=$row['ID'];
-        $sql1 = "INSERT INTO appointments (user_ID, start_date_time, end_date_time) VALUES ('$user_id', '$apptStartDateTime', '$apptEndDateTime')";
+        $sql1 = "INSERT INTO appointments (user_ID, start_date_time, end_date_time, approved) VALUES ('$user_id', '$apptStartDateTime', '$apptEndDateTime', 1)";
         if($conn->query($sql1) == TRUE){
             header("Location: appointments.php");
         } else {

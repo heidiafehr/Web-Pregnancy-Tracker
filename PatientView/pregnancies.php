@@ -57,24 +57,19 @@
     <!-- NavBar End -->
 
     <!-- Pregnancy Card        -->
-    <div class="container">
-        <div class=" col">
+    <div class="container mt-5">
+        <div class="col">
             <div class = "card" id="pregnancyCard">
-                <div class = "card-header"> 
-                    <h5>Pregnancies</h5>
+                <div class = "card-header d-flex justify-content-between py-3"> 
+                    <h3>Pregnancies</h3>
+                    <!-- Button to show past pregnancies -->
+                    <tr>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Show Past Pregnancies
+                    </button></tr>
                 </div> 
                 <div class = "card-body">
                     <!--Single Pregnancy Entry -->
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                            <th scope="col">Current Trimester </th>
-                            <th scope="col">Weeks Until Due Date</th>
-                            <th scope="col">Due Date</th>
-                            <th scope="col">Baby's Sex</th>
-                            </tr>
-                        </thead>
-                    <tbody>
                         <?php
                             //decarling vars
                             $firstPregancyRow = null;
@@ -92,59 +87,61 @@
                             $pregnanciesResult= $conn->query($pregnanciesSQL);
                             
                             //function to print current pregnancy
-                            if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
-                                //get due date 
-                                $dueDate = $pregnancyRow["due_date"];
-                                //converting due date to immutable 
-                                $dueDateImmutable = new dateTimeImmutable($dueDate);
-                                //getting difference for due date 
-                                $dueDateCountDown = $currentDateTime->diff($dueDateImmutable); 
-                                //getting days
-                                $countdownDays = $dueDateCountDown->format('%R%a'); 
-                                if($countdownDays <= 0){
-                                    echo "<td>No current pregnancies </td>"; 
-                                    $firstPregancyRow = $pregnancyRow; 
-                                }
-                                else{
+                            if ($pregnanciesResult->num_rows == 1) {
+                                if ($pregnancyRow = $pregnanciesResult->fetch_assoc()) {
+                                    echo "<table class='table table-bordered table-hover'>
+                                            <thead>
+                                                <tr>
+                                                    <th scope='col'>Current Trimester </th>
+                                                    <th scope='col'>Weeks Until Due Date</th>
+                                                    <th scope='col'>Due Date</th>
+                                                    <th scope='col'>Baby's Sex</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>";
+                                    //get due date 
+                                    $dueDate = $pregnancyRow["due_date"];
+                                    //converting due date to immutable 
+                                    $dueDateImmutable = new dateTimeImmutable($dueDate);
+                                    //getting difference for due date 
+                                    $dueDateCountDown = $currentDateTime->diff($dueDateImmutable);
+                                    //getting days
+                                    $countdownDays = $dueDateCountDown->format('%R%a');
                                     //converting days left to weeks 
-                                    $countdownWeeks = floor($countdownDays/7); 
+                                    $countdownWeeks = floor($countdownDays / 7);
                                     //getting weeks into pregancy(40 weeks in a pregancy? according to bing)
-                                    $currentweek = 40-$countdownWeeks; 
+                                    $currentweek = 40 - $countdownWeeks;
                                     //getting countdown ratio for progress par 
-                                    $countdownRatio = ($countdownWeeks/40) * 100;
-                                    if($countdownWeeks <=13)
-                                        $trimester = "First"; 
-                                    elseif($countdownWeeks <=26)
+                                    $countdownRatio = ($countdownWeeks / 40) * 100;
+                                    if ($countdownWeeks <= 13)
+                                        $trimester = "First";
+                                    elseif ($countdownWeeks <= 26)
                                         $trimester = "2";
-                                    elseif($countdownWeeks <=40)
+                                    elseif ($countdownWeeks <= 40)
                                         $trimester = "Second";
-                                    echo(
-                                        "<td>$trimester</td>" . 
-                                        "<td>$countdownWeeks</td>" . 
-                                        "<td>" .$pregnancyRow["due_date"] .
-                                        "<td>". $pregnancyRow["baby_sex"] .
-                                        "</td></tr></div>"
-                                    ); 
+                                    echo
+                                        "<td>$trimester</td>" .
+                                        "<td>$countdownWeeks</td>" .
+                                        "<td>" . $pregnancyRow["due_date"] .
+                                        "<td>" . $pregnancyRow["baby_sex"] .
+                                        "</td>
+                                            </tr>
+                                            </tbody>                     
+                                            </table>";
+                                    // Progress Bar
+                                    echo "<div class='progress'>
+                                            <div class='progress-bar progress-bar-striped' role='progressbar'
+                                                aria-label='Default striped example' style='width: $countdownRatio%' 
+                                                aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'>
+                                            </div>
+                                        </div>";
                                 }
-                               
+                             } else {
+                                    echo "<h5>No current pregnancies.</h5>";
                             }
                         ?>   
-                    </tbody>                     
+                        </tbody>                     
                     </table>
-                    <!-- Progress Bar -->
-                    <?php 
-                       echo"<div class='progress'>
-                            <div class='progress-bar progress-bar-striped' role='progressbar'
-                             aria-label='Default striped example' style='width: $countdownRatio%' 
-                             aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'></div>
-                        </div>"; 
-                        ?>
-                    <br>
-                    <!-- Button to show past pregnancies -->
-                    <tr>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Show Past Pregnancies
-                    </button></tr>
                     <!-- Further pregnancies create more entries function or something -->
                 </div>
             </div>

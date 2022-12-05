@@ -115,9 +115,9 @@
                         include '../connect_server.php'; 
 
                         //getting appointment date
-                        $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
+                        $sql =  "SELECT appointments.appointment_ID, personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
                                     INNER JOIN appointments ON appointments.user_ID = personal_info.ID
-                                    INNER JOIN patients ON appointments.user_ID = patients.patient_ID
+                                    INNER JOIN patients ON (appointments.user_ID = patients.patient_ID AND appointments.approved = 1)
                                     INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
                                     ORDER BY appointments.start_date_time, personal_info.first_name ASC";
                         
@@ -135,6 +135,7 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Appointment Date</th>
                                     <th scope="col">Appointment Time</th>
+                                    <!-- <th scope="col">Action</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,6 +161,7 @@
                                         echo "<td>" . $row["last_name"] . "</td>";
                                         echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
                                         echo "<td>" . date('g:i a', strtotime($startDateTime[1])) . " - " . date('g:i a', strtotime($endDateTime[1])). "</td>";
+                                        //echo "<td><a href='#editAppt' data-bs-toggle='modal' data-bs-target='#editAppt'>Edit</a><td>";
                                         echo "</tr>";
                                         $num++;
                                     }

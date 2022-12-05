@@ -55,51 +55,48 @@
         </div>
     </nav>
     <!-- NavBar End -->
-    <div class="container">
+    <div class="container mt-5">
         <div class="col">
-            <div class="card" id="medicationsCard">
+            <div class="card mb-5" id="medicationsCard">
                 <div class="card-header"> 
-                <h5> Medications </h5>
+                    <h3 class="header-title"> Medications </h3>
                 </div> 
                 <div class = "card-body">
-                <table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-        <th scope="col">Medication Name</th>
-        <th scope="col">Medication Start</th>
-        <th scope="col">Medication End Date</th>
-        <th scope="col">Medication Description</th>
-        </tr>
-    </thead>
-        <?php   
-            //create query to get medications from medications table
-            $medicationsQuery ="SELECT * FROM medication where med_patientID = $patientID;"; 
-            $medicationsResult = $conn->query($medicationsQuery); 
-            $medOut = $medicationsResult->fetch_assoc(); 
-            //if medications are found 
-            if($medOut){
-                $medNameOut = $medOut['med_name'];
-                $medStartOut = $medOut['med_start_date'];
-                $medEndOut = $medOut['med_end_date'];
-                $medDesc = $medOut['med_description'];
-            }
-            else{
-                $medNameOut = 'No Prescriptions'; 
-
-            }
-        ?>
-        <tbody>
-            <tr>
-                <td><?php echo $medNameOut; ?></td>
-                <td><?php echo $medStartOut; ?></td>
-                <td><?php echo $medEndOut; ?></td>
-                <td><?php echo $medNameOut; ?></td>
-            </tr>
-        </tbody>
-        </table>
-
-
-                    <!-- Further medications create more entries function or something -->
+                <?php   
+                    //create query to get medications from medications table
+                    $medicationsQuery ="SELECT * FROM medication where med_patientID = $patientID;"; 
+                    $medicationsResult = $conn->query($medicationsQuery); 
+                    //if there are medications in the table, display them
+                    if($medicationsResult->num_rows > 0){
+                        echo '<table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Medication Name</th>
+                                <th scope="col">Medication Dosage</th>
+                                <th scope="col">Medication Frequency</th>
+                                <th scope="col">Medication Start</th>
+                                <th scope="col">Medication End Date</th>
+                                <th scope="col">Medication Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        while($medOut = $medicationsResult->fetch_assoc()){
+                            echo "<tr>
+                                <td>".$medOut["med_name"]."</td>
+                                <td>".$medOut["dosage"]."</td>
+                                <td>".$medOut["frequency"]."</td>
+                                <td>".$medOut["med_start_date"]."</td>
+                                <td>".$medOut["med_end_date"]."</td>
+                                <td>".$medOut["med_description"]."</td>
+                            </tr>";
+                        }
+                        echo '</tbody>
+                        </table>';
+                        }
+                    else{
+                        echo "<h5>No medications found.<h5>";
+                    }
+                ?>
                 </div>
             </div>
         </div>
