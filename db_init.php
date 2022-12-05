@@ -36,20 +36,21 @@ $sql .= "CREATE TABLE personal_info(
 $sql .= "CREATE TABLE patients(
 	patient_ID INT PRIMARY KEY NOT NULL,
 	username VARCHAR(225) NOT NULL,
-	FOREIGN KEY (patient_ID) REFERENCES personal_info(ID),
-	FOREIGN KEY (username) REFERENCES users(username)
+	CONSTRAINT fk_PatientID FOREIGN KEY (patient_ID) REFERENCES personal_info(ID),
+	CONSTRAINT fk_PatientUsername FOREIGN KEY (username)
+	REFERENCES users(username)
 );";
 
 $sql .= "CREATE TABLE doctors(
 	doctor_ID INT PRIMARY KEY NOT NULL,
 	username VARCHAR(225) NOT NULL,
-	FOREIGN KEY (doctor_ID) REFERENCES personal_info(ID),
-	FOREIGN KEY (username) REFERENCES users(username)
+	CONSTRAINT fk_DoctorID FOREIGN KEY (doctor_ID) REFERENCES personal_info(ID),
+	CONSTRAINT fk_DoctorUsername FOREIGN KEY (username) REFERENCES users(username)
 );";
 
 $sql .= "CREATE TABLE admins(
 	username VARCHAR(255) NOT NULL,
-	FOREIGN KEY (username) REFERENCES users(username)
+	CONSTRAINT fk_AdminUsername FOREIGN KEY (username) REFERENCES users(username)
 );";
 
 $sql .= "CREATE TABLE appointments(

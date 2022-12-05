@@ -42,6 +42,10 @@
         $sql = "INSERT INTO patients VALUES(LAST_INSERT_ID(), '$username');";
         if($conn->query($sql) === TRUE){
             echo "<br>", "Inserted into patients", "<br>";
+            session_start();
+            $_SESSION['username'] = $users[0]['username'];
+            $_SESSION['patient_ID'] = $patient[0]['patient_ID'];
+            header("Location: ../PatientView/patientPortalHome.php");
         }else{
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -50,5 +54,3 @@
     }else{
         header("Location: /register.html?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
     }
-
-?>

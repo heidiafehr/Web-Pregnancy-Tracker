@@ -1,8 +1,16 @@
+<?php 
+    if(isset($_GET['status'])){
+        header("Location: patientsTableEditDelete.php");
+        exit;
+    }else{
+        header("refresh 0"); 
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>ah</title>
+    <title>Admin: Patients</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
@@ -14,7 +22,39 @@
         <?php include "sideNavBar.php"; ?>
 
         <div class="col py-3">
-            <p>ahhh Patients</p>
+            <h1>Patients</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">patient_ID</th>
+                        <th scope="col">username</th>
+                        <th scope="col">edit</th>
+                        <th scope="col">delete</th>
+                    </tr>
+
+                <tbody>
+                    <?php
+                    
+                    include "../connect_server.php";
+
+                    $sql = "SELECT * FROM patients";
+                    $result = mysqli_query($conn, $sql);
+
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tr><th scope='row'>$row[patient_ID]</th>";
+                        echo "<td>$row[username]</td>";
+                        echo "<td><a id='editLink' href='patientInfo.php?id=$row[patient_ID]&username=$row[username]'>Edit</a></td>";                           
+                        echo "<td><button name='delete'>Delete</td></tr>";
+                    }
+
+                    ?>
+                </tbody>
+                </thead>
+            </table>
+
+
+
             <!-- <h3>Welcome System Administrator!</h3>
 
         <p>
