@@ -38,7 +38,7 @@
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php
-                                include "get_first_name.php";
+                                echo $row["first_name"];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,34 +58,60 @@
                 <h3>Settings</h3>
             </div>
             <div class="card-body">
-                <div class="row d-flex p-5">
-                    <!-- <h5>Change Email</h5>
-                    <form action="change_email.php" method="POST">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter new email">
+                <!-- Change Email -->
+                <form action="change_email.php" method="POST">
+                    <div class="row p-2">
+                        <h5 class="mb-4">Change Email</h5>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <?php
+                                    echo '<input type="email" readonly class="form-control" id="currentEmail" name="currentEmail" value="' . $row["email"] . '" disabled readonly>';
+                                ?>
+                                <label for="currentEmail">Current Email</label>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                    <hr> -->
-                    <h5 class="mb-4">Change Password</h5>
-                    <form action="change_password.php" method="POST" id="changePw">
-                        <div class="form-floating mb-3 col-6">
-                            <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder=" " required>
-                            <label for="currentPassword">Current Password</label>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="newEmail" name="newEmail" placeholder=" " required>
+                                <label for="newEmail">New Email</label>
+                            </div>
                         </div>
-                        <div class="form-floating mb-3 col-6">
-                            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder=" " required>
-                            <label for="newPassword">New Password</label>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Change Email</button>
                         </div>
-                        <div class="form-floating mb-4 col-6">
-                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder=" " required>
-                            <label for="confirmPassword">Confirm Password</label>
+                    </div>
+                </form>
+                <hr>
+                <!-- Change Password -->
+                <form action="change_password.php" method="POST" id="changePw">
+                    <div class="row p-2">
+                        <h5 class="mb-4">Change Password</h5>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder=" " required>
+                                <label for="currentPassword">Current Password</label>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" form="changePw">Change Password</button>
-                    </form>
-                    <!-- TODO: implement JS for password checking -->
-                </div>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder=" " required>
+                                <label for="newPassword">New Password</label>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder=" " required>
+                                <label for="confirmPassword">Confirm Password</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary" form="changePw">Change Password</button>
+                        </div>
+                        <!-- TODO: implement JS for password checking -->
+                    </div>
+                </form>
             </div>
         </div>
     </div>

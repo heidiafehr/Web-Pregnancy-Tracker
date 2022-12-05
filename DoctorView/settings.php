@@ -11,9 +11,11 @@
 <body>
     <?php
         include "../checkSignedIn.php";
+        include "get_personal_info.php";
+        include "get_username.php"
     ?>
     <!-- NavBar Start -->
-    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba">
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight:600">
         <div class="container-fluid">
             <a class="navbar-brand" href="doctorPortalHome.php">
                 <img src="../images/baby-newborn.png" alt="Logo" style="height:36px"/>
@@ -32,15 +34,15 @@
                     <li class="nav-item px-3">
                         <a class="nav-link" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <!-- <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
-                                include "get_first_name.php";
+                                echo $personalInfo[0]["first_name"];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,34 +62,86 @@
                 <h3>Settings</h3>
             </div>
             <div class="card-body">
-                <div class="row d-flex p-5">
-                    <!-- <h5>Change Email</h5>
-                    <form action="change_email.php" method="POST">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter new email">
+                <!-- Change Email -->
+                <form action="change_email.php" method="POST">
+                    <div class="row p-2">
+                        <h5 class="mb-4">Change Email</h5>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <?php
+                                    echo '<input type="email" readonly class="form-control" id="currentEmail" name="currentEmail" value="' . $personalInfo[0]['email'] . '" disabled readonly>';
+                                ?>
+                                <label for="currentEmail">Current Email</label>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                    <hr> -->
-                    <h5 class="mb-4">Change Password</h5>
-                    <form action="change_password.php" method="POST" id="changePw">
-                        <div class="form-floating mb-3 col-6">
-                            <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder=" " required>
-                            <label for="currentPassword">Current Password</label>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="newEmail" name="newEmail" placeholder=" " required>
+                                <label for="newEmail">New Email</label>
+                            </div>
                         </div>
-                        <div class="form-floating mb-3 col-6">
-                            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder=" " required>
-                            <label for="newPassword">New Password</label>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Change Email</button>
                         </div>
-                        <div class="form-floating mb-4 col-6">
-                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder=" " required>
-                            <label for="confirmPassword">Confirm Password</label>
+                    </div>
+                </form>
+                <hr>
+
+                <!-- Change Username -->
+                <!-- <form action="change_username.php" method="POST">
+                    <div class="row p-2">
+                        <h5 class="mb-4">Change Username</h5>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <?php
+                                    // echo '<input type="text" readonly class="form-control" id="currentUsername" name="currentUsername" value="' . $username[0]['username'] . '" disabled readonly>';
+                                ?>
+                                <label for="currentUsername">Current Username</label>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" form="changePw">Change Password</button>
-                    </form>
-                    <!-- TODO: implement JS for password checking -->
-                </div>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="newUsername" name="newUsername" placeholder=" " required>
+                                <label for="newUsername">New Username</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <hr> -->
+
+                <!-- Change Password -->
+                <form action="change_password.php" method="POST" id="changePw">
+                    <div class="row p-2">
+                        <h5 class="mb-4">Change Password</h5>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder=" " required>
+                                <label for="currentPassword">Current Password</label>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder=" " required>
+                                <label for="newPassword">New Password</label>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder=" " required>
+                                <label for="confirmPassword">Confirm Password</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary" form="changePw">Change Password</button>
+                        </div>
+                        <!-- TODO: implement JS for password checking -->
+                    </div>
+                </form>
             </div>
         </div>
     </div>

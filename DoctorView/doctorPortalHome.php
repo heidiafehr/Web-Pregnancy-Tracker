@@ -11,6 +11,7 @@
 <body>
     <?php
         include "../checkSignedIn.php";
+        include "get_personal_info.php";
     ?>
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight:600">
@@ -27,20 +28,20 @@
                         <a class="nav-link active" href="doctorPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="appointments.php">Appointments</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="appointments.php">Appointments</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="patients.php">Patients</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="medications.php">Medications</a> <!-- TODO: Update href-->
-                    </li>
+                    <!-- <li class="nav-item px-3">
+                        <a class="nav-link" href="medications.php">Medications</a>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
-                                include "get_first_name.php";
+                                echo $personalInfo[0]['first_name'];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

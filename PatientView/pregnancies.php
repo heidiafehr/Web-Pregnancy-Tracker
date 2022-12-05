@@ -39,7 +39,7 @@
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php
-                                include "get_first_name.php";
+                                echo $row["first_name"];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

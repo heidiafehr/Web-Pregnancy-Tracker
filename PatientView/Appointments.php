@@ -39,7 +39,7 @@
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php
-                                include "get_first_name.php";
+                                echo $row["first_name"];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -127,6 +127,7 @@
                     <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Request New Appointment
                     </button>
+                </div>
             </div>
         </div>
     </div>

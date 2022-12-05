@@ -11,6 +11,7 @@
 <body>
     <?php
         include "../checkSignedIn.php";
+        include "get_personal_info.php";
     ?>
     <!-- NavBar Start -->
     <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight:600">
@@ -32,15 +33,15 @@
                     <li class="nav-item px-3">
                         <a class="nav-link active" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <!-- <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
-                                include "get_first_name.php";
+                                echo $personalInfo[0]['first_name'];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -55,7 +56,7 @@
     <!-- NavBar End -->
 
     <!-- Search -->
-    <div class="container my-5 mx-auto">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="card mb-5">
@@ -93,72 +94,82 @@
                 </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-12">
-                    <!-- TODO: Do better than this -->
-                    <?php
-                        $firstName = '';
-                        $lastName = '';
-                        $dobDate = '';
-                        $sql = "SELECT * FROM personal_info WHERE";
-                        if(!isset($_POST['firstName']) && !isset($_POST['lastName']) && !isset($_POST['dobDate'])){
-                        
+        <div class="row">
+            <div class="col-12">
+                <!-- TODO: Do better than this -->
+                <?php
+                    include "../connect_server.php";
+                    $firstName = '';
+                    $lastName = '';
+                    $dobDate = '';
+                    $sql = "SELECT * FROM personal_info WHERE";
+                    if(!isset($_POST['firstName']) && !isset($_POST['lastName']) && !isset($_POST['dobDate'])){
+                    
+                    }
+                    else{
+                        if(isset($_POST['firstName'])){
+                            $firstName = $_POST['firstName'];
+                            $sql .= " first_name='$firstName'";
                         }
-                        else{
-                            if(isset($_POST['firstName'])){
-                                $firstName = $_POST['firstName'];
-                                $sql .= " first_name='$firstName'";
-                            }
-                            if(isset($_POST['lastName'])){
-                                $lastName = $_POST['lastName'];
-                                $sql .= " OR last_name='$lastName'";
-                            }
-                            if(isset($_POST['dobDate'])){
-                                $dobDate = $_POST['dobDate'];
-                                $sql .= " OR dob='$dobDate'";
-                            }
-                        
-                            include "../connect_server.php";
-                        
-                            $result = $conn->query($sql);
-                            if($result->num_rows > 0){
-                                
-                    ?>
-                    <div class="card p-4">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Date of Birth</th>
-                                        <th scope="col">Manage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        while($row = $result->fetch_assoc()){
+                        if(isset($_POST['lastName'])){
+                            $lastName = $_POST['lastName'];
+                            $sql .= " OR last_name='$lastName'";
+                        }
+                        if(isset($_POST['dobDate'])){
+                            $dobDate = $_POST['dobDate'];
+                            $sql .= " OR dob='$dobDate'";
+                        }
+                    
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0){
+                            
+                ?>
+                <div class="card p-4">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Date of Birth</th>
+                                    <th scope="col">Sex</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Manage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    while($row = $result->fetch_assoc()){
+                                        // $isPatient = "SELECT * FROM patients WHERE patient_id = $row[ID]";
+                                        // $isPatientResult = $conn->query($isPatient);
+                                        // if ($isPatientResult->num_rows > 0) {
                                             echo "<tr>";
                                             echo "<td>" . $row["first_name"] . "</td>";
                                             echo "<td>" . $row["last_name"] . "</td>";
                                             echo "<td>" . date('F j, Y', strtotime($row['dob'])) . "</td>";
-                                            echo "<td>" . '<span><a href="#">Info</a></span>' . "</td>";
+                                            echo '<td>' . $row['sex'] . '</td>';
+                                            echo '<td>' . $row['gender'] . '</td>';
+                                            echo "<td><a href='patient_info.php?id=$row[ID]'>Info</a></span></td>";
                                             echo "</tr>";
-                                        }
-                                        ?>
-                                    <!-- TODO: Make an info modal -->
-                                </tbody>
-                            </table>
-                        </div>
+                                        // }
+                                        // else {
+                                        //     continue;
+                                        // }
+                                    }
+                                    ?>
+                                <!-- TODO: Make an info modal -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <?php
-            }
-            else {
-                echo '<div class="card p-4"><h4>No results found.</h4></div>';
-            }
-        }
+        </div>
+        <?php
+                        }
+                        else {
+                            echo '<div class="card p-4"><h4>No results found.</h4></div>';
+                        }
+                    }
         ?>
     </div>
     
