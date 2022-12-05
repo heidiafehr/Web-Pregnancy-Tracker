@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class = "card-body">
-                    <table class='table'>
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                             <th scope="col">Appointment Date</th>
