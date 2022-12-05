@@ -1,6 +1,9 @@
 <?php 
     include '../connect_server.php';
     include '../checkSignedIn.php'; 
+    if(!$_SESSION['patient_ID']){
+        header("Location: ../LoginView/login.php?err= Please log in as patient to access this page");
+    }
 
     //get patient id 
     $patientID = $_SESSION['patient_ID']; 
