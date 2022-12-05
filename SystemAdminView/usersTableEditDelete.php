@@ -14,13 +14,15 @@
         <?php include "sideNavBar.php"; ?>
 
         <div class="col py-3">
-            <h1>Patients</h1>
+            <h1>Users</h1>
 
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">username</th>
+                        <th scope="col">first_name</th>
+                        <th scope="col">last_name</th>
                         <th scope="col">edit</th>
                         <th scope="col">delete</th>
                     </tr>
@@ -36,6 +38,13 @@
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr><th scope='row'>$row[patient_ID]</th>";
                         echo "<td>$row[username]</td>";
+                        // get the patient's first and last name
+                        $sql = "SELECT first_name, last_name FROM personal_info WHERE ID='$row[patient_ID]';";
+                        $patient = mysqli_query($conn, $sql);
+                        $patientRow = mysqli_fetch_assoc($patient);
+
+                        echo"<td>$patientRow[first_name]</td>";
+                        echo "<td>$patientRow[last_name]</td>";
                         echo "<td><a id='editLink' href='patientInfo.php?id=$row[patient_ID]&username=$row[username]'>Edit</a></td>";
                         echo "<td><a id='deleteLink' href='deleteUser.php?id=$row[patient_ID]&username=$row[username]'>Delete</a></td>";
                     }
@@ -46,6 +55,13 @@
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr><th scope='row'>$row[doctor_ID]</th>";
                         echo "<td>$row[username]</td>";
+                        // get the patient's first and last name
+                        $sql = "SELECT first_name, last_name FROM personal_info WHERE ID='$row[doctor_ID]';";
+                        $doctor = mysqli_query($conn, $sql);
+                        $doctorRow = mysqli_fetch_assoc($doctor);
+
+                        echo"<td>$doctorRow[first_name]</td>";
+                        echo "<td>$doctorRow[last_name]</td>";
                         echo "<td><a id='editLink' href='doctorInfo.php?id=$row[doctor_ID]&username=$row[username]'>Edit</a></td>";
                         echo "<td><a id='deleteLink' href='deleteUser.php?id=$row[doctor_ID]&username=$row[username]'>Delete</a></td>";
                     }
