@@ -77,7 +77,7 @@
                         <?php
                             //decarling vars
                             $firstPregancyRow = null;
-                            $coundownRatio = null; 
+                            $coundownRatio = 0; 
                             //getting current date and time 
                             $tempDateTime = date('d-m-Y h:i:s a', time());    
                             //saving date time as datetimeImmutabel
@@ -110,7 +110,7 @@
                                     //getting weeks into pregancy(40 weeks in a pregancy? according to bing)
                                     $currentweek = 40-$countdownWeeks; 
                                     //getting countdown ratio for progress par 
-                                    $countdownRatio = $countdownWeeks/40;
+                                    $countdownRatio = ($countdownWeeks/40) * 100;
                                     if($countdownWeeks <=13)
                                         $trimester = "First"; 
                                     elseif($countdownWeeks <=26)
@@ -131,12 +131,13 @@
                     </tbody>                     
                     </table>
                     <!-- Progress Bar -->
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar"
-                             aria-label="Default striped example"style="width: 10%" 
-                             aria-valuenow="<?php if($coundownRatio){print($coundownRatio);}
-                              else{print('0');}  ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                    <?php 
+                       echo"<div class='progress'>
+                            <div class='progress-bar progress-bar-striped' role='progressbar'
+                             aria-label='Default striped example' style='width: $countdownRatio%' 
+                             aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'></div>
+                        </div>"; 
+                        ?>
                     <br>
                     <!-- Button to show past pregnancies -->
                     <tr>
