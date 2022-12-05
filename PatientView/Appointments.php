@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
+    <link rel="icon" type="image/x-icon" href="../images/baby-newborn.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="patientStyle.css">
     <link rel="stylesheet" href="../style.css">
@@ -56,77 +57,72 @@
     <!-- NavBar End -->
 
     <!-- Appointments Card-->
-    <div class="container">
+    <div class="container mt-5">
         <div class="col">
-            <div class="card" id="appointmentsCard">
-                <div class="card-header">
-                    <div id="appt-container">
-                        <h5>Appointments</h5>
+            <div class="card mb-5" id="appointmentsCard">
+                <div class="card-header d-flex justify-content-between py-3">
+                    <div class="header-title" id="appt-container">
+                        <h3>Appointments</h3>
+                    </div>
+                    <!-- Appointment Modal Button -->
+                    <div class="btn-group mx-2" role="group">
+                        <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Request Appointment
+                        </button>
                     </div>
                 </div>
                 <div class = "card-body">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                            <th scope="col">Appointment Date</th>
-                            <th scope="col">Appointment Start Time</th>
-                            <th scope="col">Appointment End Time</th>
-                            <th scope="col">Appointment Length</th>
-                            <th scope="col">Approval Status</th>
-                            </tr>
-                        </thead>
                     <!-- Printing Appointments -->
                     <?php 
                         //Create Query for appoinments 
                         $appointmentSQL = "SELECT * FROM appointments where user_ID = $patientID;"; 
                         $appointmentResult = $conn ->query($appointmentSQL);
-                        //Function to print appointments
-                            while($appointmentRow = $appointmentResult->fetch_assoc()){
-                                //if apointments table is not empty
-                                if($appointmentRow){
+                        if ($appointmentResult->num_rows > 0) {
+                            echo '<table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Appointment Date</th>
+                                    <th scope="col">Appointment Start Time</th>
+                                    <th scope="col">Appointment End Time</th>
+                                    <th scope="col">Appointment Length</th>
+                                    <th scope="col">Approval Status</th>
+                                    </tr>
+                                </thead>';
+                            //Function to print appointments
+                            while ($appointmentRow = $appointmentResult->fetch_assoc()) {
                                     //saving appointment Start Time
                                     $apptStart = new dateTimeImmutable($appointmentRow['start_date_time']);
                                     //converting to string and format
-                                    $apptStartString = $apptStart->format('H:i'); 
+                                    $apptStartString = $apptStart->format('H:i');
                                     //saving appointment Date
-                                    $apptDate = $apptStart->format('F d, Y'); 
+                                    $apptDate = $apptStart->format('F d, Y');
                                     //saving appointment End Time 
                                     $apptEnd = new dateTimeImmutable($appointmentRow['end_date_time']);
                                     //converting to string and format
-                                    $apptEndString = $apptEnd->format('H:i'); 
+                                    $apptEndString = $apptEnd->format('H:i');
                                     //getting appointment length
                                     $apptLength = $appointmentRow['appt_length'];
                                     //get appointment approval
                                     $apptApproved = $appointmentRow['approved'];
-                                    if($apptApproved == 1){
-                                        $apptApproved = "approved"; 
-                                    }
-                                    else{
-                                        $apptApproved = "pending"; 
+                                    if ($apptApproved == 1) {
+                                        $apptApproved = "Approved";
+                                    } else {
+                                        $apptApproved = "Pending";
                                     }
 
                                     //print appointments
                                     echo "<tr><td>$apptDate</td>
-                                        <td>$apptStartString</td>
-                                        <td>$apptEndString</td>
-                                        <td>$apptLength </td>
-                                        <td>$apptApproved</td>
-                                        </tr>"; 
-                                    
-                                }
-                                else{
-                                    print("no appointments"); 
-                                }
+                                            <td>$apptStartString</td>
+                                            <td>$apptEndString</td>
+                                            <td>$apptLength </td>
+                                            <td>$apptApproved</td>
+                                            </tr>";
                             }
-                            echo("</table>"); 
-                            
-                            ?>
-                    </table>
-                    
-                    <!-- Appointment Modal Button -->
-                    <button type="button" class="btn btn-primary" id="appt-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Request New Appointment
-                    </button>
+                        echo '</table>';
+                        } else {
+                            print("<h5>No appointments.<h5>");
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -173,7 +169,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <input class="btn btn-primary" type="submit" value="submit">
+                        <input class="btn btn-primary" type="submit" value="Submit">
                     </div>
                 </form>
             </div>

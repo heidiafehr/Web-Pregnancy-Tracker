@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
+    <link rel="icon" type="image/x-icon" href="../images/baby-newborn.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -114,9 +115,9 @@
                         include '../connect_server.php'; 
 
                         //getting appointment date
-                        $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
+                        $sql =  "SELECT appointments.appointment_ID, personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
                                     INNER JOIN appointments ON appointments.user_ID = personal_info.ID
-                                    INNER JOIN patients ON appointments.user_ID = patients.patient_ID
+                                    INNER JOIN patients ON (appointments.user_ID = patients.patient_ID AND appointments.approved = 1)
                                     INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
                                     ORDER BY appointments.start_date_time, personal_info.first_name ASC";
                         
@@ -134,6 +135,7 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Appointment Date</th>
                                     <th scope="col">Appointment Time</th>
+                                    <!-- <th scope="col">Action</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,6 +161,7 @@
                                         echo "<td>" . $row["last_name"] . "</td>";
                                         echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
                                         echo "<td>" . date('g:i a', strtotime($startDateTime[1])) . " - " . date('g:i a', strtotime($endDateTime[1])). "</td>";
+                                        //echo "<td><a href='#editAppt' data-bs-toggle='modal' data-bs-target='#editAppt'>Edit</a><td>";
                                         echo "</tr>";
                                         $num++;
                                     }
@@ -173,30 +176,16 @@
                         }
                     ?>
 
-
                 </div>
-                <!-- End Card Body Container -->
             </div>
-            <!-- End Card Body -->
-
-
+            <!-- End Card Body Container -->
         </div>
-        
-        <div class="card mb-3">
-            <div class="card-header d-flex justify-content-between py-3">
-                <div class="header-title">
-                    <h3>Approve Appointments</h3>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="container">
-                    <?php
-                        include 'approve_appointments.php';
-                    ?>
-                </div>
-            </div>
-        </div>
+        <!-- End Card Body -->
+        <?php
+            include 'approve_appointments.php';
+        ?>
     </div>
+        
 
 
     <!-- Calendar Modal -->
