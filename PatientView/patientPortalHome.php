@@ -87,7 +87,7 @@
                                     <td><?php print($firstName); ?></td>
                                     <td><?php print($lastName); ?></td>
                                     <td><?php print(date('F j, Y', strtotime($patientDOB))) ?></td>
-                                    <td><?php print(($patientSex == 'F') ? 'Female' : 'Male') ?></td>
+                                    <td><?php print($patientSex) ?></td>
                                     <td><?php print($patientGender) ?></td>
                                     <td><?php print($patientEmail) ?></td>
                                     <td><?php print('('.substr($patientPhone,0,3).') '.substr($patientPhone,3,3).'-'.substr($patientPhone,6,4))?></td>
@@ -156,7 +156,7 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newSex" id="interSex"
                                     value="I" <?php if($patientSex=='I'){ echo "checked"; }?>>
-                                <label class="form-check-label" for="maleGender">Intersex</label>
+                                <label class="form-check-label" for="Intersex">Intersex</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4 pb-2">

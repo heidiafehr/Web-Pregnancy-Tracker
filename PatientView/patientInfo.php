@@ -30,5 +30,4 @@
     //geting gender 
     $patientGender = $row['gender']; 
 
-    
 ?>
