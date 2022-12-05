@@ -64,7 +64,7 @@
                 </div> 
                 <div class = "card-body">
                     <!--Single Pregnancy Entry -->
-                    <table class="table">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                             <th scope="col">Days Until Due Date</th>
@@ -129,7 +129,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table class='table'>
+                    <table class='table table-bordered table-hover'>
                         <thead>
                             <tr>
                             <th scope="col">Days Until Due Date</th>
