@@ -176,30 +176,16 @@
                         }
                     ?>
 
-
                 </div>
-                <!-- End Card Body Container -->
             </div>
-            <!-- End Card Body -->
-
-
+            <!-- End Card Body Container -->
         </div>
-        
-        <div class="card mb-3">
-            <div class="card-header d-flex justify-content-between py-3">
-                <div class="header-title">
-                    <h3>Approve Appointments</h3>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="container">
-                    <?php
-                        include 'approve_appointments.php';
-                    ?>
-                </div>
-            </div>
-        </div>
+        <!-- End Card Body -->
+        <?php
+            include 'approve_appointments.php';
+        ?>
     </div>
+        
 
 
     <!-- Calendar Modal -->

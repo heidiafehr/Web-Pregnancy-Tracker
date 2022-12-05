@@ -12,6 +12,14 @@ $sql =  "SELECT personal_info.first_name, personal_info.last_name, appointments.
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
+    echo '<div class="card mb-3">
+    <div class="card-header d-flex justify-content-between py-3">
+        <div class="header-title">
+            <h3>Approve Appointments</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">';
     echo "<div class='table-responsive m-4'>";
     echo "<table class='table table-bordered table-hover'>";
     echo "<thead class='thead-dark'>";
@@ -47,7 +55,8 @@ if($result->num_rows > 0){
     echo "</table>";
     echo "</div>";
 }
-else{
-    echo "<h5> You have no appointments to approve.</h5>";
-}
+echo '</div>
+</div>
+</div>
+</div>';
 ?>
