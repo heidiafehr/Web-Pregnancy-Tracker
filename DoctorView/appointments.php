@@ -11,6 +11,7 @@
 <body>
     <?php
         include "../checkSignedIn.php";
+        include "get_personal_info.php";
     ?>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg px-4" style="background-color: #6096ba; font-weight: 600;">
@@ -37,15 +38,15 @@
                     <li class="nav-item px-3">
                         <a class="nav-link" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <!-- <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
                             Dr. 
                             <?php
-                                include "get_first_name.php";
+                                echo $personalInfo[0]['first_name'];
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -63,11 +64,11 @@
 
     <!-- Appointment Card -->
     <div class="container mt-5">
-        <div class="card">
+        <div class="card mb-5">
             <!-- Card Header -->
             <div class="card-header d-flex justify-content-between py-3">
                 <!-- Header Title -->
-                <div class="">
+                <div class="header-title">
                     <h3>Appointments</h3>
                 </div>
                 <!-- End Header Title -->
@@ -171,12 +172,33 @@
                         echo "<h5> You have no upcoming appointments</h5>";
                         }
                     ?>
+
+
                 </div>
                 <!-- End Card Body Container -->
             </div>
             <!-- End Card Body -->
+
+
+        </div>
+        
+        <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between py-3">
+                <div class="header-title">
+                    <h3>Approve Appointments</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <?php
+                        include 'approve_appointments.php';
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
+
+
     <!-- Calendar Modal -->
     <div class="modal fade" id="apptModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
