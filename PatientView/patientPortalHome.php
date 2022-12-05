@@ -191,7 +191,7 @@
                             <div class="form-outline">
                                 <label class="form-label" for="phoneNumber">Phone Number</label>
                                 <input type="tel" class="form-control form-control-lg"
-                                    name="newphoneNumber" placeholder=<?php print($patientPhone);?>>
+                                    name="newphoneNumber" placeholder=<?php print($patientPhone) ;?> minlength = 10 >
                             </div>
                         </div>
                     </div>
