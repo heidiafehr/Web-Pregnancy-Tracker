@@ -116,14 +116,14 @@
                             <div class="form-outline">
                                 <label class="form-label" for="firstName">First Name</label>
                                 <input type="text" id="newFirstName" class="form-control form-control-lg"
-                                    name="newFirstName">
+                                    name="newFirstName" placeholder = <?php print($firstName);?>>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <label class="form-label" for="lastName">Last Name</label>
                                 <input type="text" id="newLastName" class="form-control form-control-lg"
-                                    name="newLastName">
+                                    name="newLastName" placeholder = <?php print($lastName);?>>
                             </div>
                         </div>
                     </div>
@@ -184,14 +184,14 @@
                             <div class="form-outline">
                                 <label class="form-label" for="emailAddress">Email</label>
                                 <input type="email" class="form-control form-control-lg"
-                                    name="newEmail">
+                                    name="newEmail" placeholder =<?php print($patientEmail);?>>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4 pb-2">
                             <div class="form-outline">
                                 <label class="form-label" for="phoneNumber">Phone Number</label>
                                 <input type="tel" class="form-control form-control-lg"
-                                    name="newphoneNumber">
+                                    name="newphoneNumber" placeholder=<?php print($patientPhone);?>>
                             </div>
                         </div>
                     </div>
