@@ -58,8 +58,8 @@
                                     <label class="form-label" for="newUsername">username</label>
                                     <input type="text" id="newUsername" class="form-control form-control-lg" name="newUsername" placeholder="<?php echo $thisUsername ?>">
                                     <?php
-                                    if (isset($_GET['err'])) {
-                                        echo '<p style="color: red;">', $_GET['err'], '</p>';
+                                    if (isset($_GET['unamerr'])) {
+                                        echo '<p style="color: red;">', $_GET['unamerr'], '</p>';
                                     }
                                     ?>
                                 </div>
@@ -85,7 +85,7 @@
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     <label class="form-label" for="dob">DOB</label>
-                                    <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" id="newdob" class="form-control form-control-lg" name="dob" placeholder="<?php echo $row['dob'] ?>">
+                                    <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" id="newdob" class="form-control form-control-lg" name="newdob" placeholder="<?php echo $row['dob'] ?>">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
@@ -98,14 +98,22 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="sex">Sex</label>
                                     <input type="text" id="newsex" class="form-control form-control-lg" name="newsex" placeholder="<?php echo $row['sex'] ?>">
-                                    <p style="color: red;">Enter only F/M/I</p>
+                                    <?php
+                                    if (isset($_GET['sexerr'])) {
+                                        echo '<p style="color: red;">', $_GET['sexerr'], '</p>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     <label class="form-label" for="gender">Gender</label>
                                     <input type="text" id="newgender" class="form-control form-control-lg" name="newgender" placeholder="<?php echo $row['gender'] ?>">
-                                    <p style="color: red;">Enter only Woman/Man/Other</p>
+                                    <?php
+                                    if (isset($_GET['gendererr'])) {
+                                        echo '<p style="color: red;">', $_GET['gendererr'], '</p>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
