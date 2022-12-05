@@ -81,7 +81,7 @@
             <!-- PREGNANCIES -->
             <div class="card">
                 <div class="card-body">
-                    <h3>PREGNANCIES</h3>
+                    <h3>Pregnancies</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -101,6 +101,39 @@
                                 echo "<td>$row[due_date]</td>";
                                 echo "<td><a id='editLink' href='patientPregnancies.php?id=$row[patient_ID]&dueDate=$row[due_date]'>Edit</a></td>";
                                 echo "<td><a id='deleteLink' href='deletePregnancies.php?id=$row[patient_ID]&dueDate=$row[due_date]'>Delete</a></td>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MEDICATIONS -->
+            <div class="card">
+                <div class="card-body">
+                    <h3>Medication</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Med_ID</th>
+                                <th scope="col">med_name</th>
+                                <th scope="col">med_start_date</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $sql = "SELECT * FROM medication WHERE med_patientID='$thisID'";
+
+                            $result = mysqli_query($conn, $sql);
+                            while($row = $result->fetch_assoc()){
+                                echo "<tr><th scope='row'>$row[med_patientID]</th>";
+                                echo "<td>$row[med_name]</td>";
+                                echo "<td>$row[med_start_date]</td>";
+                                echo "<td><a id='editLink' href='patientMedication.php?id=$row[med_patientID]'>Edit</a></td>";
+                                echo "<td><a id='deleteLink' href='deleteMedication.php?id=$row[med_patientID]'>Delete</a></td>";
                             }
                             ?>
                         </tbody>
