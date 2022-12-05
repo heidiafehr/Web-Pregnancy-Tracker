@@ -1,11 +1,3 @@
-<?php
-if (isset($_GET['status'])) {
-    header("Location: patientsTableEditDelete.php");
-    exit;
-} else {
-    header("refresh 0");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -12,17 +12,13 @@
 
 <body>
 
-    <!-- Get patient Information -->
+    <!-- Get doctor Information -->
     <?php
     include "../connect_server.php";
     if (isset($_GET['id']) && isset($_GET['username'])) {
 
         $thisID = $_GET['id'];
         $thisUsername = $_GET['username'];
-
-        // get patient information
-        // display personal information, pregnancies, appointments, medication
-        // how would we edit this?
 
         $sql = "SELECT * FROM personal_info WHERE ID=$thisID";
 
@@ -49,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Personal Information</h3>
-                    <form action="sendPatientPersonalInfo.php" method="POST">
+                    <form action="sendDoctorPersonalInfo.php" method="POST">
                         <input type="hidden" id="oldUsername" name="oldUsername" value="<?php echo $thisUsername ?>">
                         <input type="hidden" id="oldID" name="oldID" value="<?php echo $thisID ?>">
 
