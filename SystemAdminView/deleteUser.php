@@ -49,6 +49,8 @@
                 }
 
                 echo "<h3>Successfully Deleted $thisUsername!</h3>";
+            }else{
+                echo "ahhh";
             }
             ?>
         </div>

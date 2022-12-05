@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Admin: Patients</title>
+    <title>Admin: Users</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
@@ -19,7 +19,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">patient_ID</th>
+                        <th scope="col">ID</th>
                         <th scope="col">username</th>
                         <th scope="col">edit</th>
                         <th scope="col">delete</th>
@@ -38,6 +38,16 @@
                         echo "<td>$row[username]</td>";
                         echo "<td><a id='editLink' href='patientInfo.php?id=$row[patient_ID]&username=$row[username]'>Edit</a></td>";
                         echo "<td><a id='deleteLink' href='deleteUser.php?id=$row[patient_ID]&username=$row[username]'>Delete</a></td>";
+                    }
+
+                    $sql = "SELECT * FROM doctors";
+                    $result = mysqli_query($conn, $sql);
+
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tr><th scope='row'>$row[doctor_ID]</th>";
+                        echo "<td>$row[username]</td>";
+                        echo "<td><a id='editLink' href='doctorInfo.php?id=$row[doctor_ID]&username=$row[username]'>Edit</a></td>";
+                        echo "<td><a id='deleteLink' href='deleteUser.php?id=$row[doctor_ID]&username=$row[username]'>Delete</a></td>";
                     }
 
                     ?>
