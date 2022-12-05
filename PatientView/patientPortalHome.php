@@ -145,17 +145,17 @@
                             <h6 class="mb-2 pb-1">Sex</h6>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newSex" id="femaleGender"
-                                    value="F" name="female" checked>
+                                    value="F" name="female" <?php if($patientSex=='F'){ echo "checked"; }?>>
                                 <label class="form-check-label" for="femaleGender">Female</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newSex" id="maleGender"
-                                    value="M" name="male">
+                                    value="M" name="male" <?php if($patientSex=='M'){ echo "checked"; }?>>
                                 <label class="form-check-label" for="maleGender">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newSex" id="interSex"
-                                    value="I" >
+                                    value="I" <?php if($patientSex=='I'){ echo "checked"; }?>>
                                 <label class="form-check-label" for="maleGender">Intersex</label>
                             </div>
                         </div>
@@ -163,17 +163,17 @@
                             <h6 class="mb-2 pb-1">Gender</h6>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newGender" id="femaleGender"
-                                    value="Woman" checked>
+                                    value="Woman" <?php if($patientGender=='Woman'){ echo "checked"; }?> >
                                 <label class="form-check-label" for="femaleGender">Woman</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newGender" id="maleGender"
-                                    value="Man">
+                                    value="Man"  <?php if($patientGender=='Man'){ echo "checked"; }?>>
                                 <label class="form-check-label" for="maleGender">Man</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="newGender" id="otherGender"
-                                    value="Other">
+                                    value="Other"  <?php if($patientGender=='Other'){ echo "checked"; }?> >
                                 <label class="form-check-label" for="otherGender">Other</label>
                             </div>
                         </div>
