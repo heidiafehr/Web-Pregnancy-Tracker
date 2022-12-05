@@ -70,6 +70,8 @@
         $phone = $patientInfo[0]['phone_number'];
         $sex = $patientInfo[0]['sex'];
         $gender = $patientInfo[0]['gender'];
+        $age = date_diff(date_create($dob), date_create(date("Y-m-d")))->format('%Y');
+        $phoneFormatted = "(" . substr($phone, 0, 3) . ') ' . substr($phone, 3, 3) . '-' . substr($phone, 6);
         
         //Make a card of the patient's information
         echo "<div class='container mt-5'>
@@ -84,11 +86,11 @@
                             <h3 class='card-title pb-3'>$firstName $lastName</h3>
                             <div class='col-6'>
                                 <p class='card-text'> <b>Date of Birth:</b> " . date('F j, Y', strtotime($dob)) . "</p>
-                                <p class='card-text'> <b>Age:</b> " . date_diff(date_create($dob), date_create(date("Y-m-d")))->format('%Y') . " years old</p>
+                                <p class='card-text'> <b>Age:</b> $age years old</p>
                             </div>
                             <div class='col-6'>
                                 <p class='card-text'> <b>Email:</b> " . $email . "</p>
-                                <p class='card-text'> <b>Phone:</b> " . $phone . "</p>
+                                <p class='card-text'> <b>Phone:</b> " . $phoneFormatted . "</p>
                             </div>
                         </div>
                     </div>
@@ -99,18 +101,10 @@
                             <h3 class='mb-0'>Previous Pregnancies</h3>
                         </div>
                     </div>";
-        include '../connect_server.php'; 
-        $sql = "SELECT * FROM pregnancies WHERE patient_id = $patientID";
-        $result = mysqli_query($conn, $sql);
-        $pregnancies = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        mysqli_free_result($result);
-        if (count($pregnancies) == 0) {
-            echo "<div class='card-body'>
-                    <p class='card-text'>No previous pregnancies</p>
-                </div>
-            </div>";
-        } else {
-                    echo "<div class='table-responsive m-4'>
+        $sql = "SELECT * FROM pregnancies WHERE patient_id = $patientID ORDER BY due_date DESC";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            echo "<div class='table-responsive m-4'>
                         <table class='table table-bordered table-hover'>
                             <thead class='thead-dark'>
                             <tr>
@@ -120,37 +114,152 @@
                             </thead>
                             <tbody>";
                             
-                            while($row = $result->fetch_assoc()){
+                                while($row = $result->fetch_assoc()){
+                                    echo "<tr>
+                                            <td>" . date('F j, Y', strtotime($row['due_date'])) . "</td>
+                                            <td>";
+                                    echo ($row['baby_sex'] == "F") ? "Female" : "Male";
+                                    echo "</td>";
+                                }
+                                
                                 echo "<tr>
-                                        <td>" . date('F j, Y', strtotime($row['due_date'])) . "</td>";
-                            }
-                            
-                            echo "<tr></tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>";
+        } else {
+            echo "<div class='card-body'>
+                    <p class='card-text'>No previous pregnancies</p>
+                </div>
+            </div>";
         }
 
 
         echo "<div class='card mb-5'>
-                    <div class='card-header'>
+                    <div class='card-header d-flex justify-content-between py-3'>
                         <div class='header-title'>
-                            <h3 class='mb-0'>Medications</h3>
+                            <h3>Medications</h3>
                         </div>
-                    </div>
-                    <div class='table-responsive m-4'>
+
+                        <div class='btn-group mx-2' role='group'>
+                            <button type='button' class='btn btn-primary' id='med-btn' data-bs-toggle='modal' data-bs-target='#medModal'>
+                                <img src='../images/plus-sign-pngrepo-com.png' alt='Create New Medication' style='height:20px; color:white; padding-bottom:3px;'>
+                            </button>
+                        </div>
+
+                    </div>";
+    $sql = "SELECT * FROM medication WHERE med_patientID = $patientID ORDER BY med_start_date DESC";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<div class='table-responsive m-4'>
                         <table class='table table-bordered table-hover'>
                             <thead class='thead-dark'>
                             <tr>
                                 <th scope='col'>Name</th>
-                                <th scope='col'>Manage</th>
+                                <th scope='col'>Dosage</th>
+                                <th scope='col'>Frequency</th>
+                                <th scope='col'>Start Date</th>
+                                <th scope='col'>End Date</th>
+                                <th scope='col'>Notes</th>
                             </tr>
                             </thead>
+                            <tbody>";
+                            while($row=$result->fetch_assoc()){
+                            echo "<tr>
+                                    <td>
+                                        $row[med_name]
+                                    </td>
+                                    <td>
+                                        $row[dosage]
+                                    </td>
+                                    <td>
+                                        $row[frequency]
+                                    </td>
+                                    <td>"
+                                        .date('F j, Y', strtotime($row['med_start_date'])).
+                                    "</td>
+                                    <td>"
+                                    .date('F j, Y', strtotime( $row['med_end_date'])).
+                                    "</td>
+                                    <td>
+                                        $row[med_description]
+                                    </td>
+                                </tr>";
+                            }
+                            echo "</tbody>
                         </table>
-                    </div>
+                    </div>";
+    }
+    else {
+        echo "<div class='card-body'>
+                    <p class='card-text'>No medications</p>
                 </div>
             </div>";
-    ?>   
+        }
+                echo"</div>
+            </div>";
+    ?>
+    
+    <!-- Medication Modal -->
+    <div class="modal fade" id="medModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create New Medication</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Calendar Modal Body -->
+                <div class="modal-body">
+                    <!-- Patient Name -->
+                    <form action="insert_med.php" method="post" id="medForm">
+                        <input type="hidden" name="patientID" value=<?php echo $patientID?>>
+                        <input type="hidden" name="doctorID" value=<?php echo $userID?>>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="medName" name="medName"required>
+                                <option selected> </option>
+                                <option value="Acetaminophen">Acetaminophen</option>
+                                <option value="Antacid">Antacid</option>
+                                <option value="Benadryl">Benadryl</option>
+                                <option value="Doxylamine">Doxylamine</option>
+                                <option value="Folic Acid">Folic Acid</option>
+                                <option value="Vitamin B6">Vitamin B6</option>
+                            </select>
+                            <label for="medName">Medication Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="medDosage" name="medDosage" placeholder=" " required>
+                            <label for="medDosage">Dosage</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="medFrequency" name="medFrequency" placeholder=" " required>
+                            <label for="medFrequency">Frequency</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="medStartDate" name="medStartDate" placeholder=" " required>
+                            <label for="medStartDate">Start Date</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="medEndDate" name="medEndDate" placeholder=" " required>
+                            <label for="medEndDate">End Date</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" placeholder=" " id="medNotes" name="medNotes"></textarea>
+                            <label for="medNotes">Notes</label>
+                        </div>
+                        <input type="hidden" name="patientID" value="<?php echo $patientID; ?>">
+                    </form>
+                </div>
+                <!-- End Calendar Modal Body -->
+                
+                <!-- Calendar Footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="medForm" id="submitBtn">Submit</button>
+                </div>
+                <!-- End Calendar Footer -->
+            </div>
+        </div>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

@@ -67,8 +67,7 @@ $sql .= "CREATE TABLE appointments(
 	FOREIGN KEY(doctor_ID) REFERENCES doctors(doctor_ID),
 	FOREIGN KEY(patient_ID) REFERENCES patients(patient_ID),
 	FOREIGN KEY(user_ID) REFERENCES personal_info(ID), 
-	approved BOOLEAN
-
+	approved BOOLEAN NOT NULL DEFAULT FALSE
 );";
 
 $sql .= "CREATE TABLE pregnancies(
@@ -79,12 +78,16 @@ $sql .= "CREATE TABLE pregnancies(
 );";
 
 $sql .= "CREATE TABLE medication(
+	med_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	med_name VARCHAR(225) NOT NULL,
+	dosage VARCHAR(225) NOT NULL,
+	frequency VARCHAR(225) NOT NULL,
 	/*YYYY-MM-DD*/
 	med_start_date VARCHAR(10) NOT NULL,
 	med_end_date VARCHAR(10) NOT NULL,
 	med_description VARCHAR(8000), 
-	med_patientID INT(225) NOT NULL
+	med_patientID INT(225) NOT NULL,
+	med_doctorID INT(225) NOT NULL
 );";
 
 // Creating and admin login
@@ -103,8 +106,8 @@ $sql .= "INSERT INTO appointments (user_ID, start_date_time, end_date_time, appt
 (LAST_INSERT_ID(), '2023-01-03T08:30', '2023-01-03T09:00', '00:30',1),
 (LAST_INSERT_ID(), '2023-01-06T10:30', '2023-01-06T11:00', '00:30',1);";
 $sql .= "INSERT INTO patients VALUES(LAST_INSERT_ID(), 'patientUser');";
-$sql .= "INSERT INTO medication VALUES
-('medicationName', '2020-05-30', '2020-06-14', 'This is the description of what the medication does and how it should be taken',1);";
+$sql .= "INSERT INTO medication (med_name, dosage, frequency, med_start_date, med_end_date, med_description, med_patientID, med_doctorID)
+VALUES ('Vitamin B6', '5 mg', '2 a day', '2020-05-30', '2020-06-14', 'General supplement', 1, 2);";
 $sql .= "INSERT INTO pregnancies VALUES
 (LAST_INSERT_ID(), '2022-10-31', 'F'),
 (LAST_INSERT_ID(), '2020-11-14', 'M'),
