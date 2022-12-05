@@ -1,14 +1,14 @@
 <?php
-    echo $_POST['firstName'], $_POST['lastName'], $_POST['dob'], $_POST['gender'], $_POST['sex'], $_POST['email'], $_POST['phoneNumber'];
+    echo $_POST['firstname'], $_POST['lastname'], $_POST['dob'], $_POST['gender'], $_POST['sex'], $_POST['email'], $_POST['phonenumber'];
 
-    if (!empty($_POST['username']) && !empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['dob']) && !empty($_POST['gender']) && !empty($_POST['sex']) && !empty($_POST['email']) && !empty($_POST['phoneNumber']) && !empty($_POST['password'])) {
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
+    if (!empty($_POST['username']) && !empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['dob']) && !empty($_POST['gender']) && !empty($_POST['sex']) && !empty($_POST['email']) && !empty($_POST['phonenumber']) && !empty($_POST['password'])) {
+        $firstName = $_POST['firstname'];
+        $lastName = $_POST['lastname'];
         $dob = $_POST['dob'];
         $gender = $_POST['gender'];
         $sex = $_POST['sex'];
         $email = $_POST['email'];
-        $phoneNumber = $_POST['phoneNumber'];
+        $phoneNumber = $_POST['phonenumber'];
         $password = $_POST['password'];
         $username = $_POST['username'];
 
@@ -38,20 +38,18 @@
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
-        // insert into patients
-        $sql = "INSERT INTO patients VALUES(LAST_INSERT_ID(), '$username');";
+        // insert into doctors
+        $sql = "INSERT INTO doctors VALUES(LAST_INSERT_ID(), '$username');";
         if($conn->query($sql) === TRUE){
-            echo "<br>", "Inserted into patients", "<br>";
-            session_start();
-            $_SESSION['username'] = $users[0]['username'];
-            $_SESSION['patient_ID'] = $patient[0]['patient_ID'];
-            header("Location: ../PatientView/patientPortalHome.php");
+            echo "<br>", "Inserted into doctors", "<br>";
+            header("Location: newDoctor.html?status=1");
         }else{
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
 
     }else{
-        header("Location: /register.html?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
+        echo "check this";
+        header("Location: newDoctor.html?err= Oops looks like you missed a field. Please remember to fill out all of the fields.");
     }
 ?>
