@@ -67,12 +67,20 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                            <th scope="col">Days Until Due Date</th>
+                            <th scope="col">Current Trimester </th>
+                            <th scope="col">Weeks Until Due Date</th>
                             <th scope="col">Due Date</th>
                             <th scope="col">Baby's Sex</th>
                             </tr>
                         </thead>
                     <tbody>
+
+
+
+
+
+
+
                         <?php
                             //getting current date and time 
                             $tempDateTime = date('d-m-Y h:i:s a', time());    
@@ -85,26 +93,40 @@
                             $pregnanciesSQL = "SELECT * FROM pregnancies where patient_ID = $patientID;";
                             //get pregnacy rows if found 
                             $pregnanciesResult= $conn->query($pregnanciesSQL);
-                            //function to print pregnancies 
+                            //function to print current pregnancy
                             if($pregnancyRow = $pregnanciesResult->fetch_assoc()){
-                                $dueDate = $pregnancyRow["due_date"]; 
-                                
+                                //get due date 
+                                $dueDate = $pregnancyRow["due_date"];
                                 //converting due date to immutable 
                                 $dueDateImmutable = new dateTimeImmutable($dueDate);
-                                $testString = $dueDateImmutable->format('F d,Y'); 
-                                
-                                //getting difference for due date 
-                                //$dueDateCountDown = $->diff($); 
                                 //getting difference for due date 
                                 $dueDateCountDown = $currentDateTime->diff($dueDateImmutable); 
                                 //getting days
                                 $countdownDays = $dueDateCountDown->format('%R%a'); 
-                                echo(
-                                    "<td>$countdownDays</td>" . 
-                                    "<td>" .$pregnancyRow["due_date"] .
-                                    "<td>". $pregnancyRow["baby_sex"] .
-                                    "</td></tr></div>"
-                                ); 
+                                if($countdownDays <= 0){
+                                    echo "<td>No current pregnancies </td>"; 
+                                    $firstPregancyRow = $pregnancyRow; 
+                                }
+                                else{
+                                    //converting days left to weeks 
+                                    $countDownWeeks = floor($countdownDays/7); 
+                                    //getting weeks into pregancy(40 weeks in a pregancy? according to bing)
+                                    $currentweek = 40-$countDownWeeks; 
+                                    if($countDownWeeks >= 0 and $countDownWeeks <=13)
+                                        $trimester = "First"; 
+                                    elseif($countDownWeeks <=26)
+                                        $trimester = "2";
+                                    elseif($countDownWeeks <=40)
+                                        $trimester = "Second";
+                                    echo(
+                                        "<td>$trimester</td>" . 
+                                        "<td>$countdownDays</td>" . 
+                                        "<td>" .$pregnancyRow["due_date"] .
+                                        "<td>". $pregnancyRow["baby_sex"] .
+                                        "</td></tr></div>"
+                                    ); 
+                                }
+                               
                             }
                         ?>   
                     </tbody>                     
@@ -132,22 +154,30 @@
                     <table class='table table-bordered table-hover'>
                         <thead>
                             <tr>
-                            <th scope="col">Days Until Due Date</th>
+                            <th scope="col">Weeks Until Due Date</th>
                             <th scope="col">Due Date</th>
                             <th scope="col">Baby's Sex</th>
                             </tr>
                         </thead>
+                    <div class="card-body">
                     <?php 
-                        
-                        while($pregnancyRow = $pregnanciesResult->fetch_assoc()){
+                        //check for first pregnancy row 
+                        if($firstPregancyRow){
+                            printRow($firstPregancyRow); 
+                        }
+                            
+                        //print following pregancies 
+                        while($pregnancyRow = $pregnanciesResult->fetch_assoc())
+                            printRow($pregnancyRow); 
+                            
+                        function printRow($pregnancyRow){
                             echo("
-                                <div class = cardbody> 
-                                <tr><td> Birthed </td><td>".$pregnancyRow["due_date"]."</td>" .
+                                <tr><td> Birthed </td>     
+                                <td>".$pregnancyRow["due_date"]."</td>" .
                                 "<td>".$pregnancyRow["baby_sex"]."</td>".
                                 "</tr></div>"
                             );  
-                            
-                        } 
+                        }
                     ?></table>
                 </div>
                 <div class="modal-footer">
