@@ -28,14 +28,14 @@
                         <a class="nav-link active" href="doctorPortalHome.php">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="appointments.php">Appointments</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="appointments.php">Appointments</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="patients.php">Patients</a> <!-- TODO: Update href-->
+                        <a class="nav-link" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="medications.php">Medications</a> <!-- TODO: Update href-->
-                    </li>
+                    <!-- <li class="nav-item px-3">
+                        <a class="nav-link" href="medications.php">Medications</a>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
