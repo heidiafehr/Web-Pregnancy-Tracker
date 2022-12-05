@@ -33,9 +33,9 @@
                     <li class="nav-item px-3">
                         <a class="nav-link active" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <!-- <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
@@ -56,6 +56,7 @@
     <!-- NavBar End -->
 
     <?php
+        include '../connect_server.php'; 
         $patientID = $_GET['id'];
         $sql = "SELECT * FROM personal_info WHERE ID = $patientID";
         $result = mysqli_query($conn, $sql);
@@ -95,10 +96,21 @@
                 <div class='card mb-5'>
                     <div class='card-header'>
                         <div class='header-title'>
-                            <h3 class='mb-0'>Previous Pregancies</h3>
+                            <h3 class='mb-0'>Previous Pregnancies</h3>
                         </div>
-                    </div>
-                    <div class='table-responsive m-4'>
+                    </div>";
+        include '../connect_server.php'; 
+        $sql = "SELECT * FROM pregnancies WHERE patient_id = $patientID";
+        $result = mysqli_query($conn, $sql);
+        $pregnancies = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        if (count($pregnancies) == 0) {
+            echo "<div class='card-body'>
+                    <p class='card-text'>No previous pregnancies</p>
+                </div>
+            </div>";
+        } else {
+                    echo "<div class='table-responsive m-4'>
                         <table class='table table-bordered table-hover'>
                             <thead class='thead-dark'>
                             <tr>
@@ -106,10 +118,21 @@
                                 <th scope='col'>Baby's Sex</th>
                             </tr>
                             </thead>
+                            <tbody>";
+                            
+                            while($row = $result->fetch_assoc()){
+                                echo "<tr>
+                                        <td>" . date('F j, Y', strtotime($row['due_date'])) . "</td>";
+                            }
+                            
+                            echo "<tr></tbody>
                         </table>
                     </div>
-                </div>
-                <div class='card mb-5'>
+                </div>";
+        }
+
+
+        echo "<div class='card mb-5'>
                     <div class='card-header'>
                         <div class='header-title'>
                             <h3 class='mb-0'>Medications</h3>

@@ -34,9 +34,9 @@
                     <li class="nav-item px-3">
                         <a class="nav-link" href="patients.php">Patients</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <!-- <li class="nav-item px-3">
                         <a class="nav-link" href="medications.php">Medications</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="../images/person-pngrepo-com.png" style="height:24px">
