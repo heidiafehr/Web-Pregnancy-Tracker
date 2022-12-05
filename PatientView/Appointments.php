@@ -163,7 +163,7 @@
                             <!-- Pick date -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="lastName">Enter Preferred Date</label>
+                                    <label class="form-label" for="lastName">Enter Date</label>
                                     <input type="date" class="form-control form-control-lg"
                                         name="date" required>
                                 </div>
