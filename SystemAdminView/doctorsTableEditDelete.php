@@ -21,6 +21,8 @@
                     <tr>
                         <th scope="col">doctor_ID</th>
                         <th scope="col">username</th>
+                        <th scope="col">first_name</th>
+                        <th scope="col">last_name</th>
                         <th scope="col">edit</th>
                         <th scope="col">delete</th>
                     </tr>
@@ -36,6 +38,13 @@
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr><th scope='row'>$row[doctor_ID]</th>";
                         echo "<td>$row[username]</td>";
+                        // get the patient's first and last name
+                        $sql = "SELECT first_name, last_name FROM personal_info WHERE ID='$row[doctor_ID]';";
+                        $doctor = mysqli_query($conn, $sql);
+                        $doctorRow = mysqli_fetch_assoc($doctor);
+
+                        echo"<td>$doctorRow[first_name]</td>";
+                        echo "<td>$doctorRow[last_name]</td>";
                         echo "<td><a id='editLink' href='doctorInfo.php?id=$row[doctor_ID]&username=$row[username]'>Edit</a></td>";
                         echo "<td><a id='deleteLink' href='deleteUser.php?id=$row[doctor_ID]&username=$row[username]'>Delete</a></td>";
                     }

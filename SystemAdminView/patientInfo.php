@@ -20,10 +20,6 @@
         $thisID = $_GET['id'];
         $thisUsername = $_GET['username'];
 
-        // get patient information
-        // display personal information, pregnancies, appointments, medication
-        // how would we edit this?
-
         $sql = "SELECT * FROM personal_info WHERE ID=$thisID";
 
         $result = mysqli_query($conn, $sql);
