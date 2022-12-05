@@ -115,11 +115,11 @@
                         include '../connect_server.php'; 
 
                         //getting appointment date
-                        $sql =  "SELECT appointments.appointment_ID, personal_info.first_name, personal_info.last_name, appointments.start_date_time, appointments.end_date_time FROM personal_info
-                                    INNER JOIN appointments ON appointments.user_ID = personal_info.ID
-                                    INNER JOIN patients ON (appointments.user_ID = patients.patient_ID AND appointments.approved = 1)
+                        $sql =  "SELECT p_info.ID, p_info.first_name, p_info.last_name, appt.appointment_ID, appt.start_date_time, appt.end_date_time FROM personal_info as p_info
+                                    INNER JOIN appointments as appt ON appt.user_ID = p_info.ID
+                                    INNER JOIN patients ON (appt.user_ID = patients.patient_ID AND appt.approved = 1)
                                     INNER JOIN doctors ON doctors.doctor_ID = $_SESSION[doctor_ID]
-                                    ORDER BY appointments.start_date_time, personal_info.first_name ASC";
+                                    ORDER BY appt.start_date_time, p_info.first_name ASC";
                         
                         $result = $conn->query($sql);
                         
@@ -135,7 +135,7 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Appointment Date</th>
                                     <th scope="col">Appointment Time</th>
-                                    <!-- <th scope="col">Action</th> -->
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -161,7 +161,9 @@
                                         echo "<td>" . $row["last_name"] . "</td>";
                                         echo "<td>" . date('F j, Y', strtotime($startDateTime[0])) . "</td>";
                                         echo "<td>" . date('g:i a', strtotime($startDateTime[1])) . " - " . date('g:i a', strtotime($endDateTime[1])). "</td>";
-                                        //echo "<td><a href='#editAppt' data-bs-toggle='modal' data-bs-target='#editAppt'>Edit</a><td>";
+                                        echo '<td>
+                                            <a href="patient_info.php?id=' . $row["ID"] . '">View</a>
+                                        </td>';
                                         echo "</tr>";
                                         $num++;
                                     }
@@ -186,7 +188,6 @@
         ?>
     </div>
         
-
 
     <!-- Calendar Modal -->
     <div class="modal fade" id="apptModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -328,8 +329,6 @@
             </div>
         </div>
     </div>                         
-    
-
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

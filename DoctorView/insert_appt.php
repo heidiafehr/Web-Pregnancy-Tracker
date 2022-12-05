@@ -22,6 +22,4 @@
             echo "Error: " . $sql1 . "<br>" . $conn->error;
         }
     }
-
-    $conn->close();
 ?>
