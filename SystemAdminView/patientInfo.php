@@ -77,6 +77,36 @@
                     </table>
                 </div>
             </div>
+
+            <!-- PREGNANCIES -->
+            <div class="card">
+                <div class="card-body">
+                    <h3>PREGNANCIES</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Due Date</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $sql = "SELECT * FROM pregnancies WHERE patient_ID=$thisID";
+
+                            $result = mysqli_query($conn, $sql);
+                            while($row = $result->fetch_assoc()){
+                                echo "<tr>";
+                                echo "<td>$row[due_date]</td>";
+                                echo "<td><a id='editLink' href='patientPregnancies.php?id=$row[patient_ID]&dueDate=$row[due_date]'>Edit</a></td>";
+                                echo "<td><a id='deleteLink' href='deletePregnancies.php?id=$row[patient_ID]&dueDate=$row[due_date]'>Delete</a></td>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
