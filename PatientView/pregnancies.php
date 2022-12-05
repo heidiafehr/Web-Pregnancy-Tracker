@@ -77,7 +77,7 @@
                         <?php
                             //decarling vars
                             $firstPregancyRow = null;
-                            $coundownRatio = 0; 
+                            $countdownRatio = 0; 
                             //getting current date and time 
                             $tempDateTime = date('d-m-Y h:i:s a', time());    
                             //saving date time as datetimeImmutabel
