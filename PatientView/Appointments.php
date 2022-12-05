@@ -145,17 +145,17 @@
                             <!-- Pick start time -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="firstName">Enter Preferred Start Time</label>
+                                    <label class="form-label" for="firstName">Enter Start Time</label>
                                     <input type="time" class="form-control form-control-lg"
-                                        name="startTime" required>
+                                        name="startTime" min="08:00" required>
                                 </div>
                             </div>
                             <!-- Pick end time -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="lastName">Enter Preferred Start Time</label>
+                                    <label class="form-label" for="lastName">Enter End Time</label>
                                     <input type="time" class="form-control form-control-lg"
-                                        name="endTime" required>
+                                        name="endTime" max ="17:00" required>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                             <!-- Pick date -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="lastName">Enter Preferred Date</label>
+                                    <label class="form-label" for="lastName">Enter Date</label>
                                     <input type="date" class="form-control form-control-lg"
                                         name="date" required>
                                 </div>
