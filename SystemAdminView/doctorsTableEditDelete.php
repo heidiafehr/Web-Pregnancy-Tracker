@@ -37,7 +37,7 @@
                         echo "<tr><th scope='row'>$row[doctor_ID]</th>";
                         echo "<td>$row[username]</td>";
                         echo "<td><a id='editLink' href='doctorInfo.php?id=$row[doctor_ID]&username=$row[username]'>Edit</a></td>";
-                        echo "<td><button name='delete'>Delete</td></tr>";
+                        echo "<td><a id='deleteLink' href='deleteUser.php?id=$row[doctor_ID]&username=$row[username]'>Delete</a></td>";
                     }
 
                     ?>
