@@ -67,7 +67,7 @@
                     </div>
                     <div class= "card-body">
                         <!-- table to print patient info --> 
-                        <table class="table">
+                        <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                 <th scope="col">First</th>

@@ -1,10 +1,11 @@
 <?php
     include 'patientInfo.php'; 
-    //chagning to date time format 
+    //change to date time format 
     $apptStartDateTime = $_POST['date'] . "T" . $_POST['startTime'];
+    //change to date time format 
     $apptEndDateTime = $_POST['date'] . "T" . $_POST['endTime'];
     
-    //getting apptoinmentlegnth 
+    //getting apptoinment legnth 
     $startTime = new DateTime($_POST['startTime']); 
     $endTime = new DateTime($_POST['endTime']); 
     $difference = $endTime->diff($startTime); 
@@ -13,10 +14,9 @@
     //appointment aproval to false/pending 
     $apptApproved = 0; 
 
-
-    #Query to appointments with new appointment
+    //Query to appointments with new appointment
     $insertAppointmentQuery = "INSERT INTO appointments(user_ID, start_date_time, end_date_time, appt_length, approved) VALUES ('$patientID', '$apptStartDateTime', '$apptEndDateTime', '$apptLength', 0); ";
-    #print($insertAppointmentQuery); 
+    //query to insert appointment and redirect if successful
     if($conn->query($insertAppointmentQuery) == TRUE){
         header("Location: Appointments.php");
     }

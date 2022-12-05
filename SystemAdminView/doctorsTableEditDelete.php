@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>ah</title>
+    <title>Admin: Doctors</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
@@ -12,24 +12,38 @@
 <body>
     <div class="container-fluid">
         <?php include "sideNavBar.php"; ?>
+
         <div class="col py-3">
-            <p>ahhh Doctor</p>
-            <!-- <h3>Welcome System Administrator!</h3>
+            <h1>Doctors</h1>
 
-        <p>
-            To edit, search, or delete entries in the tables, click on the appropriate navigation on the left hand side under
-            the Tables tab. <br>
-            This is where you can edit the appropriate data for each user by type.
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">doctor_ID</th>
+                        <th scope="col">username</th>
+                        <th scope="col">edit</th>
+                        <th scope="col">delete</th>
+                    </tr>
 
-            <br><br>
-            If you would like to <b>create a Doctor account</b> click the New Doctor tab.
+                <tbody>
+                    <?php
 
-            <br><br>
-            To search user by name/username/ID click on the search tab.
-        </p>
+                    include "../connect_server.php";
 
-        <h3 class="col py-3">Happy Editing :)</h3> -->
+                    $sql = "SELECT * FROM doctors";
+                    $result = mysqli_query($conn, $sql);
 
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tr><th scope='row'>$row[doctor_ID]</th>";
+                        echo "<td>$row[username]</td>";
+                        echo "<td><a id='editLink' href='doctorInfo.php?id=$row[doctor_ID]&username=$row[username]'>Edit</a></td>";
+                        echo "<td><button name='delete'>Delete</td></tr>";
+                    }
+
+                    ?>
+                </tbody>
+                </thead>
+            </table>
         </div>
     </div>
 

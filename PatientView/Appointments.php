@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class = "card-body">
-                    <table class='table'>
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                             <th scope="col">Appointment Date</th>
@@ -76,7 +76,51 @@
                             </tr>
                         </thead>
                     <!-- Printing Appointments -->
-                    <?php printAppointments($appointmentResult); ?>
+                    <?php 
+                        //Create Query for appoinments 
+                        $appointmentSQL = "SELECT * FROM appointments where user_ID = $patientID;"; 
+                        $appointmentResult = $conn ->query($appointmentSQL);
+                        //Function to print appointments
+                            while($appointmentRow = $appointmentResult->fetch_assoc()){
+                                //if apointments table is not empty
+                                if($appointmentRow){
+                                    //saving appointment Start Time
+                                    $apptStart = new dateTimeImmutable($appointmentRow['start_date_time']);
+                                    //converting to string and format
+                                    $apptStartString = $apptStart->format('H:i'); 
+                                    //saving appointment Date
+                                    $apptDate = $apptStart->format('F d, Y'); 
+                                    //saving appointment End Time 
+                                    $apptEnd = new dateTimeImmutable($appointmentRow['end_date_time']);
+                                    //converting to string and format
+                                    $apptEndString = $apptEnd->format('H:i'); 
+                                    //getting appointment length
+                                    $apptLength = $appointmentRow['appt_length'];
+                                    //get appointment approval
+                                    $apptApproved = $appointmentRow['approved'];
+                                    if($apptApproved == 1){
+                                        $apptApproved = "approved"; 
+                                    }
+                                    else{
+                                        $apptApproved = "pending"; 
+                                    }
+
+                                    //print appointments
+                                    echo "<tr><td>$apptDate</td>
+                                        <td>$apptStartString</td>
+                                        <td>$apptEndString</td>
+                                        <td>$apptLength </td>
+                                        <td>$apptApproved</td>
+                                        </tr>"; 
+                                    
+                                }
+                                else{
+                                    print("no appointments"); 
+                                }
+                            }
+                            echo("</table>"); 
+                            
+                            ?>
                     </table>
                     
                     <!-- Appointment Modal Button -->
@@ -102,17 +146,17 @@
                             <!-- Pick start time -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="firstName">Enter Preferred Start Time</label>
+                                    <label class="form-label" for="firstName">Enter Start Time</label>
                                     <input type="time" class="form-control form-control-lg"
-                                        name="startTime" required>
+                                        name="startTime" min="08:00" required>
                                 </div>
                             </div>
                             <!-- Pick end time -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="lastName">Enter Preferred Start Time</label>
+                                    <label class="form-label" for="lastName">Enter End Time</label>
                                     <input type="time" class="form-control form-control-lg"
-                                        name="endTime" required>
+                                        name="endTime" max ="17:00" required>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +164,7 @@
                             <!-- Pick date -->
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="lastName">Enter Preferred Date</label>
+                                    <label class="form-label" for="lastName">Enter Date</label>
                                     <input type="date" class="form-control form-control-lg"
                                         name="date" required>
                                 </div>
